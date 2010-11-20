@@ -1,0 +1,32 @@
+/*
+ * @(#)RSAKey.java	1.8 10/03/23
+ *
+ * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ */
+ 
+package java.security.interfaces;
+
+import java.math.BigInteger;
+
+/**
+ * The interface to an RSA public or private key.
+ *
+ * @author Jan Luehe
+ * @version 1.8 03/23/10
+ *
+ * @see RSAPublicKey
+ * @see RSAPrivateKey
+ *
+ * @since 1.3
+ */
+
+public interface RSAKey {
+
+    /**
+     * Returns the modulus.
+     *		
+     * @return the modulus
+     */
+    public BigInteger getModulus();
+}
