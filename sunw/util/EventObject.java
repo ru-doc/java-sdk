@@ -1,33 +1,33 @@
 /*
  * @(#)EventObject.java	1.15 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
  
 package sunw.util;
 
 /**
- * FOR BACKWARD COMPATIBILITY ONLY - DO NOT USE.
+ * ТОЛЬКО ДЛЯ ОБРАТНОЙ СОВМЕСТИМОСТИ - НЕ ИСПОЛЬЗОВАТЬ.
  * <p>
- * This is a backwards compatibility class to allow Java Beans that
- * were developed under JDK 1.0.2 to run correctly under JDK 1.1
+ * Это класс для обратной совместимости, позволяющий компонентам Java Beans,
+ * разработанным под JDK 1.0.2, корректно выполняться под JDK 1.1.
  * <p>
- * To allow beans development under JDK 1.0.2, JavaSoft delivered three
- * no-op interfaces/classes (sunw.io.Serializable, sunw.util.EventObject
- * and sunw.util.EventListener) that could be downloaded into JDK 1.0.2
- * systems and which would act as placeholders for the real JDK 1.1
- * classes.
+ * Чтобы позволить разработку компонентов под JDK 1.0.2, JavaSoft предоставляет 
+ * три ничего не делающих интерфейса/класса (sunw.io.Serializable, 
+ * sunw.util.EventObject и sunw.util.EventListener), которые могут быть 
+ * загружены в JDK 1.0.2 системы, и которые являются переходниками к реальным
+ * классам JDK 1.1.
  * <p>
- * Now under JDK 1.1 we provide versions of these classes and interfaces
- * that inherit from the real version in java.util and java.io.  These
- * mean that beans developed under JDK 1.0.2 against the sunw.* classes
- * will now continue to work on JDK 1.1 and will (indirectly) inherit
- * from the approrpiate java.* interfaces/classes.
+ * Теперь под JDK 1.1 мы предоставляем версии этих классов и интерфейсов,
+ * унаследованных от реальных версий в java.util и java.io. Это означает,
+ * что компоненты, разработанные под JDK 1.0.2 с использованием классов 
+ * sunw.*, будут продолжать работать на JDK 1.1 и будут (косвенно) унаследованы
+ * от соответствующих интерфейсов/классов java.* .
  *
- * @deprecated This is a compatibility type to allow Java Beans that
- * were developed under JDK 1.0.2 to run correctly under JDK 1.1.  The
- * corresponding JDK1.1 type is java.util.EventObject
+ * @deprecated Это тип для совместимости, позволяющий Java Beans, разработанным
+ * под JDK 1.0.2, корректно выполняться под JDK 1.1. Соответствующим типом в
+ * JDK1.1 является java.util.EventObject.
  *
  * @see java.util.EventObject
  */
