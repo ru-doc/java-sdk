@@ -1,8 +1,8 @@
 /*
  * @(#)AppletContext.java	1.36 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.applet;
@@ -17,160 +17,160 @@ import java.io.IOException;
 import java.util.Iterator;
 
 /**
- * This interface corresponds to an applet's environment: the
- * document containing the applet and the other applets in the same
- * document.
+ * Этот интерфейс соответствует окружению апплета: документ, 
+ * содержащий апплет и другие апплеты в том же самом
+ * документе.
  * <p>
- * The methods in this interface can be used by an applet to obtain
- * information about its environment.
+ * Методы в этом интерфейсе могут использоваться апплетом для получения
+ * информации о его окружении.
  *
- * @author 	Arthur van Hoff
+ * @author      Arthur van Hoff
  * @version     1.36, 03/23/10
  * @since       JDK1.0
  */
 public interface AppletContext {
     /**
-     * Creates an audio clip.
+     * Создает аудиоклип.
      *
-     * @param   url   an absolute URL giving the location of the audio clip.
-     * @return  the audio clip at the specified URL.
+     * @param   url   абсолютный URL, содержащий местоположение аудиоклипа.
+     * @return  аудиоклип по указанному URL.
      */
     AudioClip getAudioClip(URL url);
 
     /**
-     * Returns an <code>Image</code> object that can then be painted on
-     * the screen. The <code>url</code> argument<code> </code>that is
-     * passed as an argument must specify an absolute URL.
+     * Возвращает объект <code>Image</code>, который может быть нарисован
+     * на экране. Передаваемый аргумент <code>url</code> должен определять
+     * абсолютный URL.
      * <p>
-     * This method always returns immediately, whether or not the image
-     * exists. When the applet attempts to draw the image on the screen,
-     * the data will be loaded. The graphics primitives that draw the
-     * image will incrementally paint on the screen.
+     * Этот метод всегда возвращает управление немедленно, независимо от того,
+     * существует ли изображение. Когда апплет попытается нарисовать изображение
+     * на экране, данные будут загружены. Графические примитивы, которые рисуют
+     * изображение, будут инкрементально закрашивать экран.
      *
-     * @param   url   an absolute URL giving the location of the image.
-     * @return  the image at the specified URL.
+     * @param   url   абсолютный URL, содержащий местоположение изображения.
+     * @return  изображение по указанному URL.
      * @see     java.awt.Image
      */
     Image getImage(URL url);
 
     /**
-     * Finds and returns the applet in the document represented by this
-     * applet context with the given name. The name can be set in the
-     * HTML tag by setting the <code>name</code> attribute.
+     * Находит и возвращает апплет в документе, представленный этим 
+     * контекстом апплета с указанным именем. Имя может быть установлено в 
+     * HTML теге с помощью атрибута <code>name</code>.
      *
-     * @param   name   an applet name.
-     * @return  the applet with the given name, or <code>null</code> if
-     *          not found.
+     * @param   name   имя апплета.
+     * @return  апплет с указанным именем или <code>null</code> если
+     *          такой апплет не найден.
      */
     Applet getApplet(String name);
 
     /**
-     * Finds all the applets in the document represented by this applet
-     * context.
+     * Находит все апплеты в документе, представляемые этим контекстом
+     * апплета.
      *
-     * @return  an enumeration of all applets in the document represented by
-     *          this applet context.
+     * @return  перечисление всех апплетов в документе, представляемом этим
+     *          контекстом апплета.
      */
     Enumeration<Applet> getApplets();
 
     /**
-     * Requests that the browser or applet viewer show the Web page 
-     * indicated by the <code>url</code> argument. The browser or 
-     * applet viewer determines which window or frame to display the 
-     * Web page. This method may be ignored by applet contexts that 
-     * are not browsers.
+     * Просит браузер или просмотрщик апплетов показать веб-страницу,
+     * обозначенную аргументом <code>url</code>. Браузер или просмотрщик
+     * апплетов определяют, в каком окне или фрейме отобразить веб-страницу.
+     * Этот метод может игнорироваться контекстами апплетов, которые не
+     * являются браузерами.
      *
-     * @param   url   an absolute URL giving the location of the document.
+     * @param   url   абсолютный URL, содержащий местоположение документа.
      */
     void showDocument(URL url);
 
     /**
-     * Requests that the browser or applet viewer show the Web page
-     * indicated by the <code>url</code> argument. The
-     * <code>target</code> argument indicates in which HTML frame the
-     * document is to be displayed.
-     * The target argument is interpreted as follows:
+     * Просит браузер или просмотрщик апплетов показать веб-страницу,
+     * обозначенную аргументом <code>url</code>. Аргумент
+     * <code>target</code> указывает, в каком HTML фрейме документ будет
+     * отображен.
+     * Аргумент target интерпретируется следующим образом:
      * <p>
-     * <center><table border="3" summary="Target arguments and their descriptions">
-     * <tr><th>Target Argument</th><th>Description</th></tr>
-     * <tr><td><code>"_self"</code>  <td>Show in the window and frame that
-     *                                   contain the applet.</tr>
-     * <tr><td><code>"_parent"</code><td>Show in the applet's parent frame. If
-     *                                   the applet's frame has no parent frame,
-     *                                   acts the same as "_self".</tr>
-     * <tr><td><code>"_top"</code>   <td>Show in the top-level frame of the applet's
-     *                                   window. If the applet's frame is the
-     *                                   top-level frame, acts the same as "_self".</tr>
-     * <tr><td><code>"_blank"</code> <td>Show in a new, unnamed
-     *                                   top-level window.</tr>
-     * <tr><td><i>name</i><td>Show in the frame or window named <i>name</i>. If
-     *                        a target named <i>name</i> does not already exist, a
-     *                        new top-level window with the specified name is created,
-     *                        and the document is shown there.</tr>
+     * <center><table border="3" summary="Аргументы target и их описание">
+     * <tr><th>Аргумент target</th><th>Описание</th></tr>
+     * <tr><td><code>"_self"</code></td>  <td>Показывает в окне и фрейме, которое
+     *                                        содержит апплет.</td></tr>
+     * <tr><td><code>"_parent"</code></td><td>Показывает в родительском фрейме апплета. If
+     *                                        Если фрейм апплета не имеет родительского,
+     *                                        то работает так же, как "_self".</tr>
+     * <tr><td><code>"_top"</code></td>   <td>Показывает в фрейме верхнего уровня окна апплета.
+     *                                        Если фрейм апплета является фреймом верхнего
+     *                                        уровня, то работает так же, как "_self".</td></tr>
+     * <tr><td><code>"_blank"</code></td> <td>Показывает в новом, безымянном
+     *                                        окне верхнего уровня.</tr>
+     * <tr><td><i>name</i></td><td>Показывает в фрейме или окне, называемом <i>name</i>. Если
+     *                             цель с именем <i>name</i> еще не существует, будет
+     *                             создано новое окно верхнего уровня с указаным именем,
+     *                             и документ будет показан там.</td></tr>
      * </table> </center>
      * <p>
-     * An applet viewer or browser is free to ignore <code>showDocument</code>.
+     * Просмотрщик апплетов или браузер вправе игнорировать <code>showDocument</code>.
      *
-     * @param   url   an absolute URL giving the location of the document.
-     * @param   target   a <code>String</code> indicating where to display
-     *                   the page.
+     * @param   url   абсолютный URL, содержащий местоположение документа.
+     * @param   target   строка, указывающая, где отобразить
+     *                   страницу.
      */
     public void showDocument(URL url, String target);
 
     /**
-     * Requests that the argument string be displayed in the
-     * "status window". Many browsers and applet viewers
-     * provide such a window, where the application can inform users of
-     * its current state.
+     * Запрашивает отображение строкового аргумента в "статусной строке".
+     * Многие браузеры и просмотрщики апплетов предоставляют такую
+     * строку, где приложение может информировать пользователей
+     * о своем текущем состоянии.
      *
-     * @param   status   a string to display in the status window.
+     * @param   status   строка для отображения в статусной строке.
      */
     void showStatus(String status);
 
     /**
-     * Associates the specified stream with the specified key in this
-     * applet context. If the applet context previously contained a mapping 
-     * for this key, the old value is replaced. 
+     * Ассоциирует указанный поток с указанным ключем в этом контексте 
+     * апплета. Если контекст апплета уже содержал отображение по этому 
+     * ключу, старое значение будет заменено. 
      * <p>
-     * For security reasons, mapping of streams and keys exists for each 
-     * codebase. In other words, applet from one codebase cannot access 
-     * the streams created by an applet from a different codebase
+     * По причинам безопасности, отображение потоков и ключей существует для 
+     * каждой базы кода (codebase). Другими словами, апплет с одной базой кода 
+     * не может получить доступ к потокам, созданным апплетом с другой базой кода.
      * <p>
-     * @param key key with which the specified value is to be associated.
-     * @param stream stream to be associated with the specified key. If this
-     *               parameter is <code>null</code>, the specified key is removed 
-     *               in this applet context.
-     * @throws <code>IOException</code> if the stream size exceeds a certain
-     *         size limit. Size limit is decided by the implementor of this
-     *         interface.
+     * @param key ключ, с которым будет ассоциировано указанное значение.
+     * @param stream поток, который будет ассоциирован с указанным ключом. Если этот 
+     *               параметр равен <code>null</code>, указанный ключ удаляется 
+     *               в этом контексте апплета.
+     * @throws <code>IOException</code> если размер потока превышает некоторое 
+     *         ограничение размера. Ограничение размера зависит от реализующего
+     *         данный интерфейс.
      * @since 1.4
      */
     public void setStream(String key, InputStream stream)throws IOException;
 
     /**
-     * Returns the stream to which specified key is associated within this 
-     * applet context. Returns <tt>null</tt> if the applet context contains 
-     * no stream for this key.  
+     * Возвращает поток, для которого указанный ключ ассоциирован с этим 
+     * контекстом апплета. Возвращает <tt>null</tt>, если контекст апплета 
+     * не содержит потока для этого ключа. 
      * <p>
-     * For security reasons, mapping of streams and keys exists for each 
-     * codebase. In other words, applet from one codebase cannot access 
-     * the streams created by an applet from a different codebase
+     * По причинам безопасности, отображение потоков и ключей существует для 
+     * каждой базы кода (codebase). Другими словами, апплет с одной базой кода 
+     * не может получить доступ к потокам, созданным апплетом с другой базой кода.
      * <p>
-     * @return the stream to which this applet context maps the key
-     * @param key key whose associated stream is to be returned.
+     * @param key ключ, для которого должен быть возвращен ассоциированный поток.
+     * @return поток, который данный контекст апплета отображает на ключ
      * @since 1.4
      */
     public InputStream getStream(String key);
 
     /**
-     * Finds all the keys of the streams in this applet context.
+     * Находит все ключи потоков этого контекста апплета.
      * <p>
-     * For security reasons, mapping of streams and keys exists for each 
-     * codebase. In other words, applet from one codebase cannot access 
-     * the streams created by an applet from a different codebase
+     * По причинам безопасности, отображение потоков и ключей существует для 
+     * каждой базы кода (codebase). Другими словами, апплет с одной базой кода 
+     * не может получить доступ к потокам, созданным апплетом с другой базой кода.
      * <p>
-     * @return  an Iterator of all the names of the streams in this applet 
-     *          context.
+     * @return  {@link java.util.Iterator итератор} всех имен потоков в этом
+     *          контексте апплета.
      * @since 1.4
      */
     public Iterator<String> getStreamKeys();

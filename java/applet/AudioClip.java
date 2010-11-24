@@ -1,36 +1,36 @@
 /*
  * @(#)AudioClip.java	1.20 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.applet;
 
 /**
- * The <code>AudioClip</code> interface is a simple abstraction for
- * playing a sound clip. Multiple <code>AudioClip</code> items can be
- * playing at the same time, and the resulting sound is mixed
- * together to produce a composite.
+ * Интерфейс <code>AudioClip</code> является простой абстракцией для 
+ * проигрывания звуковых клипов. Несколько элементов <code>AudioClip</code> 
+ * могут проигрываться одновременно, получающийся звук смешивается для
+ * получения композиции.
  *
- * @author 	Arthur van Hoff
+ * @author      Arthur van Hoff
  * @version     1.20, 03/23/10
  * @since       JDK1.0
  */
 public interface AudioClip {
     /**
-     * Starts playing this audio clip. Each time this method is called,
-     * the clip is restarted from the beginning.
+     * Начинает проигрывать этот аудиоклип. С каждым вызовом этого метода,
+     * клип начинает проигрывание с начала.
      */
     void play();
 
     /**
-     * Starts playing this audio clip in a loop.
+     * Начинает проигрывать этот аудиоклип в цикле.
      */
     void loop();
 
     /**
-     * Stops playing this audio clip.
+     * Останавливает проигрывание этого аудиоклипа.
      */
     void stop();
 }

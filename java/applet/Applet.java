@@ -1,8 +1,8 @@
 /*
  * @(#)Applet.java	1.84 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 package java.applet;
 
@@ -17,13 +17,13 @@ import java.util.Locale;
 import javax.accessibility.*;
 
 /**
- * An applet is a small program that is intended not to be run on
- * its own, but rather to be embedded inside another application.
+ * Апплет представляет собой маленькую программу, которая предназначена не 
+ * для самостоятельноо выполнения, а для внедрения в другое приложение.
  * <p>
- * The <code>Applet</code> class must be the superclass of any
- * applet that is to be embedded in a Web page or viewed by the Java
- * Applet Viewer. The <code>Applet</code> class provides a standard
- * interface between applets and their environment.
+ * Класс <code>Applet</code> должен быть суперклассом любого апплета, 
+ * который должен быть внедрен на веб-страницу или просмотрен с помощью
+ * Java Applet Viewer. Класс <code>Applet</code> предоставляет стандартный 
+ * интерфейс между апплетами и их окружением.
  *
  * @author      Arthur van Hoff
  * @author      Chris Warth
@@ -33,15 +33,15 @@ import javax.accessibility.*;
 public class Applet extends Panel {
     
     /**
-     * Constructs a new Applet. 
+     * Конструирует новый апплет. 
      * <p>
-     * Note: Many methods in <code>java.applet.Applet</code> 
-     * may be invoked by the applet only after the applet is 
-     * fully constructed; applet should avoid calling methods 
-     * in <code>java.applet.Applet</code> in the constructor. 
+     * Примечание: Многие методы в <code>java.applet.Applet</code> 
+     * могут быть вызваны апплетом только после того, как апплет будет
+     * полностью сконструирован; апплет должен избегать вызовов методов
+     * <code>java.applet.Applet</code> в конструкторе. 
      *
-     * @exception HeadlessException if GraphicsEnvironment.isHeadless()
-     * returns true.
+     * @exception HeadlessException, если <code>GraphicsEnvironment.isHeadless()</code>
+     * вернет <code>true</code>.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @since 1.4
      */
@@ -52,25 +52,25 @@ public class Applet extends Panel {
     }
     
     /**
-     * Applets can be serialized but the following conventions MUST be followed:
+     * Апплеты могут сериализоваться, но ДОЛЖНЫ выполняться следующие условия:
      *
-     * Before Serialization:
-     * An applet must be in STOPPED state.
+     * До сериализации:
+     * Апплет должен быть в состоянии ОСТАНОВЛЕН (STOPPED).
      *
-     * After Deserialization:
-     * The applet will be restored in STOPPED state (and most clients will
-     * likely move it into RUNNING state).
-     * The stub field will be restored by the reader.
+     * После десериализации:
+     * Апплет должен быть восстановлен в состояние ОСТАНОВЛЕН (STOPPED) (и
+     * большинство клиентов скорее всего переведет его в состояние ЗАПУЩЕН 
+     * (RUNNING)). Поле stub (заглушка) будет восстановлено читателем.
      */
     transient private AppletStub stub;
 
-    /* version ID for serialized form. */
+    /* version ID для сериализованной формы. */
     private static final long serialVersionUID = -5836846270535785031L;
 
     /**
-     * Read an applet from an object input stream.
-     * @exception HeadlessException if
-     * <code>GraphicsEnvironment.isHeadless()</code> returns
+     * Читает апплет из входного потока объектов.
+     * @exception HeadlessException, если
+     * <code>GraphicsEnvironment.isHeadless()</code> вернет
      * <code>true</code>
      * @serial
      * @see java.awt.GraphicsEnvironment#isHeadless
@@ -85,193 +85,193 @@ public class Applet extends Panel {
     }
 
     /**
-     * Sets this applet's stub. This is done automatically by the system.
-     * <p>If there is a security manager, its <code> checkPermission </code>
-     * method is called with the
-     * <code>AWTPermission("setAppletStub")</code>
-     * permission if a stub has already been set.
-     * @param   stub   the new stub.
-     * @exception SecurityException if the caller cannot set the stub
+     * Устанавливает заглушку (stub) апплету. Это делается автоматически системой.
+     * <p>Если имеется менеджер безопасности, будет вызван его метод 
+     * <code>checkPermission</code> с разрешением 
+     * <code>AWTPermission("setAppletStub")</code>,
+     * если заглушка уже была установлен.
+     * @param   stub   новая заглушка.
+     * @exception SecurityException, если вызывающий не может установить заглушку.
      */
     public final void setStub(AppletStub stub) {
-	if (this.stub != null) {
-	    SecurityManager s = System.getSecurityManager();
-	    if (s != null) {
-	        s.checkPermission(new AWTPermission("setAppletStub"));
-	    }
-	}
-	this.stub = (AppletStub)stub;
+        if (this.stub != null) {
+            SecurityManager s = System.getSecurityManager();
+            if (s != null) {
+                s.checkPermission(new AWTPermission("setAppletStub"));
+            }
+        }
+        this.stub = (AppletStub)stub;
     }
 
     /**
-     * Determines if this applet is active. An applet is marked active
-     * just before its <code>start</code> method is called. It becomes
-     * inactive just before its <code>stop</code> method is called.
+     * Определяет, активен ли апплет. Апплет помечается активным непосредственно 
+     * до вызова его метода <code>start</code>. Он становится неактивным
+     * непосредственно перед вызовом его метода <code>stop</code>.
      *
-     * @return  <code>true</code> if the applet is active;
-     *          <code>false</code> otherwise.
+     * @return  <code>true</code> если апплет активен;
+     *          иначе <code>false</code>.
      * @see     java.applet.Applet#start()
      * @see     java.applet.Applet#stop()
      */
     public boolean isActive() {
-	if (stub != null) {
-	    return stub.isActive();
-	} else {	// If stub field not filled in, applet never active
-	    return false;
-	}
+        if (stub != null) {
+            return stub.isActive();
+        } else {	// Если поле stub не заполнено, апплет никогда не будет активен
+            return false;
+        }
     }
 
     /**
-     * Gets the URL of the document in which this applet is embedded. 
-     * For example, suppose an applet is contained
-     * within the document:
+     * Получает URL документа, в который внедрен этот апплет.
+     * Например, пусть апплет содержится в документе:
+     * 
      * <blockquote><pre>
      *    http://java.sun.com/products/jdk/1.2/index.html
      * </pre></blockquote>
-     * The document base is:
+     * Базой документа будет:
      * <blockquote><pre>
      *    http://java.sun.com/products/jdk/1.2/index.html
      * </pre></blockquote>
      *
-     * @return  the {@link java.net.URL} of the document that contains this
-     *          applet.
+     * @return  {@link java.net.URL} документа, который содержит этот
+     *          апплет.
      * @see     java.applet.Applet#getCodeBase()
      */
     public URL getDocumentBase() {
-	return stub.getDocumentBase();
+        return stub.getDocumentBase();
     }
 
     /**
-     * Gets the base URL. This is the URL of the directory which contains this applet.  
+     * Получает базовый URL. Это URL директории, которая содержит апплет.
      *
-     * @return  the base {@link java.net.URL} of
-     *          the directory which contains this applet.
+     * @return  базовый {@link java.net.URL} директории,
+     *          в которой содержится апплет.
      * @see     java.applet.Applet#getDocumentBase()
      */
     public URL getCodeBase() {
-	return stub.getCodeBase();
+        return stub.getCodeBase();
     }
 
     /**
-     * Returns the value of the named parameter in the HTML tag. For
-     * example, if this applet is specified as
+     * Возвращает значение именованного параметра в HTML теге. Например,
+     * если апплет определен как
      * <blockquote><pre>
      * &lt;applet code="Clock" width=50 height=50&gt;
      * &lt;param name=Color value="blue"&gt;
      * &lt;/applet&gt;
      * </pre></blockquote>
      * <p>
-     * then a call to <code>getParameter("Color")</code> returns the
-     * value <code>"blue"</code>.
+     * то вызов <code>getParameter("Color")</code> вернет
+     * значение <code>"blue"</code>.
      * <p>
-     * The <code>name</code> argument is case insensitive.
+     * Аргумент <code>name</code> регистронезависим.
      *
-     * @param   name   a parameter name.
-     * @return  the value of the named parameter,
-     *          or <code>null</code> if not set.
+     * @param   name   имя параметра.
+     * @return  значение именованного параметра,
+     *          или <tt>null</tt> если он не установлен.
      */
-     public String getParameter(String name) {
-	 return stub.getParameter(name);
-     }
+    public String getParameter(String name) {
+        return stub.getParameter(name);
+    }
 
     /**
-     * Determines this applet's context, which allows the applet to
-     * query and affect the environment in which it runs.
+     * Определяет контекст этого апплета, который позволяет, апплету
+     * запрашивать и воздействовать на окружение, в котором он запущен.
      * <p>
-     * This environment of an applet represents the document that
-     * contains the applet.
+     * Это окружение апплета представляет документ, который содержит 
+     * апплет.
      *
-     * @return  the applet's context.
+     * @return  контекст апплета.
      */
     public AppletContext getAppletContext() {
-	return stub.getAppletContext();
+        return stub.getAppletContext();
     }
 
     /**
-     * Requests that this applet be resized.
+     * Вызывается, когда апплет изменил размер.
      *
-     * @param   width    the new requested width for the applet.
-     * @param   height   the new requested height for the applet.
+     * @param   width    новая требуемая величина для апплета.
+     * @param   height   новая требуемая высота для апплета.
      */
     public void resize(int width, int height) {
-	Dimension d = size();
-	if ((d.width != width) || (d.height != height)) {
-	    super.resize(width, height);
-	    if (stub != null) {
-		stub.appletResize(width, height);
-	    }
-	}
+        Dimension d = size();
+        if ((d.width != width) || (d.height != height)) {
+            super.resize(width, height);
+            if (stub != null) {
+                stub.appletResize(width, height);
+            }
+        }
     }
 
     /**
-     * Requests that this applet be resized.
+     * Вызывается, когда апплет изменил размер.
      *
-     * @param   d   an object giving the new width and height.
+     * @param   d   объект, определяющий новую ширину и высоту.
      */
     public void resize(Dimension d) {
-	resize(d.width, d.height);
+        resize(d.width, d.height);
     }
 
     /**
-     * Requests that the argument string be displayed in the
-     * "status window". Many browsers and applet viewers
-     * provide such a window, where the application can inform users of
-     * its current state.
+     * Запрашивает отображение строкового аргумента в "статусной строке".
+     * Многие браузеры и просмотрщики апплетов предоставляют такую
+     * строку, где приложение может информировать пользователей
+     * о своем текущем состоянии.
      *
-     * @param   msg   a string to display in the status window.
+     * @param   msg   строка для отображения в статусной строке.
      */
     public void showStatus(String msg) {
-	getAppletContext().showStatus(msg);
+        getAppletContext().showStatus(msg);
     }
 
     /**
-     * Returns an <code>Image</code> object that can then be painted on
-     * the screen. The <code>url</code> that is passed as an argument
-     * must specify an absolute URL.
+     * Возвращает объект <code>Image</code>, который может быть нарисован
+     * на экране. Передаваемый аргумент <code>url</code> должен определять
+     * абсолютный URL.
      * <p>
-     * This method always returns immediately, whether or not the image
-     * exists. When this applet attempts to draw the image on the screen,
-     * the data will be loaded. The graphics primitives that draw the
-     * image will incrementally paint on the screen.
-     *
-     * @param   url   an absolute URL giving the location of the image.
-     * @return  the image at the specified URL.
+     * Этот метод всегда возвращает управление немедленно, независимо от того,
+     * существует ли изображение. Когда апплет попытается нарисовать изображение
+     * на экране, данные будут загружены. Графические примитивы, которые рисуют
+     * изображение, будут инкрементально закрашивать экран.
+     **
+     * @param   url   абсолютный URL, содержащий местоположение изображения.
+     * @return  изображение по указанному URL.
      * @see     java.awt.Image
      */
     public Image getImage(URL url) {
-	return getAppletContext().getImage(url);
+        return getAppletContext().getImage(url);
     }
 
     /**
-     * Returns an <code>Image</code> object that can then be painted on
-     * the screen. The <code>url</code> argument must specify an absolute
-     * URL. The <code>name</code> argument is a specifier that is
-     * relative to the <code>url</code> argument.
+     * Возвращает объект <code>Image</code>, который может быть нарисован
+     * на экране. Передаваемый аргумент <code>url</code> должен определять
+     * абсолютный URL. Аргумент <code>name</code> указывается относительно 
+     * аргумента <code>url</code>.
      * <p>
-     * This method always returns immediately, whether or not the image
-     * exists. When this applet attempts to draw the image on the screen,
-     * the data will be loaded. The graphics primitives that draw the
-     * image will incrementally paint on the screen.
-     *
-     * @param   url    an absolute URL giving the base location of the image.
-     * @param   name   the location of the image, relative to the
-     *                 <code>url</code> argument.
-     * @return  the image at the specified URL.
+     * Этот метод всегда возвращает управление немедленно, независимо от того,
+     * существует ли изображение. Когда апплет попытается нарисовать изображение
+     * на экране, данные будут загружены. Графические примитивы, которые рисуют
+     * изображение, будут инкрементально закрашивать экран.
+     **
+     * @param   url   абсолютный URL, содержащий местоположение изображения.
+     * @param   name  местоположение изображения относительно аргумента
+     *                <code>url</code>.
+     * @return  изображение по указанному URL.
      * @see     java.awt.Image
      */
     public Image getImage(URL url, String name) {
-	try {
-	    return getImage(new URL(url, name));
-	} catch (MalformedURLException e) {
-	    return null;
-	}
+        try {
+            return getImage(new URL(url, name));
+        } catch (MalformedURLException e) {
+            return null;
+        }
     }
 
     /**
-     * Get an audio clip from the given URL.
+     * Получает аудиоклип по указанному URL.
      *
-     * @param url points to the audio clip
-     * @return the audio clip at the specified URL.
+     * @param url указавает на аудиоклип
+     * @return аудиоклип по указанному URL.
      *
      * @since       1.2
      */
@@ -280,143 +280,143 @@ public class Applet extends Panel {
     }
 
     /**
-     * Returns the <code>AudioClip</code> object specified by the
-     * <code>URL</code> argument.
+     * Возвращает объект <code>AudioClip</code>, определяемый аргументом
+     * <code>URL</code>.
      * <p>
-     * This method always returns immediately, whether or not the audio
-     * clip exists. When this applet attempts to play the audio clip, the
-     * data will be loaded.
+     * Этот метод всегда возвращает управление немедленно, независимо от 
+     * того, существует ли аудиоклип. Когда этот апплет попытается проиграть 
+     * аудиоклип, данные будут загружены.
      *
-     * @param   url  an absolute URL giving the location of the audio clip.
-     * @return  the audio clip at the specified URL.
+     * @param   url   абсолютный URL, содержащий местоположение аудиоклипа.
+     * @return  аудиоклип по указанному URL.
      * @see     java.applet.AudioClip
      */
     public AudioClip getAudioClip(URL url) {
-	return getAppletContext().getAudioClip(url);
+        return getAppletContext().getAudioClip(url);
     }
 
     /**
-     * Returns the <code>AudioClip</code> object specified by the
-     * <code>URL</code> and <code>name</code> arguments.
+     * Возвращает объект <code>AudioClip</code>, указанный аргументами
+     * <code>URL</code> и <code>name</code>.
      * <p>
-     * This method always returns immediately, whether or not the audio
-     * clip exists. When this applet attempts to play the audio clip, the
-     * data will be loaded.
+     * Этот метод всегда возвращает управление немедленно, независимо от того,
+     * существует или нет аудиоклип. Когда этот апплет попытается воспроизвести
+     * аудиоклип, данные будут загружены.
      *
-     * @param   url    an absolute URL giving the base location of the
-     *                 audio clip.
-     * @param   name   the location of the audio clip, relative to the
-     *                 <code>url</code> argument.
-     * @return  the audio clip at the specified URL.
+     * @param   url    абсолютный URL, определяющий базовое местоположение
+     *                 аудиоклипа.
+     * @param   name   местоположение аудиоклипа, относительно аргумента
+     *                 <code>url</code>.
+     * @return  аудиоклип по указанному URL.
      * @see     java.applet.AudioClip
      */
     public AudioClip getAudioClip(URL url, String name) {
-	try {
-	    return getAudioClip(new URL(url, name));
-	} catch (MalformedURLException e) {
-	    return null;
-	}
+        try {
+            return getAudioClip(new URL(url, name));
+        } catch (MalformedURLException e) {
+            return null;
+        }
     }
 
     /**
-     * Returns information about this applet. An applet should override
-     * this method to return a <code>String</code> containing information
-     * about the author, version, and copyright of the applet.
+     * Возвращает информацию об этом апплете. Апплет должен перегрузить этот 
+     * метод, чтобы возвратить строку, содержащую информацию об авторе,
+     * версии и копирайте апплета.
      * <p>
-     * The implementation of this method provided by the
-     * <code>Applet</code> class returns <code>null</code>.
+     * Реализация этого метода, предоставляемая классом <code>Applet</code>,
+     * возвращает <code>null</code>.
      *
-     * @return  a string containing information about the author, version, and
-     *          copyright of the applet.
+     * @return  строка, содержащая информацию об авторе, версии и копирайте
+     *          апплета.
      */
     public String getAppletInfo() {
-	return null;
+        return null;
     }
 
     /**
-     * Gets the locale of the applet. It allows the applet 
-     * to maintain its own locale separated from the locale
-     * of the browser or appletviewer.
+     * Получает локаль апплета. Она позволяет апплету
+     * поддерживать свою собственную локаль, независимую от локали
+     * браузера или просмотрщика апплетов.
      *
-     * @return  the locale of the applet; if no locale has
-     *          been set, the default locale is returned.
+     * @return  локаль апплета; если никакая локаль не была установлена,
+     *          возвращается локаль по умолчанию.
      * @since   JDK1.1
      */
     public Locale getLocale() {
-      Locale locale = super.getLocale();
-      if (locale == null) {
-	return Locale.getDefault();
-      }
-      return locale;
+        Locale locale = super.getLocale();
+        if (locale == null) {
+            return Locale.getDefault();
+        }
+        return locale;
     }
 
     /**
-     * Returns information about the parameters that are understood by
-     * this applet. An applet should override this method to return an
-     * array of <code>Strings</code> describing these parameters.
+     * Возвращает информацию о параметрах, которые понимает этот
+     * апплет. Апплет должен перегрузить этот метод, чтобы вернуть 
+     * массив строк, описывающих эти параметры.
      * <p>
-     * Each element of the array should be a set of three
-     * <code>Strings</code> containing the name, the type, and a
-     * description. For example:
+     * Каждый элемент массива должен быть набором трех строк,
+     * содержащих имя, тип и описание.
+     * Например:
      * <p><blockquote><pre>
      * String pinfo[][] = {
-     *	 {"fps",    "1-10",    "frames per second"},
-     *	 {"repeat", "boolean", "repeat image loop"},
-     *	 {"imgs",   "url",     "images directory"}
+     *	 {"fps",    "1-10",    "кадров в секунду"},
+     *	 {"repeat", "boolean", "повторять изображения в цикле"},
+     *	 {"imgs",   "url",     "директория с изображениями"}
      * };
      * </pre></blockquote>
      * <p>
-     * The implementation of this method provided by the
-     * <code>Applet</code> class returns <code>null</code>.
+     * Реализация этого метода, предоставляемая классом
+     * <code>Applet</code>, возвращает <code>null</code>.
      *
-     * @return  an array describing the parameters this applet looks for.
+     * @return  массив, описывающий параметры, которые ищет этот апплет.
      */
     public String[][] getParameterInfo() {
-	return null;
+        return null;
     }
 
     /**
-     * Plays the audio clip at the specified absolute URL. Nothing
-     * happens if the audio clip cannot be found.
+     * Проигрывает аудиоклип по указанному абсолютному URL. Если аудиоклип
+     * не будет найден, ничего не произойдет.
      *
-     * @param   url   an absolute URL giving the location of the audio clip.
+     * @param   url   абсолютный URL, содержащий местоположение аудиоклипа.
      */
     public void play(URL url) {
-	AudioClip clip = getAudioClip(url);
-	if (clip != null) {
-	    clip.play();
-	}
+        AudioClip clip = getAudioClip(url);
+        if (clip != null) {
+            clip.play();
+        }
     }
 
     /**
-     * Plays the audio clip given the URL and a specifier that is
-     * relative to it. Nothing happens if the audio clip cannot be found.
+     * Проигрывает аудиоклип по указанному URL и спецификатору, относительному
+     * к нему. Если аудиоклип не будет найден, ничего не произойдет.
      *
-     * @param   url    an absolute URL giving the base location of the
-     *                 audio clip.
-     * @param   name   the location of the audio clip, relative to the
-     *                 <code>url</code> argument.
+     * @param   url    абсолютный URL, содержащий базовое местоположение
+     *                 аудиоклипа.
+     * @param   name   местоположение аудиоклипа относительно аргумента
+     *                 <code>url</code>.
      */
     public void play(URL url, String name) {
-	AudioClip clip = getAudioClip(url, name);
-	if (clip != null) {
-	    clip.play();
-	}
+        AudioClip clip = getAudioClip(url, name);
+        if (clip != null) {
+            clip.play();
+        }
     }
 
     /**
-     * Called by the browser or applet viewer to inform
-     * this applet that it has been loaded into the system. It is always
-     * called before the first time that the <code>start</code> method is
-     * called.
+     * Вызывается браузером или просмотрщиком апплетов, чтобы сообщить
+     * этому апплету, что он был загружен в систему. Он всегда вызыватеся
+     * до первого вызова метода <code>start</code>.
+     * 
      * <p>
-     * A subclass of <code>Applet</code> should override this method if
-     * it has initialization to perform. For example, an applet with
-     * threads would use the <code>init</code> method to create the
-     * threads and the <code>destroy</code> method to kill them.
+     * Подкласс <code>Applet</code>-а должен перегрузить этот метод, если
+     * он нуждаются в выполнении инициализации. Например, апплет с потоками
+     * использовал бы метод <code>init</code> для создания потоков и 
+     * метод <code>destroy</code> для их убиения.
      * <p>
-     * The implementation of this method provided by the
-     * <code>Applet</code> class does nothing.
+     * Реализация этого метода, предоставляемая классом
+     * <code>Applet</code>, ничего не делает.
      *
      * @see     java.applet.Applet#destroy()
      * @see     java.applet.Applet#start()
@@ -426,27 +426,27 @@ public class Applet extends Panel {
     }
 
     /**
-     * Called by the browser or applet viewer to inform
-     * this applet that it should start its execution. It is called after
-     * the <code>init</code> method and each time the applet is revisited
-     * in a Web page.
+     * Вызывается браузером или просмотрщиком апплетов, чтобы сообщить
+     * этому апплету, что он должен начать исполняться. Он вызывается после 
+     * метода <code>init</code> и каждый раз, когда апплет вновь посещается
+     * на веб-странице.
      * <p>
-     * A subclass of <code>Applet</code> should override this method if
-     * it has any operation that it wants to perform each time the Web
-     * page containing it is visited. For example, an applet with
-     * animation might want to use the <code>start</code> method to
-     * resume animation, and the <code>stop</code> method to suspend the
-     * animation.
+     * Подкласс <code>Applet</code>-а должен перегрузить этот метод, если
+     * он имеет какую-нибудь операцию, которую надо выполнять каждый раз 
+     * при посещении веб-страницы, содержащей его. Например, апплет с 
+     * анимацией может захотеть использовать метод <code>start</code> для 
+     * возобновления анимации и метод <code>stop</code> для приостановки 
+     * анимации.
      * <p>
-     * Note: some methods, such as <code>getLocationOnScreen</code>, can only
-     * provide meaningful results if the applet is showing.  Because
-     * <code>isShowing</code> returns <code>false</code> when the applet's
-     * <code>start</code> is first called, methods requiring
-     * <code>isShowing</code> to return <code>true</code> should be called from
-     * a <code>ComponentListener</code>.
+     * Примечание: некоторые методы, такие как <code>getLocationOnScreen</code>,
+     * могут обеспечивать значимые результаты только если апплет показыватся. 
+     * Поскольку <code>isShowing</code> возвращает <code>false</code> когда 
+     * метод <code>start</code> вызван впервые, методы, требующие от 
+     * <code>isShowing</code> возврата <code>true</code> должны вызываться 
+     * из <code>ComponentListener</code>-а.
      * <p>
-     * The implementation of this method provided by the
-     * <code>Applet</code> class does nothing.
+     * Реализация этого метода, предоставляемая классом
+     * <code>Applet</code>, ничего не делает.
      *
      * @see     java.applet.Applet#destroy()
      * @see     java.applet.Applet#init()
@@ -458,20 +458,20 @@ public class Applet extends Panel {
     }
 
     /**
-     * Called by the browser or applet viewer to inform
-     * this applet that it should stop its execution. It is called when
-     * the Web page that contains this applet has been replaced by
-     * another page, and also just before the applet is to be destroyed.
+     * Вызывается браузером или просмотрщиком апплетов, чтобы сообщить
+     * этому апплету, что он должен прекратить свое исполнение. Он вызывается,
+     * когда веб-страница, содержащая этот апплет, была заменена другой 
+     * страницей, а также непосредственно перед тем, как апплет будет уничтожен.
      * <p>
-     * A subclass of <code>Applet</code> should override this method if
-     * it has any operation that it wants to perform each time the Web
-     * page containing it is no longer visible. For example, an applet
-     * with animation might want to use the <code>start</code> method to
-     * resume animation, and the <code>stop</code> method to suspend the
-     * animation.
+     * Подкласс <code>Applet</code>-а должен перегрузить этот метод, если
+     * он имеет какую-нибудь операцию, которую надо выполнять каждый раз,
+     * когда содержащая страница становится невидимой. Например, апплет с 
+     * анимацией может захотеть использовать метод <code>start</code> для 
+     * возобновления анимации и метод <code>stop</code> для приостановки 
+     * анимации.
      * <p>
-     * The implementation of this method provided by the
-     * <code>Applet</code> class does nothing.
+     * Реализация этого метода, предоставляемая классом
+     * <code>Applet</code>, ничего не делает.
      *
      * @see     java.applet.Applet#destroy()
      * @see     java.applet.Applet#init()
@@ -480,19 +480,19 @@ public class Applet extends Panel {
     }
 
     /**
-     * Called by the browser or applet viewer to inform
-     * this applet that it is being reclaimed and that it should destroy
-     * any resources that it has allocated. The <code>stop</code> method
-     * will always be called before <code>destroy</code>.
+     * Вызывается браузером или просмотрщиком апплетов, чтобы сообщить
+     * этому апплету, что он больше не требуется и он должен уничтожить
+     * любые ресурсы, которые он выделил. Метод <code>stop</code> всегда 
+     * вызывается до метода <code>destroy</code>.
      * <p>
-     * A subclass of <code>Applet</code> should override this method if
-     * it has any operation that it wants to perform before it is
-     * destroyed. For example, an applet with threads would use the
-     * <code>init</code> method to create the threads and the
-     * <code>destroy</code> method to kill them.
+     * Подкласс <code>Applet</code>-а должен перегрузить этот метод, если
+     * он имеет какую-нибудь операцию, которую он должен выполнить до 
+     * уничтожения. Например, апплет с потоками использовал бы метод
+     * <code>init</code> для создания потоков и метод <code>destroy</code> 
+     * для их убиения.
      * <p>
-     * The implementation of this method provided by the
-     * <code>Applet</code> class does nothing.
+     * Реализация этого метода, предоставляемая классом
+     * <code>Applet</code>, ничего не делает.
      *
      * @see     java.applet.Applet#init()
      * @see     java.applet.Applet#start()
@@ -502,19 +502,19 @@ public class Applet extends Panel {
     }
 
     //
-    // Accessibility support
+    // Поддержка Accessibility
     //
 
     AccessibleContext accessibleContext = null;
 
     /**
-     * Gets the AccessibleContext associated with this Applet. 
-     * For applets, the AccessibleContext takes the form of an 
+     * Получает AccessibleContext, ассоциированный с этим апплетом. 
+     * Для апплетов AccessibleContext берет форму 
      * AccessibleApplet. 
-     * A new AccessibleApplet instance is created if necessary.
+     * Новая инстанция AccessibleApplet создается при необходимости.
      *
-     * @return an AccessibleApplet that serves as the 
-     *         AccessibleContext of this Applet
+     * @return AccessibleApplet, который служит как
+     *         AccessibleContext этого апплета.
      * @since 1.3
      */
     public AccessibleContext getAccessibleContext() {
@@ -525,9 +525,9 @@ public class Applet extends Panel {
     }
 
     /**
-     * This class implements accessibility support for the 
-     * <code>Applet</code> class.  It provides an implementation of the 
-     * Java Accessibility API appropriate to applet user-interface elements.
+     * Этот класс реализует поддержку accessibility (для людей с физическими недостатками)
+     * для класса <code>Applet</code>. Он обеспечивает реализацию Java Accessibility API, 
+     * соответствующую элементам пользовательского интерфейса апплета.
      * @since 1.3
      */
     protected class AccessibleApplet extends AccessibleAWTPanel {
@@ -535,20 +535,20 @@ public class Applet extends Panel {
         private static final long serialVersionUID = 8127374778187708896L;
 
         /**
-         * Get the role of this object.
+         * Получает роль этого объекта.
          *
-         * @return an instance of AccessibleRole describing the role of the
-         * object
+         * @return инстанция объетка AccessibleRole, описывающего роль
+         * объекта.
          */
         public AccessibleRole getAccessibleRole() {
             return AccessibleRole.FRAME;
         }
 
         /**
-         * Get the state of this object.
+         * Получает состояние этого объекта.
          *
-         * @return an instance of AccessibleStateSet containing the current
-         * state set of the object
+         * @return инстанция объекта AccessibleStateSet, содержащего текущее
+         * множество состояний объекта.
          * @see AccessibleState
          */
         public AccessibleStateSet getAccessibleStateSet() {
