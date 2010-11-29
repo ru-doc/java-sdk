@@ -1,8 +1,8 @@
 /*
  * @(#)Readable.java	1.5 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
@@ -10,9 +10,9 @@ package java.lang;
 import java.io.IOException;
 
 /**
- * A <tt>Readable</tt> is a source of characters. Characters from
- * a <tt>Readable</tt> are made available to callers of the read
- * method via a {@link java.nio.CharBuffer CharBuffer}.
+ * <tt>Readable</tt> является источником символов. Символы из 
+ * <tt>Readable</tt> делаются доступными вызывающим метод чтения
+ * через {@link java.nio.CharBuffer CharBuffer}.
  *
  * @version 1.5 10/03/23
  * @since 1.5
@@ -21,17 +21,17 @@ import java.io.IOException;
 public interface Readable {
 
     /**
-     * Attempts to read characters into the specified character buffer.
-     * The buffer is used as a repository of characters as-is: the only
-     * changes made are the results of a put operation. No flipping or
-     * rewinding of the buffer is performed.
+     * Пытается прочитать символы в указанный буфер символов.
+     * Буфер используется как хранилище символов "как есть": единственные
+     * производимые изменения это результат опереции помещения (put). Не 
+     * выполняется никаких операций отражения или перемотки.
      *
-     * @param cb the buffer to read characters into
-     * @return @return The number of <tt>char</tt> values added to the buffer,
-     *                 or -1 if this source of characters is at its end
-     * @throws IOException if an I/O error occurs
-     * @throws NullPointerException if cb is null
-     * @throws ReadOnlyBufferException if cb is a read only buffer
+     * @param cb буфер для чтения в него символов.
+     * @return Число значений <tt>char</tt>, добавленных в буфер,
+     *         или -1, если источник символов достиг своего конца.
+     * @throws IOException, если произошла ошибка ввода/вывода.
+     * @throws NullPointerException, если <code>cb</code> равен <code>null</code>
+     * @throws ReadOnlyBufferException, если <code>cb</code> является буфером только для чтения.
      */
     public int read(java.nio.CharBuffer cb) throws IOException;
 

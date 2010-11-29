@@ -1,25 +1,25 @@
 /*
  * @(#)Byte.java	1.42 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
  *
- * The <code>Byte</code> class wraps a value of primitive type
- * <code>byte</code> in an object.  An object of type
- * <code>Byte</code> contains a single field whose type is
- * <code>byte</code>.
+ * Класс <code>Byte</code> обертывает значение примитивного типа
+ * <code>byte</code> в объект. Объект типа
+ * <code>Byte</code> содержит одно поле, имеющее тип
+ * <code>byte</code>. 
  *
  * <p>
  *
- * In addition, this class provides several methods for converting a
- * <code>byte</code> to a <code>String</code> and a <code>String</code>
- * to a <code>byte</code>, as well as other constants and methods
- * useful when dealing with a <code>byte</code>.
+ * В дополнение, класс предоставляет много методов для преобразования
+ * значений <code>byte</code> в строки и строк в <code>byte</code>, 
+ * равно как и другие константы и методы, полезные, когда имеешь 
+ * дело с <code>byte</code>. 
  *
  * @author  Nakul Saraiya
  * @version 1.42, 03/23/10
@@ -29,62 +29,62 @@ package java.lang;
 public final class Byte extends Number implements Comparable<Byte> {
 
     /**
-     * A constant holding the minimum value a <code>byte</code> can
-     * have, -2<sup>7</sup>.
+     * Константа, хранящая минимальное значение для типа <code>byte</code>,
+     * -2<sup>7</sup>.
      */
     public static final byte   MIN_VALUE = -128;
 
     /**
-     * A constant holding the maximum value a <code>byte</code> can
-     * have, 2<sup>7</sup>-1.
+     * AКонстанта, хранящая максимальное значение для типа <code>byte</code>,
+     * 2<sup>7</sup>-1.
      */
     public static final byte   MAX_VALUE = 127;
 
     /**
-     * The <code>Class</code> instance representing the primitive type
+     * Инстанция <code>Class</code>, представляющая примитивный тип 
      * <code>byte</code>.
      */
     public static final Class<Byte>	TYPE = (Class<Byte>) Class.getPrimitiveClass("byte");
 
     /**
-     * Returns a new <code>String</code> object representing the
-     * specified <code>byte</code>. The radix is assumed to be 10.
+     * Возвращает новый объект <code>String</code>, представляющий указанный
+     * <code>byte</code>. Основание системы счисления принимается за 10.
      *
-     * @param b	the <code>byte</code> to be converted
-     * @return the string representation of the specified <code>byte</code>
+     * @param b <code>byte</code> для преобразования.
+     * @return строка, представляющая указанный <code>byte</code>.
      * @see java.lang.Integer#toString(int)
      */
     public static String toString(byte b) {
-	return Integer.toString((int)b, 10);
+        return Integer.toString((int)b, 10);
     }
 
     private static class ByteCache {
-	private ByteCache(){}
+        private ByteCache(){}
 
-	static final Byte cache[] = new Byte[-(-128) + 127 + 1];
+        static final Byte cache[] = new Byte[-(-128) + 127 + 1];
 
-	static {
-	    for(int i = 0; i < cache.length; i++)
-		cache[i] = new Byte((byte)(i - 128));
-	}
+        static {
+            for(int i = 0; i < cache.length; i++)
+                cache[i] = new Byte((byte)(i - 128));
+        }
     }
 
     /**
-     * Returns a <tt>Byte</tt> instance representing the specified
-     * <tt>byte</tt> value.
-     * If a new <tt>Byte</tt> instance is not required, this method
-     * should generally be used in preference to the constructor
-     * {@link #Byte(byte)}, as this method is likely to yield
-     * significantly better space and time performance by caching
-     * frequently requested values.
+     * Возвращает инстанцию <tt>Byte</tt>, представляющую указанное значение
+     * <tt>byte</tt>.
+     * Если новая инстанция <tt>Byte</tt> не требуется, этот метод
+     * должен обычно использоваться вместо конструктора
+     * {@link #Byte(byte)}, так как этот метод, вероятно, использует 
+     * существенно меньше места и лучше по производительности, из-за 
+     * кеширования часто требуемых значений.
      *
-     * @param  b a byte value.
-     * @return a <tt>Byte</tt> instance representing <tt>b</tt>.
+     * @param  b байтовое значение.
+     * @return инстанция <tt>Byte</tt>, представляющая <tt>b</tt>.
      * @since  1.5
      */
     public static Byte valueOf(byte b) {
-	final int offset = 128;
-	return ByteCache.cache[(int)b + offset];
+        final int offset = 128;
+        return ByteCache.cache[(int)b + offset];
     }
 
     /**
@@ -97,15 +97,15 @@ public final class Byte extends Number implements Comparable<Byte> {
      * given as arguments to the {@link #parseByte(java.lang.String,
      * int)} method.
      *
-     * @param s		a <code>String</code> containing the 
-     *                  <code>byte</code> representation to be parsed
-     * @return 		the <code>byte</code> value represented by the 
-     *                  argument in decimal
-     * @exception	NumberFormatException if the string does not
-     *			contain a parsable <code>byte</code>.
+     * @param s     a <code>String</code> containing the 
+     *              <code>byte</code> representation to be parsed
+     * @return      the <code>byte</code> value represented by the 
+     *              argument in decimal
+     * @exception   NumberFormatException if the string does not
+     *              contain a parsable <code>byte</code>.
      */
     public static byte parseByte(String s) throws NumberFormatException {
-	return parseByte(s, 10);
+        return parseByte(s, 10);
     }
 
     /**
@@ -137,22 +137,22 @@ public final class Byte extends Number implements Comparable<Byte> {
      * <code>byte</code>.
      * </ul>
      *
-     * @param s		the <code>String</code> containing the 
-     *			<code>byte</code>
-     *                  representation to be parsed
-     * @param radix	the radix to be used while parsing <code>s</code>
-     * @return 		the <code>byte</code> value represented by the string 
+     * @param s     the <code>String</code> containing the 
+     *              <code>byte</code>
+     *              representation to be parsed
+     * @param radix the radix to be used while parsing <code>s</code>
+     * @return      the <code>byte</code> value represented by the string 
      *                   argument in the specified radix
-     * @exception	NumberFormatException If the string does
-     *                  not contain a parsable <code>byte</code>.
+     * @exception   NumberFormatException If the string does
+     *              not contain a parsable <code>byte</code>.
      */
     public static byte parseByte(String s, int radix)
-	throws NumberFormatException {
-	int i = Integer.parseInt(s, radix);
-	if (i < MIN_VALUE || i > MAX_VALUE)
-	    throw new NumberFormatException(
-                "Value out of range. Value:\"" + s + "\" Radix:" + radix);
-	return (byte)i;
+        throws NumberFormatException {
+        int i = Integer.parseInt(s, radix);
+        if (i < MIN_VALUE || i > MAX_VALUE)
+            throw new NumberFormatException(
+                    "Value out of range. Value:\"" + s + "\" Radix:" + radix);
+        return (byte)i;
     }
 
     /**
@@ -171,17 +171,17 @@ public final class Byte extends Number implements Comparable<Byte> {
      * new Byte(Byte.parseByte(s, radix))
      * </code></blockquote>
      *
-     * @param s		the string to be parsed
-     * @param radix 	the radix to be used in interpreting <code>s</code>
-     * @return 		a <code>Byte</code> object holding the value 
-     * 			represented by the string argument in the 
-     *			specified radix.
-     * @exception	NumberFormatException If the <code>String</code> does 
-     *			not contain a parsable <code>byte</code>.
+     * @param s     the string to be parsed
+     * @param radix the radix to be used in interpreting <code>s</code>
+     * @return      a <code>Byte</code> object holding the value 
+     *              represented by the string argument in the 
+     *              specified radix.
+     * @exception   NumberFormatException If the <code>String</code> does 
+     *              not contain a parsable <code>byte</code>.
      */
     public static Byte valueOf(String s, int radix)
-	throws NumberFormatException {
-	return new Byte(parseByte(s, radix));
+        throws NumberFormatException {
+        return new Byte(parseByte(s, radix));
     }
 
     /**
@@ -198,56 +198,56 @@ public final class Byte extends Number implements Comparable<Byte> {
      * new Byte(Byte.parseByte(s))
      * </code></blockquote>
      *
-     * @param s		the string to be parsed
-     * @return 		a <code>Byte</code> object holding the value
-     * 			represented by the string argument
-     * @exception	NumberFormatException If the <code>String</code> does
-     *			not contain a parsable <code>byte</code>.
+     * @param s     the string to be parsed
+     * @return      a <code>Byte</code> object holding the value
+     *              represented by the string argument
+     * @exception   NumberFormatException If the <code>String</code> does
+     *              not contain a parsable <code>byte</code>.
      */
     public static Byte valueOf(String s) throws NumberFormatException {
-	return valueOf(s, 10);
+        return valueOf(s, 10);
     }
 
     /**
-     * Decodes a <code>String</code> into a <code>Byte</code>.
-     * Accepts decimal, hexadecimal, and octal numbers given by
-     * the following grammar:
+     * Декодирует строку в объект <code>Byte</code>.
+     * Принимает десятичные, шестнадцатеричные и восьмеричные числа,
+     * представленные следующей грамматикой:
      *
      * <blockquote>
      * <dl>
      * <dt><i>DecodableString:</i>
-     * <dd><i>Sign<sub>opt</sub> DecimalNumeral</i>
-     * <dd><i>Sign<sub>opt</sub></i> <code>0x</code> <i>HexDigits</i>
-     * <dd><i>Sign<sub>opt</sub></i> <code>0X</code> <i>HexDigits</i>
-     * <dd><i>Sign<sub>opt</sub></i> <code>#</code> <i>HexDigits</i>
-     * <dd><i>Sign<sub>opt</sub></i> <code>0</code> <i>OctalDigits</i>
+     * <dd><i>Знак<sub>необ.</sub> DecimalNumeral</i>
+     * <dd><i>Знак<sub>необ.</sub></i> <code>0x</code> <i>HexDigits</i>
+     * <dd><i>Знак<sub>необ.</sub></i> <code>0X</code> <i>HexDigits</i>
+     * <dd><i>Знак<sub>необ.</sub></i> <code>#</code> <i>HexDigits</i>
+     * <dd><i>Знак<sub>необ.</sub></i> <code>0</code> <i>OctalDigits</i>
      * <p>
-     * <dt><i>Sign:</i>
+     * <dt><i>Знак:</i>
      * <dd><code>-</code>
      * </dl>
      * </blockquote>
      *
-     * <i>DecimalNumeral</i>, <i>HexDigits</i>, and <i>OctalDigits</i>
-     * are defined in <a href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282">&sect;3.10.1</a> 
-     * of the <a href="http://java.sun.com/docs/books/jls/html/">Java 
+     * <i>DecimalNumeral</i>, <i>HexDigits</i>, и <i>OctalDigits</i>
+     * определены в <a href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282">&sect;3.10.1</a> 
+     * <a href="http://java.sun.com/docs/books/jls/html/">Java 
      * Language Specification</a>.
      * <p>
-     * The sequence of characters following an (optional) negative
-     * sign and/or radix specifier (&quot;<code>0x</code>&quot;,
-     * &quot;<code>0X</code>&quot;, &quot;<code>#</code>&quot;, or
-     * leading zero) is parsed as by the <code>Byte.parseByte</code>
-     * method with the indicated radix (10, 16, or 8).  This sequence
-     * of characters must represent a positive value or a {@link
-     * NumberFormatException} will be thrown.  The result is negated
-     * if first character of the specified <code>String</code> is the
-     * minus sign.  No whitespace characters are permitted in the
-     * <code>String</code>.
+     * Последовательность символов, следующая после (необязательного) знака
+     * отрицания и/или спецификатора основания системы счисления (&quot;<code>0x</code>&quot;,
+     * &quot;<code>0X</code>&quot;, &quot;<code>#</code>&quot; или
+     * ведущий ноль), разбирается так же, как методом <code>Byte.parseByte</code>
+     * с указанием основания системы счисления (10, 16, или 8). Эта последовательность 
+     * символов должна представлять положительное значение или будет выкинуто
+     * исключение {@link NumberFormatException}. Результат отрицателен, если
+     * первый символ в указанной строке является знаком минус.
+     * Пробельные символы в строке не допускаются.
+     * 
      *
-     * @param     nm the <code>String</code> to decode.
-     * @return 	 a <code>Byte</code> object holding the <code>byte</code>
-     * 		value represented by <code>nm</code>
-     * @exception NumberFormatException  if the <code>String</code> does not
-     *            contain a parsable <code>byte</code>.
+     * @param     nm строка для декодирования.
+     * @return    объект <code>Byte</code>, хранящий значение <code>byte</code>,
+     *            представляемое <code>nm</code>
+     * @exception NumberFormatException, если строка не содержит
+     *            распозноваемого значения <code>byte</code>.
      * @see java.lang.Byte#parseByte(java.lang.String, int)
      */
     public static Byte decode(String nm) throws NumberFormatException {
@@ -256,22 +256,22 @@ public final class Byte extends Number implements Comparable<Byte> {
         boolean negative = false;
         Byte result;
 
-        // Handle minus sign, if present
+        // Обрабатываем знак минус, если есть
         if (nm.startsWith("-")) {
             negative = true;
             index++;
         }
 
-	if (nm.startsWith("0x", index) || nm.startsWith("0X", index)) {
-            index += 2;
-            radix = 16;
-	} else if (nm.startsWith("#", index)) {
-	    index++;
-            radix = 16;
-	} else if (nm.startsWith("0", index) && nm.length() > 1 + index) {
-	    index++;
+        if (nm.startsWith("0x", index) || nm.startsWith("0X", index)) {
+                index += 2;
+                radix = 16;
+        } else if (nm.startsWith("#", index)) {
+            index++;
+                radix = 16;
+        } else if (nm.startsWith("0", index) && nm.length() > 1 + index) {
+            index++;
             radix = 8;
-	}
+        }
 
         if (nm.startsWith("-", index))
             throw new NumberFormatException("Negative sign in wrong position");
@@ -280,9 +280,9 @@ public final class Byte extends Number implements Comparable<Byte> {
             result = Byte.valueOf(nm.substring(index), radix);
             result = negative ? new Byte((byte)-result.byteValue()) : result;
         } catch (NumberFormatException e) {
-            // If number is Byte.MIN_VALUE, we'll end up here. The next line
-            // handles this case, and causes any genuine format error to be
-            // rethrown.
+            // Если число равно Byte.MIN_VALUE, мы попадем сюда. Следующая
+            // строка обрабатывает этот случай, и при любой настоящей ошибке
+            // формата повторно кидает исключение.
             String constant = negative ? new String("-" + nm.substring(index))
                                        : nm.substring(index);
             result = Byte.valueOf(constant, radix);
@@ -291,21 +291,21 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * The value of the <code>Byte</code>.
+     * Значение <code>Byte</code>.
      *
      * @serial
      */
     private final byte value;
 
     /**
-     * Constructs a newly allocated <code>Byte</code> object that
-     * represents the specified <code>byte</code> value.
+     * Конструирует и размещает в памяти новый объект <code>Byte</code>,
+     * представляющий указанное значение <code>byte</code>'а.
      *
-     * @param value	the value to be represented by the 
-     *			<code>Byte</code>.
+     * @param value значение, которое будет представлено
+     *              <code>Byte</code>'ом.
      */
     public Byte(byte value) {
-	this.value = value;
+        this.value = value;
     }
 
     /**
@@ -315,128 +315,128 @@ public final class Byte extends Number implements Comparable<Byte> {
      * <code>byte</code> value in exactly the manner used by the
      * <code>parseByte</code> method for radix 10.
      *
-     * @param s		the <code>String</code> to be converted to a 
-     *			<code>Byte</code>
-     * @exception	NumberFormatException If the <code>String</code> 
-     *			does not contain a parsable <code>byte</code>.
-     * @see        java.lang.Byte#parseByte(java.lang.String, int)
+     * @param s     строка, конвертируемая в 
+     *              <code>Byte</code>
+     * @exception   NumberFormatException Если строка не содержит
+     *              распознаваемое значение <code>byte</code>.
+     * @see         java.lang.Byte#parseByte(java.lang.String, int)
      */
     public Byte(String s) throws NumberFormatException {
-	this.value = parseByte(s, 10);
+        this.value = parseByte(s, 10);
     }
 
     /**
-     * Returns the value of this <code>Byte</code> as a
+     * Возвращает значение этого объекта <code>Byte</code> как
      * <code>byte</code>.
      */
     public byte byteValue() {
-	return value;
+        return value;
     }
 
     /**
-     * Returns the value of this <code>Byte</code> as a
+     * Возвращает значение этого объекта <code>Byte</code> как
      * <code>short</code>.
      */
     public short shortValue() {
-	return (short)value;
+        return (short)value;
     }
 
     /**
-     * Returns the value of this <code>Byte</code> as an
+     * Возвращает значение этого объекта <code>Byte</code> как
      * <code>int</code>.
      */
     public int intValue() {
-	return (int)value;
+        return (int)value;
     }
 
     /**
-     * Returns the value of this <code>Byte</code> as a
+     * Возвращает значение этого объекта <code>Byte</code> как
      * <code>long</code>.
      */
     public long longValue() {
-	return (long)value;
+        return (long)value;
     }
 
     /**
-     * Returns the value of this <code>Byte</code> as a
+     * Возвращает значение этого объекта <code>Byte</code> как
      * <code>float</code>.
      */
     public float floatValue() {
-	return (float)value;
+        return (float)value;
     }
 
     /**
-     * Returns the value of this <code>Byte</code> as a
+     * Возвращает значение этого объекта <code>Byte</code> как
      * <code>double</code>.
      */
     public double doubleValue() {
-	return (double)value;
+        return (double)value;
     }
 
     /**
-     * Returns a <code>String</code> object representing this
-     * <code>Byte</code>'s value.  The value is converted to signed
-     * decimal representation and returned as a string, exactly as if
-     * the <code>byte</code> value were given as an argument to the
-     * {@link java.lang.Byte#toString(byte)} method.
+     * Возвращает объект <code>String</code>, представляющий это значение 
+     * <code>Byte</code>'а. Значение преобразуется в знаковое десятичное
+     * представление и возвращается как строка, точно так же, как если бы
+     * значение <code>byte</code> было передано в метод 
+     * {@link java.lang.Byte#toString(byte)}.
      *
-     * @return  a string representation of the value of this object in
-     *          base&nbsp;10.
+     * @return  строковое представление значения этого объекта по 
+     *          основанию&nbsp;10.
      */
     public String toString() {
-	return String.valueOf((int)value);
+        return String.valueOf((int)value);
     }
 
     /**
-     * Returns a hash code for this <code>Byte</code>.
+     * Возвращает хеш-код для этого <code>Byte</code>.
      */
     public int hashCode() {
-	return (int)value;
+        return (int)value;
     }
 
     /**
-     * Compares this object to the specified object.  The result is
-     * <code>true</code> if and only if the argument is not
-     * <code>null</code> and is a <code>Byte</code> object that
-     * contains the same <code>byte</code> value as this object.
+     * Сравнивает этот объект с указанным объектом. Результат равен
+     * <code>true</code> тогда и только тогда, когда аргумент не
+     * <code>null</code> и объект <code>Byte</code> содержит
+     * такое же <code>byte</code> значение, как и этот объект.
      *
-     * @param obj	the object to compare with
-     * @return 		<code>true</code> if the objects are the same;
-     * 			<code>false</code> otherwise.
+     * @param obj   объект для сравнения.
+     * @return      <code>true</code> если объекты одинаковые;
+     *              иначе <code>false</code>.
      */
     public boolean equals(Object obj) {
-	if (obj instanceof Byte) {
-	    return value == ((Byte)obj).byteValue();
-	}
-	return false;
+        if (obj instanceof Byte) {
+            return value == ((Byte)obj).byteValue();
+        }
+        return false;
     }
 
     /**
-     * Compares two <code>Byte</code> objects numerically.
+     * Сравнивает два объекта <code>Byte</code> в числовом смысле.
      *
-     * @param   anotherByte   the <code>Byte</code> to be compared.
-     * @return	the value <code>0</code> if this <code>Byte</code> is
-     * 		equal to the argument <code>Byte</code>; a value less than
-     * 		<code>0</code> if this <code>Byte</code> is numerically less
-     * 		than the argument <code>Byte</code>; and a value greater than
-     * 		 <code>0</code> if this <code>Byte</code> is numerically
-     * 		 greater than the argument <code>Byte</code> (signed
-     * 		 comparison).
+     * @param   anotherByte   <code>Byte</code> для сравнения.
+     * @return  значение <code>0</code>, если этот объект <code>Byte</code> 
+     *          равен аргументу <code>Byte</code>; значение, меньшее 
+     *          <code>0</code>, если объект <code>Byte</code> в числовом смысле 
+     *          меньше, чем аргумент <code>Byte</code>; и значение большее
+     *          <code>0</code>, если этот объект <code>Byte</code> в числовом
+     *          смысле больше, чем аргумент <code>Byte</code> (знаковое 
+     *          сравнение).
      * @since   1.2
      */
     public int compareTo(Byte anotherByte) {
-	return this.value - anotherByte.value;
+        return this.value - anotherByte.value;
     }
 
     /**
-     * The number of bits used to represent a <tt>byte</tt> value in two's
-     * complement binary form.
+     * Число бит, используемых для представления значения <tt>byte</tt> 
+     * in two's complement binary form.
      *
      * @since 1.5
      */
     public static final int SIZE = 8;
 
-    /** use serialVersionUID from JDK 1.1. for interoperability */
+    /** используется serialVersionUID из JDK 1.0.2 для функциональной совместимости */
     private static final long serialVersionUID = -7183698231559129828L;
 
 }

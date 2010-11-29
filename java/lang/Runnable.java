@@ -1,33 +1,33 @@
 /*
  * @(#)Runnable.java	1.27 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * The <code>Runnable</code> interface should be implemented by any
- * class whose instances are intended to be executed by a thread. The
- * class must define a method of no arguments called <code>run</code>.
+ * Интерфейс <code>Runnable</code> должен быть реализован любым классом,
+ * чью инстанции предполагается выполнять потоком. Класс должен
+ * определить безаргументный метод, называемый <code>run</code>.
  * <p>
- * This interface is designed to provide a common protocol for objects that
- * wish to execute code while they are active. For example,
- * <code>Runnable</code> is implemented by class <code>Thread</code>.
- * Being active simply means that a thread has been started and has not
- * yet been stopped.
+ * Этот интерфейс разработан для обеспечения общего протокола для объектов,
+ * которые желают выполнять код, пока они активны. Например,
+ * <code>Runnable</code> реализуется классом <code>Thread</code>.
+ * Активность просто означает, что поток быз запущен, но еще не был 
+ * остановлен.
  * <p>
- * In addition, <code>Runnable</code> provides the means for a class to be
- * active while not subclassing <code>Thread</code>. A class that implements
- * <code>Runnable</code> can run without subclassing <code>Thread</code>
- * by instantiating a <code>Thread</code> instance and passing itself in
- * as the target.  In most cases, the <code>Runnable</code> interface should
- * be used if you are only planning to override the <code>run()</code>
- * method and no other <code>Thread</code> methods.
- * This is important because classes should not be subclassed
- * unless the programmer intends on modifying or enhancing the fundamental
- * behavior of the class.
+ * В дополнение, <code>Runnable</code> предоставляет средство для класса
+ * быть активным не подклассируя <code>Thread</code>. Класс, который реализует
+ * <code>Runnable</code>, может запускаться без подклассирования <code>Thread</code>,
+ * инстанцируя инстанцию <code>Thread</code> и передавая себя в в него как 
+ * цель. В большинстве случаев, должен использоваться интерфейс <code>Runnable</code>, 
+ * если вы планируете переопределить только метод <code>run()</code> и не 
+ * трогать другие методы <code>Thread</code>.
+ * Это важно, потому что классы не должны подклассифицироваться, если только
+ * программист не предназначает их для изменения или расширения фундаментального 
+ * поведения класса.
  *
  * @author  Arthur van Hoff
  * @version 1.27, 03/23/10
@@ -38,13 +38,13 @@ package java.lang;
 public
 interface Runnable {
     /**
-     * When an object implementing interface <code>Runnable</code> is used 
-     * to create a thread, starting the thread causes the object's 
-     * <code>run</code> method to be called in that separately executing 
-     * thread. 
+     * Когда объект, реализующий интерфейс <code>Runnable</code>, используется
+     * для создания потока, запуск потока приводит к вызову метода объекта 
+     * <code>run</code> в отдельно исполняемом потоке. 
+     * 
      * <p>
-     * The general contract of the method <code>run</code> is that it may 
-     * take any action whatsoever.
+     * В общем случае метод <code>run</code> может выполнять вообще любое 
+     * действие.
      *
      * @see     java.lang.Thread#run()
      */

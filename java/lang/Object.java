@@ -1,16 +1,16 @@
 /*
  * @(#)Object.java	1.74 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Class <code>Object</code> is the root of the class hierarchy. 
- * Every class has <code>Object</code> as a superclass. All objects, 
- * including arrays, implement the methods of this class. 
+ * Класс <code>Object</code> является корнем иерархии классов. 
+ * Каждый класс имеет <code>Object</code> как суперкласс. Все объекты, 
+ * включая массивы, реализуют методы этого класса. 
  *
  * @author  unascribed
  * @version 1.74, 03/23/10
@@ -25,22 +25,22 @@ public class Object {
     }
 
     /**
-     * Returns the runtime class of this {@code Object}. The returned
-     * {@code Class} object is the object that is locked by {@code
-     * static synchronized} methods of the represented class.
+     * Возвращает класс времени выполнения этого объекта. Возвращаемый объект
+     * {@code Class} является объектом, который запирается статическими синхронизированными
+     * ({@code static synchronized}) методами представляемого класса.
      *
      * <p><b>The actual result type is {@code Class<? extends |X|>}
      * where {@code |X|} is the erasure of the static type of the
-     * expression on which {@code getClass} is called.</b> For
-     * example, no cast is required in this code fragment:</p>
+     * expression on which {@code getClass} is called.</b> Например,
+     * приведение не требуется для следующего фрагмента кода:</p>
      *
      * <p>
      * {@code Number n = 0;                             }<br>
      * {@code Class<? extends Number> c = n.getClass(); }
      * </p>
      *
-     * @return The {@code Class} object that represents the runtime
-     *         class of this object.
+     * @return Объект {@code Class}, представляющий класс времени выполнения
+     *         этого объекта.
      * @see    <a href="http://java.sun.com/docs/books/jls/">The Java
      *         Language Specification, Third Edition (15.8.2 Class
      *         Literals)</a>
@@ -48,7 +48,7 @@ public class Object {
     public final native Class<?> getClass();
 
     /**
-     * Returns a hash code value for the object. This method is 
+     * Возвращает значение хеш-кода для этого объекта. This method is 
      * supported for the benefit of hashtables such as those provided by 
      * <code>java.util.Hashtable</code>. 
      * <p>
@@ -71,93 +71,93 @@ public class Object {
      *     for unequal objects may improve the performance of hashtables.
      * </ul>
      * <p>
-     * As much as is reasonably practical, the hashCode method defined by 
-     * class <tt>Object</tt> does return distinct integers for distinct 
-     * objects. (This is typically implemented by converting the internal 
-     * address of the object into an integer, but this implementation 
-     * technique is not required by the 
-     * Java<font size="-2"><sup>TM</sup></font> programming language.)
+     * As much as is reasonably practical, метод {@code hashCode}, определенный
+     * классом <tt>Object</tt>, возвращает разные коды для разных объектов.
+     * (Он обычно реализован конвертированием внутреннего адреса
+     * объекта в код, но эта техника реализации не требуется
+     * языком программирования 
+     * Java<font size="-2"><sup>TM</sup></font>.)
      *
-     * @return  a hash code value for this object.
+     * @return  значение хеш-кода для этого объекта.
      * @see     java.lang.Object#equals(java.lang.Object)
      * @see     java.util.Hashtable
      */
     public native int hashCode();
 
     /**
-     * Indicates whether some other object is "equal to" this one.
+     * Показывает, что некоторый другой объект "равен" этому.
      * <p>
-     * The <code>equals</code> method implements an equivalence relation
-     * on non-null object references:
+     * Метод <code>equals</code> реализует отношение эквивалентности
+     * на не-null ссылках объектов:
      * <ul>
-     * <li>It is <i>reflexive</i>: for any non-null reference value
-     *     <code>x</code>, <code>x.equals(x)</code> should return
+     * <li>Он <i>рефлексивный</i>: для любого не-null значения ссылки
+     *     <code>x</code>, <code>x.equals(x)</code> должен вернуть
      *     <code>true</code>.
-     * <li>It is <i>symmetric</i>: for any non-null reference values
-     *     <code>x</code> and <code>y</code>, <code>x.equals(y)</code>
-     *     should return <code>true</code> if and only if
-     *     <code>y.equals(x)</code> returns <code>true</code>.
-     * <li>It is <i>transitive</i>: for any non-null reference values
-     *     <code>x</code>, <code>y</code>, and <code>z</code>, if
-     *     <code>x.equals(y)</code> returns <code>true</code> and
-     *     <code>y.equals(z)</code> returns <code>true</code>, then
-     *     <code>x.equals(z)</code> should return <code>true</code>.
-     * <li>It is <i>consistent</i>: for any non-null reference values
-     *     <code>x</code> and <code>y</code>, multiple invocations of
-     *     <tt>x.equals(y)</tt> consistently return <code>true</code>
-     *     or consistently return <code>false</code>, provided no
+     * <li>Он <i>симметричный</i>: для любых не-null значений ссылок
+     *     <code>x</code> и <code>y</code>, <code>x.equals(y)</code>
+     *     должен вернуть <code>true</code> тогда и только тогда, когда
+     *     <code>y.equals(x)</code> возвращает <code>true</code>.
+     * <li>Он <i>транзитивный</i>: для любых не-null значений ссылок
+     *     <code>x</code>, <code>y</code> и <code>z</code>, если
+     *     <code>x.equals(y)</code> возвращает <code>true</code> и
+     *     <code>y.equals(z)</code> возвращает <code>true</code>, то
+     *     <code>x.equals(z)</code> должен вернуть <code>true</code>.
+     * <li>Он <i>consistent</i>: для любых не-null значений ссылок
+     *     <code>x</code> и <code>y</code>, несколько вызовов
+     *     <tt>x.equals(y)</tt> всегда возвращают <code>true</code>
+     *     или всегда возвращают <code>false</code>, provided no
      *     information used in <code>equals</code> comparisons on the
      *     objects is modified.
-     * <li>For any non-null reference value <code>x</code>,
-     *     <code>x.equals(null)</code> should return <code>false</code>.
+     * <li>Для любого не-null значения ссылки <code>x</code>,
+     *     <code>x.equals(null)</code> должен вернуть <code>false</code>.
      * </ul>
      * <p>
      * The <tt>equals</tt> method for class <code>Object</code> implements 
      * the most discriminating possible equivalence relation on objects; 
-     * that is, for any non-null reference values <code>x</code> and
-     * <code>y</code>, this method returns <code>true</code> if and only
-     * if <code>x</code> and <code>y</code> refer to the same object
-     * (<code>x == y</code> has the value <code>true</code>).
+     * так, для любых не-null значений ссылок <code>x</code> и <code>y</code>, 
+     * этот метод возвращает <code>true</code> тогда и только тогда, когда
+     * <code>x</code> и <code>y</code> ссылаются на один и тот же объект
+     * (<code>x == y</code> имеет значение <code>true</code>).
      * <p>
      * Note that it is generally necessary to override the <tt>hashCode</tt>
      * method whenever this method is overridden, so as to maintain the
      * general contract for the <tt>hashCode</tt> method, which states
      * that equal objects must have equal hash codes. 
      *
-     * @param   obj   the reference object with which to compare.
-     * @return  <code>true</code> if this object is the same as the obj
-     *          argument; <code>false</code> otherwise.
+     * @param   obj   ссылка на объект для сравнения.
+     * @return  <code>true</code> если этот объетк такой же, как аргумент 
+     *          obj; иначе <code>false</code>.
      * @see     #hashCode()
      * @see     java.util.Hashtable
      */
     public boolean equals(Object obj) {
-	return (this == obj);
+        return (this == obj);
     }
 
     /**
-     * Creates and returns a copy of this object.  The precise meaning 
+     * Создает и возвращает копию этого объекта.  The precise meaning 
      * of "copy" may depend on the class of the object. The general 
-     * intent is that, for any object <tt>x</tt>, the expression:
+     * intent is that, для любого объекта <tt>x</tt>, выражение:
      * <blockquote>
      * <pre>
      * x.clone() != x</pre></blockquote>
-     * will be true, and that the expression:
+     * должно быть <code>true</code> и выражение:
      * <blockquote>
      * <pre>
      * x.clone().getClass() == x.getClass()</pre></blockquote>
-     * will be <tt>true</tt>, but these are not absolute requirements. 
-     * While it is typically the case that:
+     * должно быть <tt>true</tt>, но это не абсолютные требования. 
+     * В то же время, типичен такой случай:
      * <blockquote>
      * <pre>
      * x.clone().equals(x)</pre></blockquote>
-     * will be <tt>true</tt>, this is not an absolute requirement. 
+     * будет <tt>true</tt>, это не абсолютное требование. 
      * <p>
-     * By convention, the returned object should be obtained by calling
-     * <tt>super.clone</tt>.  If a class and all of its superclasses (except
-     * <tt>Object</tt>) obey this convention, it will be the case that
+     * По соглашению, возвращаемый объект должен быть получен вызовом
+     * <tt>super.clone</tt>. Если класс и все его суперклассы (исключая
+     * <tt>Object</tt>), следуют этому соглашению, это будет случай, когда
      * <tt>x.clone().getClass() == x.getClass()</tt>.
      * <p>
-     * By convention, the object returned by this method should be independent
+     * По соглашению, the object returned by this method should be independent
      * of this object (which is being cloned).  To achieve this independence,
      * it may be necessary to modify one or more fields of the object returned
      * by <tt>super.clone</tt> before returning it.  Typically, this means
@@ -168,55 +168,55 @@ public class Object {
      * the case that no fields in the object returned by <tt>super.clone</tt>
      * need to be modified.
      * <p>
-     * The method <tt>clone</tt> for class <tt>Object</tt> performs a 
-     * specific cloning operation. First, if the class of this object does 
-     * not implement the interface <tt>Cloneable</tt>, then a 
-     * <tt>CloneNotSupportedException</tt> is thrown. Note that all arrays 
-     * are considered to implement the interface <tt>Cloneable</tt>. 
-     * Otherwise, this method creates a new instance of the class of this 
-     * object and initializes all its fields with exactly the contents of 
-     * the corresponding fields of this object, as if by assignment; the
-     * contents of the fields are not themselves cloned. Thus, this method 
-     * performs a "shallow copy" of this object, not a "deep copy" operation.
+     * Метод <tt>clone</tt> для класса <tt>Object</tt> выполняет особую операцию
+     * клонирования. Первое, если класс этого объекта не реализует интерфейс 
+     * <tt>Cloneable</tt>, то кидается исключение <tt>CloneNotSupportedException</tt>.
+     * Заметьте, что все массивы считаются реализующими интерфейс
+     * <tt>Cloneable</tt>. 
+     * В противном случае, метод создает новую инстанцию класса этого объекта
+     * и инициализирует все ее поля существующим содержимым соответствующих
+     * полей этого объекта, словно они были присвоены; само содержимое этих 
+     * полей не копируется. Таким образом, этот метод выполняет "поверхностную копию" 
+     * ("shallow copy") этого объекта, а не "глубокую копию" ("deep copy").
      * <p>
-     * The class <tt>Object</tt> does not itself implement the interface 
-     * <tt>Cloneable</tt>, so calling the <tt>clone</tt> method on an object 
-     * whose class is <tt>Object</tt> will result in throwing an
-     * exception at run time.
+     * Сам класс <tt>Object</tt> не реализует интерфейс
+     * <tt>Cloneable</tt>, поэтому вызов метода <tt>clone</tt> на объекте,
+     * чей класс есть <tt>Object</tt>, приведет к выбросу исключения
+     * во время выполнения.
      *
-     * @return     a clone of this instance.
-     * @exception  CloneNotSupportedException  if the object's class does not
-     *               support the <code>Cloneable</code> interface. Subclasses
-     *               that override the <code>clone</code> method can also
-     *               throw this exception to indicate that an instance cannot
-     *               be cloned.
+     * @return     копия этой инстанции.
+     * @exception  CloneNotSupportedException  если класс объекта не 
+     *               поддерживает интерфейс <code>Cloneable</code>. Подклассы,
+     *               которые переопределяют метод <code>clone</code>, также
+     *               могут кидать это исключение, чтобы сообщить, что инстанция
+     *               не может быть скопирована.
      * @see java.lang.Cloneable
      */
     protected native Object clone() throws CloneNotSupportedException;
 
     /**
-     * Returns a string representation of the object. In general, the 
-     * <code>toString</code> method returns a string that 
-     * "textually represents" this object. The result should 
-     * be a concise but informative representation that is easy for a 
-     * person to read.
-     * It is recommended that all subclasses override this method.
+     * Возвращает строковое представление объекта. В общем случае, метод
+     * <code>toString</code> возвращает строку, которая 
+     * "в текстовом виде" представляет этот объект. Результат должен быть
+     * кратким, но информативным представлением, легко читаемым человеком.
+     * 
+     * Рекомендуется, чтобы все подклассы переопределяли этот метод.
      * <p>
-     * The <code>toString</code> method for class <code>Object</code> 
-     * returns a string consisting of the name of the class of which the 
-     * object is an instance, the at-sign character `<code>@</code>', and 
-     * the unsigned hexadecimal representation of the hash code of the 
-     * object. In other words, this method returns a string equal to the 
-     * value of:
+     * Метод <code>toString</code> для класса <code>Object</code> 
+     * возвращает строку, состоящую из имени класса, инстанцией которого 
+     * объект является, символа собаки `<code>@</code>' и беззнакового 
+     * шестнадцатеричного представления хеш-кода объекта. Другими словами, 
+     * метод возвращает строку, эквивалентную значению выражения:
+     * 
      * <blockquote>
      * <pre>
      * getClass().getName() + '@' + Integer.toHexString(hashCode())
      * </pre></blockquote>
      *
-     * @return  a string representation of the object.
+     * @return  строковое представление объекта.
      */
     public String toString() {
-	return getClass().getName() + "@" + Integer.toHexString(hashCode());
+        return getClass().getName() + "@" + Integer.toHexString(hashCode());
     }
 
     /**
@@ -240,14 +240,14 @@ public class Object {
      * <li>By executing a synchronized instance method of that object. 
      * <li>By executing the body of a <code>synchronized</code> statement 
      *     that synchronizes on the object. 
-     * <li>For objects of type <code>Class,</code> by executing a 
-     *     synchronized static method of that class. 
+     * <li>Для объектов типа <code>Class</code> исполнением 
+     *     синхронизированного статического метода этого класса. 
      * </ul>
-     * <p>
-     * Only one thread at a time can own an object's monitor. 
-     *
-     * @exception  IllegalMonitorStateException  if the current thread is not
-     *               the owner of this object's monitor.
+     * <p>В одно и то же время только один поток может владеть монитором объекта. 
+     * <p>Про синхронизацию отлично написано на {@link http://www.skipy.ru/technics/synchronization.html}
+     * 
+     * @exception  IllegalMonitorStateException  если текущий поток не
+     *               является владельцем монитора этого объекта.
      * @see        java.lang.Object#notifyAll()
      * @see        java.lang.Object#wait()
      */
@@ -265,13 +265,13 @@ public class Object {
      * the awakened threads enjoy no reliable privilege or disadvantage in 
      * being the next thread to lock this object.
      * <p>
-     * This method should only be called by a thread that is the owner 
-     * of this object's monitor. See the <code>notify</code> method for a 
-     * description of the ways in which a thread can become the owner of 
-     * a monitor. 
+     * Этот метод должен вызываться только потоком, который владеет 
+     * монитором этого объекта. Смотрите метод <code>notify</code> для 
+     * описания способов, которыми поток может стать владельцем монитора.
+     * <p>Про синхронизацию отлично написано на {@link http://www.skipy.ru/technics/synchronization.html}
      *
-     * @exception  IllegalMonitorStateException  if the current thread is not
-     *               the owner of this object's monitor.
+     * @exception  IllegalMonitorStateException  если текущий поток не
+     *               является владельцем монитора этого объекта.
      * @see        java.lang.Object#notify()
      * @see        java.lang.Object#wait()
      */
@@ -322,9 +322,9 @@ public class Object {
      * waits should always occur in loops, like this one:
      * <pre>
      *     synchronized (obj) {
-     *         while (&lt;condition does not hold&gt;)
-     *             obj.wait(timeout);
-     *         ... // Perform action appropriate to condition
+     *         while (&lt;условие не выполняется&gt;)
+     *             obj.wait();
+     *         ... // Выполняем действия, которые приведут к выполнению условия
      *     }
      * </pre>
      * (For more information on this topic, see Section 3.2.3 in Doug Lea's
@@ -344,16 +344,16 @@ public class Object {
      * other objects on which the current thread may be synchronized remain 
      * locked while the thread waits.
      * <p>
-     * This method should only be called by a thread that is the owner 
-     * of this object's monitor. See the <code>notify</code> method for a 
-     * description of the ways in which a thread can become the owner of 
-     * a monitor. 
+     * Этот метод должен вызываться только потоком, который владеет 
+     * монитором этого объекта. Смотрите метод <code>notify</code> для 
+     * описания способов, которыми поток может стать владельцем монитора.
+     * <p>Про синхронизацию отлично написано на {@link http://www.skipy.ru/technics/synchronization.html}
      *
-     * @param      timeout   the maximum time to wait in milliseconds.
-     * @exception  IllegalArgumentException      if the value of timeout is
-     *		     negative.
-     * @exception  IllegalMonitorStateException  if the current thread is not
-     *               the owner of the object's monitor.
+     * @param      timeout   максимальное время ожидания в миллисекундах.
+     * @exception  IllegalArgumentException      если значение таймаута
+     *                                           отрицательно.
+     * @exception  IllegalMonitorStateException  если текущий поток не
+     *               является владельцем монитора этого объекта.
      * @exception  InterruptedException if any thread interrupted the
      *             current thread before or while the current thread
      *             was waiting for a notification.  The <i>interrupted
@@ -402,24 +402,24 @@ public class Object {
      * possible, and this method should always be used in a loop:
      * <pre>
      *     synchronized (obj) {
-     *         while (&lt;condition does not hold&gt;)
-     *             obj.wait(timeout, nanos);
-     *         ... // Perform action appropriate to condition
+     *         while (&lt;условие не выполняется&gt;)
+     *             obj.wait();
+     *         ... // Выполняем действия, которые приведут к выполнению условия
      *     }
      * </pre>
-     * This method should only be called by a thread that is the owner 
-     * of this object's monitor. See the <code>notify</code> method for a 
-     * description of the ways in which a thread can become the owner of 
-     * a monitor. 
+     * Этот метод должен вызываться только потоком, который владеет 
+     * монитором этого объекта. Смотрите метод <code>notify</code> для 
+     * описания способов, которыми поток может стать владельцем монитора.
+     * <p>Про синхронизацию отлично написано на {@link http://www.skipy.ru/technics/synchronization.html}
      *
-     * @param      timeout   the maximum time to wait in milliseconds.
-     * @param      nanos      additional time, in nanoseconds range
+     * @param      timeout   максимальное время для ожидания в миллисекундах.
+     * @param      nanos     дополнительное время, в наносекундах в диапазоне
      *                       0-999999.
-     * @exception  IllegalArgumentException      if the value of timeout is
-     *			    negative or the value of nanos is
-     *			    not in the range 0-999999.
-     * @exception  IllegalMonitorStateException  if the current thread is not
-     *               the owner of this object's monitor.
+     * @exception  IllegalArgumentException      если значение таймаута
+     *              отрицательно или значения наносекунд не в диапазоне
+     *              0-999999.
+     * @exception  IllegalMonitorStateException  если текущий поток не
+     *               является владельцем монитора этого объекта.
      * @exception  InterruptedException if any thread interrupted the
      *             current thread before or while the current thread
      *             was waiting for a notification.  The <i>interrupted
@@ -433,14 +433,14 @@ public class Object {
 
         if (nanos < 0 || nanos > 999999) {
             throw new IllegalArgumentException(
-				"nanosecond timeout value out of range");
+                "nanosecond timeout value out of range");
         }
 
-	if (nanos >= 500000 || (nanos != 0 && timeout == 0)) {
-	    timeout++;
-	}
+        if (nanos >= 500000 || (nanos != 0 && timeout == 0)) {
+            timeout++;
+        }
 
-	wait(timeout);
+        wait(timeout);
     }
 
     /**
@@ -461,18 +461,18 @@ public class Object {
      * possible, and this method should always be used in a loop:
      * <pre>
      *     synchronized (obj) {
-     *         while (&lt;condition does not hold&gt;)
+     *         while (&lt;условие не выполняется&gt;)
      *             obj.wait();
-     *         ... // Perform action appropriate to condition
+     *         ... // Выполняем действия, которые приведут к выполнению условия
      *     }
      * </pre>
-     * This method should only be called by a thread that is the owner 
-     * of this object's monitor. See the <code>notify</code> method for a 
-     * description of the ways in which a thread can become the owner of 
-     * a monitor. 
+     * Этот метод должен вызываться только потоком, который владеет 
+     * монитором этого объекта. Смотрите метод <code>notify</code> для 
+     * описания способов, которыми поток может стать владельцем монитора.
+     * <p>Про синхронизацию отлично написано на {@link http://www.skipy.ru/technics/synchronization.html}
      *
-     * @exception  IllegalMonitorStateException  if the current thread is not
-     *               the owner of the object's monitor.
+     * @exception  IllegalMonitorStateException  если текущий поток не
+     *               является владельцем монитора этого объекта.
      * @exception  InterruptedException if any thread interrupted the
      *             current thread before or while the current thread
      *             was waiting for a notification.  The <i>interrupted
@@ -482,12 +482,12 @@ public class Object {
      * @see        java.lang.Object#notifyAll()
      */
     public final void wait() throws InterruptedException {
-	wait(0);
+        wait(0);
     }
 
     /**
-     * Called by the garbage collector on an object when garbage collection
-     * determines that there are no more references to the object.
+     * Вызывается сборщиком мусора на объекте, когда сборщик мусора 
+     * определяет, что на объект больше нет ссылок.
      * A subclass overrides the <code>finalize</code> method to dispose of
      * system resources or to perform other cleanup. 
      * <p>
@@ -523,12 +523,12 @@ public class Object {
      * actions by other objects or classes which are ready to be finalized, 
      * at which point the object may be discarded.
      * <p>
-     * The <tt>finalize</tt> method is never invoked more than once by a Java
-     * virtual machine for any given object.
+     * Метод <tt>finalize</tt> никогда не вызывается более одного раза 
+     * виртуальной машиной Java для любого объекта.
      * <p>
-     * Any exception thrown by the <code>finalize</code> method causes 
-     * the finalization of this object to be halted, but is otherwise 
-     * ignored. 
+     * Любые исключения, выкинутые методом <code>finalize</code> приведут к 
+     * остановке финализации этого объекта, но иначе будут
+     * проигнорированы. 
      *
      * @throws Throwable the <code>Exception</code> raised by this method
      */

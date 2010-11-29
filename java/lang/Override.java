@@ -1,8 +1,8 @@
 /*
  * @(#)Override.java	1.7 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
@@ -10,10 +10,10 @@ package java.lang;
 import java.lang.annotation.*;
 
 /**
- * Indicates that a method declaration is intended to override a
- * method declaration in a superclass.  If a method is annotated with
- * this annotation type but does not override a superclass method,
- * compilers are required to generate an error message.
+ * Указывает, что объявление метода предназначено для переопределения
+ * определения методы в суперклассе. Если метод аннотирован этим
+ * типом аннотаций, но не переопределяет метод суперкласса,
+ * требуется, чтобы компиляторы генерировали собщение об ошибке.
  *
  * @author  Joshua Bloch
  * @since 1.5

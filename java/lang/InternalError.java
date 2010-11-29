@@ -1,15 +1,15 @@
 /*
  * @(#)InternalError.java	1.23 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown to indicate some unexpected internal error has occurred in 
- * the Java Virtual Machine. 
+ * Кидается, чтобы сообщить о некоторой неожиданной внутренней ошибке,
+ * произошедшей в виртуальной машине Java. 
  *
  * @author  unascribed
  * @version 1.23, 03/23/10
@@ -18,19 +18,19 @@ package java.lang;
 public
 class InternalError extends VirtualMachineError {
     /**
-     * Constructs an <code>InternalError</code> with no detail message. 
+     * Конструирует <code>InternalError</code> без уточняющего сообщения.
      */
     public InternalError() {
-	super();
+        super();
     }
 
     /**
-     * Constructs an <code>InternalError</code> with the specified 
-     * detail message. 
+     * Конструирует <code>InternalError</code> с указанным 
+     * уточняющим сообщением.
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public InternalError(String s) {
-	super(s);
+        super(s);
     }
 }

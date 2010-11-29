@@ -1,8 +1,8 @@
 /*
  * @(#)Float.java	1.102 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
@@ -13,16 +13,16 @@ import sun.misc.FloatConsts;
 import sun.misc.DoubleConsts;
 
 /**
- * The <code>Float</code> class wraps a value of primitive type
- * <code>float</code> in an object. An object of type
- * <code>Float</code> contains a single field whose type is
- * <code>float</code>.
+ * Класс <code>Float</code> обертывает значение примитивного типа
+ * <code>float</code> в объект. Объект типа <code>Float</code> 
+ * содержит одно поле, имеющее тип <code>float</code>. 
+ * 
  * <p>
- * In addition, this class provides several methods for converting a
- * <code>float</code> to a <code>String</code> and a
- * <code>String</code> to a <code>float</code>, as well as other
- * constants and methods useful when dealing with a
- * <code>float</code>.
+ *
+ * В дополнение, класс предоставляет несколько методов для преобразования
+ * значений <code>float</code> в строки и строк в <code>float</code>, 
+ * равно как и другие константы и методы, полезные, когда имеешь 
+ * дело с <code>float</code>. 
  *
  * @author  Lee Boynton
  * @author  Arthur van Hoff
@@ -98,14 +98,14 @@ public final class Float extends Number implements Comparable<Float> {
     public static final int MIN_EXPONENT = -126;
 
     /**
-     * The number of bits used to represent a <tt>float</tt> value.
+     * Число бит, используемых для представления значения <tt>float</tt>.
      *
      * @since 1.5
      */
     public static final int SIZE = 32;
 
     /**
-     * The <code>Class</code> instance representing the primitive type
+     * Инстанция <code>Class</code>, представляющая примитивный тип 
      * <code>float</code>.
      *
      * @since JDK1.1 
@@ -179,7 +179,7 @@ public final class Float extends Number implements Comparable<Float> {
      * @return a string representation of the argument.
      */
     public static String toString(float f) {
-	return new FloatingDecimal(f).toJavaFormatString();
+        return new FloatingDecimal(f).toJavaFormatString();
     }
 
     /**
@@ -234,7 +234,7 @@ public final class Float extends Number implements Comparable<Float> {
      * </ul>
      *
      * <table border>
-     * <caption><h3>Examples</h3></caption>
+     * <caption><h3>Примеры</h3></caption>
      * <tr><th>Floating-point Value</th><th>Hexadecimal String</th>
      * <tr><td><code>1.0</code></td>	<td><code>0x1.0p0</code></td>
      * <tr><td><code>-1.0</code></td>	<td><code>-0x1.0p0</code></td>
@@ -257,19 +257,19 @@ public final class Float extends Number implements Comparable<Float> {
      * @author Joseph D. Darcy
      */
     public static String toHexString(float f) {
-	if (Math.abs(f) < FloatConsts.MIN_NORMAL
-	    &&  f != 0.0f ) {// float subnormal
-	    // Adjust exponent to create subnormal double, then
-	    // replace subnormal double exponent with subnormal float
-	    // exponent
-	    String s = Double.toHexString(FpUtils.scalb((double)f,
-							/* -1022+126 */
-							DoubleConsts.MIN_EXPONENT- 
-							FloatConsts.MIN_EXPONENT));
-	    return s.replaceFirst("p-1022$", "p-126");
-	}
-	else // double string will be the same as float string
-	    return Double.toHexString(f);
+        if (Math.abs(f) < FloatConsts.MIN_NORMAL
+            &&  f != 0.0f ) {// float subnormal
+            // Adjust exponent to create subnormal double, then
+            // replace subnormal double exponent with subnormal float
+            // exponent
+            String s = Double.toHexString(FpUtils.scalb((double)f,
+                                /* -1022+126 */
+                                DoubleConsts.MIN_EXPONENT- 
+                                FloatConsts.MIN_EXPONENT));
+            return s.replaceFirst("p-1022$", "p-126");
+        }
+        else // double string will be the same as float string
+            return Double.toHexString(f);
     }
 
     /**
@@ -381,24 +381,24 @@ public final class Float extends Number implements Comparable<Float> {
      * @param      s   the string to be parsed.
      * @return     a <code>Float</code> object holding the value
      *             represented by the <code>String</code> argument.
-     * @exception  NumberFormatException  if the string does not contain a
-     *               parsable number.  
+     * @exception   NumberFormatException Если строка не содержит
+     *              распознаваемое значение числа.
      */
     public static Float valueOf(String s) throws NumberFormatException {
-	return new Float(FloatingDecimal.readJavaFormatString(s).floatValue());
+        return new Float(FloatingDecimal.readJavaFormatString(s).floatValue());
     }
 
     /**
-     * Returns a <tt>Float</tt> instance representing the specified
-     * <tt>float</tt> value.
-     * If a new <tt>Float</tt> instance is not required, this method
-     * should generally be used in preference to the constructor
-     * {@link #Float(float)}, as this method is likely to yield
-     * significantly better space and time performance by caching
-     * frequently requested values.
+     * Возвращает инстанцию <tt>Float</tt>, представляющую указанное
+     * значение <tt>float</tt>.
+     * Если новая инстанция <tt>Float</tt> не требуется, этот метод
+     * должен обычно использоваться вместо конструктора
+     * {@link #Float(float)}, так как этот метод, вероятно, использует 
+     * существенно меньше места и лучше по производительности, из-за 
+     * кеширования часто требуемых значений.
      *
-     * @param  f a float value.
-     * @return a <tt>Float</tt> instance representing <tt>f</tt>.
+     * @param  f значение <tt>float</tt>.
+     * @return инстанция <tt>Float</tt>, представляющая <tt>f</tt>.
      * @since  1.5
      */
     public static Float valueOf(float f) {
@@ -413,25 +413,25 @@ public final class Float extends Number implements Comparable<Float> {
      * @param      s   the string to be parsed.
      * @return the <code>float</code> value represented by the string
      *         argument.
-     * @exception  NumberFormatException  if the string does not contain a
-     *               parsable <code>float</code>.
+     * @exception  NumberFormatException Если строка не содержит
+     *             распознаваемое значение <code>float</code>.
      * @see        java.lang.Float#valueOf(String)
      * @since 1.2
      */
     public static float parseFloat(String s) throws NumberFormatException {
-	return FloatingDecimal.readJavaFormatString(s).floatValue();
+        return FloatingDecimal.readJavaFormatString(s).floatValue();
     }
 
     /**
-     * Returns <code>true</code> if the specified number is a
-     * Not-a-Number (NaN) value, <code>false</code> otherwise.
+     * Возвращает <code>true</code>, если указанное число является нечисловым
+     * (Not-a-Number - NaN) значением, иначе <code>false</code>.
      *
-     * @param   v   the value to be tested.
-     * @return  <code>true</code> if the argument is NaN;
-     *          <code>false</code> otherwise.
+     * @param   v   значение для проверки.
+     * @return  <code>true</code>, если аргумент является NaN;
+     *          иначе <code>false</code>.
      */
     static public boolean isNaN(float v) {
-	return (v != v);
+        return (v != v);
     }
 
     /**
@@ -443,34 +443,34 @@ public final class Float extends Number implements Comparable<Float> {
      *          negative infinity; <code>false</code> otherwise.
      */
     static public boolean isInfinite(float v) {
-	return (v == POSITIVE_INFINITY) || (v == NEGATIVE_INFINITY);
+        return (v == POSITIVE_INFINITY) || (v == NEGATIVE_INFINITY);
     }
 
     /**
-     * The value of the Float.
+     * Значение Float.
      *
      * @serial
      */
     private final float value;
 
     /**
-     * Constructs a newly allocated <code>Float</code> object that
-     * represents the primitive <code>float</code> argument.
+     * Конструирует и размещает в памяти новый объект <code>Float</code>,
+     * представляющий указанное значение <code>float</code>'а.
      *
-     * @param   value   the value to be represented by the <code>Float</code>.
+     * @param value значение, которое будет представлено <code>Float</code>'ом.
      */
     public Float(float value) {
-	this.value = value;
+        this.value = value;
     }
 
     /**
-     * Constructs a newly allocated <code>Float</code> object that
-     * represents the argument converted to type <code>float</code>.
+     * Конструирует и размещает в памяти новый объект <code>Float</code>,
+     * представляющий аргумент, преобразованный в <code>float</code>.
      *
-     * @param   value   the value to be represented by the <code>Float</code>.
+     * @param value значение, которое будет представлено <code>Float</code>'ом.
      */
     public Float(double value) {
-	this.value = (float)value;
+        this.value = (float)value;
     }
 
     /**
@@ -479,14 +479,14 @@ public final class Float extends Number implements Comparable<Float> {
      * represented by the string. The string is converted to a 
      * <code>float</code> value as if by the <code>valueOf</code> method. 
      *
-     * @param      s   a string to be converted to a <code>Float</code>.
-     * @exception  NumberFormatException  if the string does not contain a
-     *               parsable number.
+     * @param      s   строка, конвертируемая в <code>Float</code>.
+     * @exception  NumberFormatException Если строка не содержит
+     *             распознаваемое значение числа.
      * @see        java.lang.Float#valueOf(java.lang.String)
      */
     public Float(String s) throws NumberFormatException {
-	// REMIND: this is inefficient
-	this(valueOf(s).floatValue());
+        // REMIND: это неэффективно
+        this(valueOf(s).floatValue());
     }
 
     /**
@@ -497,7 +497,7 @@ public final class Float extends Number implements Comparable<Float> {
      *          NaN; <code>false</code> otherwise.
      */
     public boolean isNaN() {
-	return isNaN(value);
+        return isNaN(value);
     }
 
     /**
@@ -509,7 +509,7 @@ public final class Float extends Number implements Comparable<Float> {
      *          <code>false</code> otherwise.
      */
     public boolean isInfinite() {
-	return isInfinite(value);
+        return isInfinite(value);
     }
 
     /**
@@ -522,74 +522,74 @@ public final class Float extends Number implements Comparable<Float> {
      * @see java.lang.Float#toString(float)
      */
     public String toString() {
-	return String.valueOf(value);
+        return String.valueOf(value);
     }
 
     /**
-     * Returns the value of this <code>Float</code> as a
-     * <code>byte</code> (by casting to a <code>byte</code>).
+     * Возвращает значение этого объекта <code>Float</code> как 
+     * <code>byte</code> (приведением к типу <code>byte</code>).
      *
-     * @return  the <code>float</code> value represented by this object
-     *          converted to type <code>byte</code>
+     * @return  <code>float</code> значение, представляющее этот объект,
+     *          преобразованное к типу <code>byte</code>.
      */
     public byte byteValue() {
-	return (byte)value;
+        return (byte)value;
     }
 
     /**
-     * Returns the value of this <code>Float</code> as a
-     * <code>short</code> (by casting to a <code>short</code>).
+     * Возвращает значение этого объекта <code>Float</code> как 
+     * <code>short</code> (приведением к типу <code>short</code>).
      *
-     * @return  the <code>float</code> value represented by this object
-     *          converted to type <code>short</code>
+     * @return  <code>float</code> значение, представляющее этот объект,
+     *          преобразованное к типу <code>short</code>.
      * @since JDK1.1
      */
     public short shortValue() {
-	return (short)value;
+        return (short)value;
     }
 
     /**
-     * Returns the value of this <code>Float</code> as an
-     * <code>int</code> (by casting to type <code>int</code>).
+     * Возвращает значение этого объекта <code>Float</code> как 
+     * <code>int</code> (приведением к типу <code>int</code>).
      *
-     * @return  the <code>float</code> value represented by this object
-     *          converted to type <code>int</code>
+     * @return  <code>float</code> значение, представляющее этот объект,
+     *          преобразованное к типу <code>int</code>.
      */
     public int intValue() {
-	return (int)value;
+        return (int)value;
     }
 
     /**
-     * Returns value of this <code>Float</code> as a <code>long</code>
-     * (by casting to type <code>long</code>).
+     * Возвращает значение этого объекта <code>Float</code> как 
+     * <code>long</code> (приведением к типу <code>long</code>).
      *
-     * @return  the <code>float</code> value represented by this object
-     *          converted to type <code>long</code>
+     * @return  <code>float</code> значение, представляющее этот объект,
+     *          преобразованное к типу <code>long</code>.
      */
     public long longValue() {
-	return (long)value;
+        return (long)value;
     }
 
     /**
-     * Returns the <code>float</code> value of this <code>Float</code>
-     * object.
+     * Возвращает значение <code>float</code> этого объекта 
+     * <code>Float</code>.
      *
-     * @return the <code>float</code> value represented by this object 
+     * @return <code>float</code> значение, представляющее этот объект.
      */
     public float floatValue() {
-	return value;
+        return value;
     }
 
     /**
-     * Returns the <code>double</code> value of this
-     * <code>Float</code> object.
+     * Возвращает значение <code>double</code> этого объекта 
+     * <code>Float</code>.
      * 
-     * @return the <code>float</code> value represented by this 
-     *         object is converted to type <code>double</code> and the 
-     *         result of the conversion is returned.  
+     * @return <code>float</code> значение, представляющее этот объект,
+     *         преобразовывается к типу <code>double</code> и возвращается 
+     *         результат преобразования. 
      */
     public double doubleValue() {
-	return (double)value;
+        return (double)value;
     }
 
     /**
@@ -599,14 +599,14 @@ public final class Float extends Number implements Comparable<Float> {
      * <code>float</code> value represented by this <code>Float</code>
      * object.
      *
-     * @return a hash code value for this object.  
+     * @return значение хеш-кода для этого объекта.
      */
     public int hashCode() {
-	return floatToIntBits(value);
+        return floatToIntBits(value);
     }
 
     /**
-
+     *
      * Compares this object against the specified object.  The result
      * is <code>true</code> if and only if the argument is not
      * <code>null</code> and is a <code>Float</code> object that
@@ -644,8 +644,8 @@ public final class Float extends Number implements Comparable<Float> {
      * @see java.lang.Float#floatToIntBits(float)
      */
     public boolean equals(Object obj) {
-	return (obj instanceof Float)
-	       && (floatToIntBits(((Float)obj).value) == floatToIntBits(value));
+        return (obj instanceof Float)
+               && (floatToIntBits(((Float)obj).value) == floatToIntBits(value));
     }
 
     /**
@@ -677,14 +677,14 @@ public final class Float extends Number implements Comparable<Float> {
      * @return the bits that represent the floating-point number.  
      */
     public static int floatToIntBits(float value) {
-	int result = floatToRawIntBits(value);
-	// Check for NaN based on values of bit fields, maximum
-	// exponent and nonzero significand.
-	if ( ((result & FloatConsts.EXP_BIT_MASK) == 
-	      FloatConsts.EXP_BIT_MASK) &&
-	     (result & FloatConsts.SIGNIF_BIT_MASK) != 0)
-	    result = 0x7fc00000;
-	return result;
+        int result = floatToRawIntBits(value);
+        // Check for NaN based on values of bit fields, maximum
+        // exponent and nonzero significand.
+        if ( ((result & FloatConsts.EXP_BIT_MASK) == 
+              FloatConsts.EXP_BIT_MASK) &&
+             (result & FloatConsts.SIGNIF_BIT_MASK) != 0)
+            result = 0x7fc00000;
+        return result;
     }
 
     /**
@@ -754,7 +754,7 @@ public final class Float extends Number implements Comparable<Float> {
      * </pre></blockquote>
      * Then the floating-point result equals the value of the mathematical 
      * expression <i>s</i>&middot;<i>m</i>&middot;2<sup><i>e</i>-150</sup>.
-     *<p>
+     * <p>
      * Note that this method may not be able to return a
      * <code>float</code> NaN with exactly same bit pattern as the
      * <code>int</code> argument.  IEEE 754 distinguishes between two
@@ -798,15 +798,15 @@ public final class Float extends Number implements Comparable<Float> {
      * This ensures that the <i>natural ordering</i> of <tt>Float</tt>
      * objects imposed by this method is <i>consistent with equals</i>.
      *
-     * @param   anotherFloat   the <code>Float</code> to be compared.
-     * @return  the value <code>0</code> if <code>anotherFloat</code> is
-     *		numerically equal to this <code>Float</code>; a value
-     *		less than <code>0</code> if this <code>Float</code>
-     *		is numerically less than <code>anotherFloat</code>;
-     *		and a value greater than <code>0</code> if this
-     *		<code>Float</code> is numerically greater than
-     *		<code>anotherFloat</code>.
-     *		
+     * @param   anotherFloat   <code>Float</code> для сравнения.
+     * @return  значение <code>0</code>, если <code>anotherFloat</code> в
+     *          числовом смысле равен этому объекту <code>Float</code>; 
+     *          значение, меньшее <code>0</code>, если этот объект 
+     *          <code>Float</code> в числовом смысле меньше, чем 
+     *          <code>anotherFloat</code>; и значение большее <code>0</code>, 
+     *          если этот объект <code>Float</code> в числовом смысле больше, 
+     *          чем <code>anotherFloat</code>.
+     *
      * @since   1.2
      * @see Comparable#compareTo(Object)
      */
@@ -825,15 +825,15 @@ public final class Float extends Number implements Comparable<Float> {
      * @param   f1        the first <code>float</code> to compare.
      * @param   f2        the second <code>float</code> to compare.
      * @return  the value <code>0</code> if <code>f1</code> is
-     *		numerically equal to <code>f2</code>; a value less than
+     *          numerically equal to <code>f2</code>; a value less than
      *          <code>0</code> if <code>f1</code> is numerically less than
-     *		<code>f2</code>; and a value greater than <code>0</code>
-     *		if <code>f1</code> is numerically greater than
-     *		<code>f2</code>.
+     *          <code>f2</code>; and a value greater than <code>0</code>
+     *          if <code>f1</code> is numerically greater than
+     *          <code>f2</code>.
      * @since 1.4 
      */
     public static int compare(float f1, float f2) {
-       if (f1 < f2)
+        if (f1 < f2)
             return -1;		 // Neither val is NaN, thisVal is smaller
         if (f1 > f2)
             return 1;		 // Neither val is NaN, thisVal is larger
@@ -841,11 +841,11 @@ public final class Float extends Number implements Comparable<Float> {
         int thisBits = Float.floatToIntBits(f1);
         int anotherBits = Float.floatToIntBits(f2);
 
-        return (thisBits == anotherBits ?  0 : // Values are equal
-                (thisBits < anotherBits ? -1 : // (-0.0, 0.0) or (!NaN, NaN)
-                 1));                          // (0.0, -0.0) or (NaN, !NaN)
+        return (thisBits == anotherBits ?  0 : // Значения равны
+                (thisBits < anotherBits ? -1 : // (-0.0, 0.0) или (!NaN, NaN)
+                 1));                          // (0.0, -0.0) или (NaN, !NaN)
     }
 
-    /** use serialVersionUID from JDK 1.0.2 for interoperability */
+    /** используется serialVersionUID из JDK 1.0.2 для функциональной совместимости */
     private static final long serialVersionUID = -2671257302660747028L;
 }

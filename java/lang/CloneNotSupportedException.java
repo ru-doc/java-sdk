@@ -1,21 +1,21 @@
 /*
  * @(#)CloneNotSupportedException.java	1.13 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown to indicate that the <code>clone</code> method in class 
- * <code>Object</code> has been called to clone an object, but that 
- * the object's class does not implement the <code>Cloneable</code> 
- * interface. 
+ * Кидается, чтобы сказать, что метод <code>clone</code> в классе
+ * <code>Object</code> был вызван для копирования объекта, но класс этого
+ * объекта не реализует интерфейс <code>Cloneable</code>.
+ * 
  * <p>
- * Applications that override the <code>clone</code> method can also 
- * throw this exception to indicate that an object could not or 
- * should not be cloned.
+ * Приложения, которые переопределяют метод <code>clone</code> также могут
+ * кидать это исключение, чтобы сказать, что объект не может или не должен
+ * копироваться.
  *
  * @author  unascribed
  * @version 1.13, 03/23/10
@@ -27,20 +27,20 @@ package java.lang;
 public
 class CloneNotSupportedException extends Exception {
     /**
-     * Constructs a <code>CloneNotSupportedException</code> with no 
-     * detail message. 
+     * Конструирует <code>CloneNotSupportedException</code> без 
+     * уточняющего сообщения.
      */
     public CloneNotSupportedException() {
-	super();
+        super();
     }
 
     /**
-     * Constructs a <code>CloneNotSupportedException</code> with the 
-     * specified detail message. 
+     * Конструирует <code>CloneNotSupportedException</code> с указанным 
+     * уточняющим сообщением.
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public CloneNotSupportedException(String s) {
-	super(s);
+        super(s);
     }
 }

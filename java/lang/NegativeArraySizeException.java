@@ -1,14 +1,14 @@
 /*
  * @(#)NegativeArraySizeException.java	1.21 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown if an application tries to create an array with negative size.
+ * Кидается, если приложение пытается создать массив с отрицательным размером.
  *
  * @author  unascribed
  * @version 1.21, 03/23/10
@@ -17,20 +17,20 @@ package java.lang;
 public
 class NegativeArraySizeException extends RuntimeException {
     /**
-     * Constructs a <code>NegativeArraySizeException</code> with no 
-     * detail message. 
+     * Конструирует <code>NegativeArraySizeException</code> без 
+     * уточняющего сообщения.
      */
     public NegativeArraySizeException() {
-	super();
+        super();
     }
 
     /**
-     * Constructs a <code>NegativeArraySizeException</code> with the 
-     * specified detail message. 
+     * Конструирует <code>NegativeArraySizeException</code> с указанным 
+     * уточняющим сообщением.
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public NegativeArraySizeException(String s) {
-	super(s);
+        super(s);
     }
 }

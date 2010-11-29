@@ -1,31 +1,31 @@
 /*
  * @(#)Cloneable.java	1.18 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * A class implements the <code>Cloneable</code> interface to 
- * indicate to the {@link java.lang.Object#clone()} method that it 
- * is legal for that method to make a 
- * field-for-field copy of instances of that class. 
+ * Класс, реализующий интерфейс <code>Cloneable</code>, сообщает методу
+ * {@link java.lang.Object#clone()}, что этому методу допустимо 
+ * делать побитовую (field-for-field) копию инстанций этого класса.
+ * 
  * <p>
- * Invoking Object's clone method on an instance that does not implement the 
- * <code>Cloneable</code> interface results in the exception 
- * <code>CloneNotSupportedException</code> being thrown.
+ * Вызов метода <code>clone</code> <code>Object</code>'а на инстанции,
+ * которая не реализует интерфейс <code>Cloneable</code>, приведет к 
+ * выбросу исключения <code>CloneNotSupportedException</code>.
  * <p>
- * By convention, classes that implement this interface should override 
- * <tt>Object.clone</tt> (which is protected) with a public method.
- * See {@link java.lang.Object#clone()} for details on overriding this
- * method.
+ * По соглашению, классы, реализующие этот интерфейс, должны переопределить
+ * метод <tt>Object.clone</tt> (являющийся защищенным) как публичный (public).
+ * Смотрите {@link java.lang.Object#clone()} для подробностей относительно 
+ * переопределения этого метода.
  * <p>
- * Note that this interface does <i>not</i> contain the <tt>clone</tt> method.
- * Therefore, it is not possible to clone an object merely by virtue of the
- * fact that it implements this interface.  Even if the clone method is invoked
- * reflectively, there is no guarantee that it will succeed.
+ * Заметьте, что этот интерфейс <i>не</i> содержит метода <tt>clone</tt>.
+ * Поэтому невозможно скопировать объект просто на основании того факта,
+ * что он реализует этот интерфейс. Доже если метод копирования вызывается
+ * рефлексивно, это не гарантирует, что он будет успешен.
  *
  * @author  unascribed
  * @version 1.18, 03/23/10

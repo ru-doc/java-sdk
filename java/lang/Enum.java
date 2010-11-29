@@ -1,8 +1,8 @@
 /*
  * @(#)Enum.java	1.17 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
@@ -14,7 +14,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectStreamException;
 
 /**
- * This is the common base class of all Java language enumeration types.
+ * Это общий базовый класс для всех типов перечисления языка Java.
  *
  * @author  Josh Bloch
  * @author  Neal Gafter
@@ -24,166 +24,166 @@ import java.io.ObjectStreamException;
 public abstract class Enum<E extends Enum<E>>
         implements Comparable<E>, Serializable {
     /**
-     * The name of this enum constant, as declared in the enum declaration.
-     * Most programmers should use the {@link #toString} method rather than
-     * accessing this field.
+     * Имя этой константы перечисления, как объявлено в объявлении перечисления.
+     * Большинство программистов должны использовать метод {@link #toString} 
+     * вместо получения доступа к этому полю.
      */
     private final String name;
 
     /**
-     * Returns the name of this enum constant, exactly as declared in its
-     * enum declaration.
+     * Возвращает имя этой константы перечисления, точно как объявлено в 
+     * ее объявлении перечисления.
      * 
-     * <b>Most programmers should use the {@link #toString} method in
-     * preference to this one, as the toString method may return
-     * a more user-friendly name.</b>  This method is designed primarily for
-     * use in specialized situations where correctness depends on getting the
-     * exact name, which will not vary from release to release.
+     * <b>Большинство программистов должны использовать метод {@link #toString} 
+     * вместо этого, так как метод {@code toString} может вернуть более
+     * дружественное-к-пользователю имя.</b> Этот метод предназначен прежде
+     * всего для использования в специализированных ситуациях, где правильность
+     * зависит от получения точного имени, которое не будет изменяться от релиза к релизу.
      *
-     * @return the name of this enum constant
+     * @return имя этой константы перечисления
      */
     public final String name() {
-	return name;
+        return name;
     }
 
     /**
-     * The ordinal of this enumeration constant (its position
-     * in the enum declaration, where the initial constant is assigned
-     * an ordinal of zero).
+     * Порядковый номер этой константы в перечислении (ее позиция
+     * в объявлении перечисления, где начальной константе присваивается
+     * нулевое порядковое значение).
      * 
-     * Most programmers will have no use for this field.  It is designed
-     * for use by sophisticated enum-based data structures, such as
-     * {@link java.util.EnumSet} and {@link java.util.EnumMap}.
+     * Большинству программистов не нужно использовать это поле. Оно разработано 
+     * для использования изощренными, основанными на перечислениях структурами
+     * данных, таких как {@link java.util.EnumSet} и {@link java.util.EnumMap}.
      */
     private final int ordinal;
 
     /**
-     * Returns the ordinal of this enumeration constant (its position
-     * in its enum declaration, where the initial constant is assigned
-     * an ordinal of zero).
+     * Возвращает порядковый номер этой константы в перечислении (ее позиция
+     * в объявлении перечисления, где начальной константе присваивается
+     * нулевое порядковое значение).
      * 
-     * Most programmers will have no use for this method.  It is
-     * designed for use by sophisticated enum-based data structures, such
-     * as {@link java.util.EnumSet} and {@link java.util.EnumMap}.
+     * Большинству программистов не нужно использовать этот метод. Он разработан 
+     * для использования изощренными, основанными на перечислениях структурами
+     * данных, таких как {@link java.util.EnumSet} и {@link java.util.EnumMap}.
      *
-     * @return the ordinal of this enumeration constant
+     * @return порядковое значение этой константы в перечислении
      */
     public final int ordinal() {
-	return ordinal;
+        return ordinal;
     }
 
     /**
-     * Sole constructor.  Programmers cannot invoke this constructor.
-     * It is for use by code emitted by the compiler in response to
-     * enum type declarations.
+     * Единственный конструктор. Программисты не могут вызвать этот конструктор.
+     * Он для использования кодом, выдаваемым компилятором в ответ на 
+     * объявления перечисляемого типа.
      *
-     * @param name - The name of this enum constant, which is the identifier
-     *               used to declare it.
-     * @param ordinal - The ordinal of this enumeration constant (its position
-     *         in the enum declaration, where the initial constant is assigned
-     *         an ordinal of zero).
+     * @param name Имя этой константы перечисления, являющееся идентификатором,
+     *             использованном при ее объявлении.
+     * @param ordinal Порядковый номер этой константы в перечислении (ее позиция
+     *         в объявлении перечисления, где начальной константе присваивается
+     *         нулевое порядковое значение).
      */
     protected Enum(String name, int ordinal) {
-	this.name = name;
-	this.ordinal = ordinal;
+        this.name = name;
+        this.ordinal = ordinal;
     }
 
     /**
-     * Returns the name of this enum constant, as contained in the
-     * declaration.  This method may be overridden, though it typically
-     * isn't necessary or desirable.  An enum type should override this
-     * method when a more "programmer-friendly" string form exists.
+     * Возвращает имя этой константы перечисления, как содержится в объявлении. 
+     * Этот метод может быть переопределен, хотя это обычно не требуется 
+     * или нежелательно. Тип перечисления должен переопределить этот метод, 
+     * когда существует более "дружественная-к-программисту" строковая форма.
      *
-     * @return the name of this enum constant
+     * @return имя этой константы перечисления.
      */
     public String toString() {
-	return name;
+        return name;
     }
 
     /**
-     * Returns true if the specified object is equal to this
-     * enum constant.
+     * Возвращает <code>true</code> если указанный объект равен этой константе 
+     * перечисления.
      *
-     * @param other the object to be compared for equality with this object.
-     * @return  true if the specified object is equal to this
-     *          enum constant.
+     * @param other объект для сравнения на эквивалентность с этим объектом.
+     * @return  <code>true</code>, если указанный объект равен этой константе
+     *          перечисления.
      */
     public final boolean equals(Object other) { 
         return this==other;
     }
 
     /**
-     * Returns a hash code for this enum constant.
+     * Возвращает хеш-код для этой константы перечисления.
      *
-     * @return a hash code for this enum constant.
+     * @return хеш-код для этой константы перечисления.
      */
     public final int hashCode() {
         return super.hashCode();
     }
 
     /**
-     * Throws CloneNotSupportedException.  This guarantees that enums
-     * are never cloned, which is necessary to preserve their "singleton"
-     * status.
+     * Кидает CloneNotSupportedException. Это гарантирует, что перечисления
+     * никогда не копируются, что необходимо для сохранения их статуса
+     * "синглетона" (одиночки).
      *
-     * @return (never returns)
+     * @return (никогда не возвращается)
      */
     protected final Object clone() throws CloneNotSupportedException {
-	throw new CloneNotSupportedException();
+        throw new CloneNotSupportedException();
     }
 
     /**
-     * Compares this enum with the specified object for order.  Returns a
-     * negative integer, zero, or a positive integer as this object is less
-     * than, equal to, or greater than the specified object.
+     * Сравнивает это перечисление с указанным объектом по порядковому номеру. 
+     * Возвращает отрицательное число, ноль или положительное число, если этот
+     * объект меньше, равен или больше, чем указанный объект.
      * 
-     * Enum constants are only comparable to other enum constants of the
-     * same enum type.  The natural order implemented by this
-     * method is the order in which the constants are declared.
+     * Константы перечисления сравнимы только с другими константами перечисления 
+     * того же самого типа перечисления. Естественный порядок, реализованный этим
+     * методом, является порядком, в котором константы были объявлены.
      */
     public final int compareTo(E o) {
-	Enum other = (Enum)o;
-	Enum self = this;
-	if (self.getClass() != other.getClass() && // optimization
+        Enum other = (Enum)o;
+        Enum self = this;
+        if (self.getClass() != other.getClass() && // оптимизация
             self.getDeclaringClass() != other.getDeclaringClass())
-	    throw new ClassCastException();
-	return self.ordinal - other.ordinal;
+            throw new ClassCastException();
+        return self.ordinal - other.ordinal;
     }
 
     /**
-     * Returns the Class object corresponding to this enum constant's
-     * enum type.  Two enum constants e1 and  e2 are of the
-     * same enum type if and only if
-     *   e1.getDeclaringClass() == e2.getDeclaringClass().
-     * (The value returned by this method may differ from the one returned
-     * by the {@link Object#getClass} method for enum constants with
-     * constant-specific class bodies.)
+     * Возвращает объект класса, сответствующий типу перечисления этой константы
+     * перечисления. Две константы перечисления <code>e1</code> и <code>e2</code> 
+     * одного и того же типа перечисления тогда и только тогда, когда
+     *   <code>e1.getDeclaringClass() == e2.getDeclaringClass()</code>.
+     * (Значение, возвращаемое этим методом, может отличаться от значения, 
+     * возвращаемого методом {@link Object#getClass} для констант перечисления
+     * с constant-specific телами класса.)
      *
-     * @return the Class object corresponding to this enum constant's
-     *     enum type
+     * @return объект класса, соответствующий типу перечисления этой константы
+     *         перечисления.
      */
     public final Class<E> getDeclaringClass() {
-	Class clazz = getClass();
-	Class zuper = clazz.getSuperclass();
-	return (zuper == Enum.class) ? clazz : zuper;
+        Class clazz = getClass();
+        Class zuper = clazz.getSuperclass();
+        return (zuper == Enum.class) ? clazz : zuper;
     }
 
     /**
-     * Returns the enum constant of the specified enum type with the
-     * specified name.  The name must match exactly an identifier used
-     * to declare an enum constant in this type.  (Extraneous whitespace
-     * characters are not permitted.) 
+     * Возвращает константу перечисления указанного типа перечисления с
+     * указанным именем. Имя должно точно соответствовать идентификатору,
+     * использованном при объявлении константы этого типа. (Лишние
+     * пробельные символы не допускаются.) 
      *
-     * @param enumType the <tt>Class</tt> object of the enum type from which
-     *      to return a constant
-     * @param name the name of the constant to return
-     * @return the enum constant of the specified enum type with the
-     *      specified name
-     * @throws IllegalArgumentException if the specified enum type has
-     *         no constant with the specified name, or the specified
-     *         class object does not represent an enum type
-     * @throws NullPointerException if <tt>enumType</tt> or <tt>name</tt>
-     *         is null
+     * @param enumType объект <tt>Class</tt> типа перечисления, из которого
+     *                 возвращается константа.
+     * @param name имя константы для возврата.
+     * @return константа перечисления указанного типа перечисления с 
+     *         указанным именем.
+     * @throws IllegalArgumentException, если указанный тип перечисления не
+     *         имеет константы с указаным именем или указанный объект
+     *         класса не представляет тип перечисления.
+     * @throws NullPointerException, если <tt>enumType</tt> или <tt>name</tt>
+     *         равны <code>null</code>.
      * @since 1.5
      */
     public static <T extends Enum<T>> T valueOf(Class<T> enumType,
@@ -198,11 +198,11 @@ public abstract class Enum<E extends Enum<E>>
     }
 
     /**
-      * prevent default deserialization
+      * Предотвращает десериализацию по умолчанию.
       */
     private void readObject(ObjectInputStream in) throws IOException,
         ClassNotFoundException {
-            throw new InvalidObjectException("can't deserialize enum");
+        throw new InvalidObjectException("can't deserialize enum");
     }
 
     private void readObjectNoData() throws ObjectStreamException {
@@ -210,7 +210,7 @@ public abstract class Enum<E extends Enum<E>>
     }
 
     /**
-     * enum classes cannot have finalize methods.
+     * Классы перечислений не могут иметь методов финализации.
      */
     protected final void finalize() { }
 }

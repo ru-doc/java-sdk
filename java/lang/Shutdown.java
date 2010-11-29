@@ -1,8 +1,8 @@
 /*
  * @(#)Shutdown.java	1.15 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
@@ -47,9 +47,9 @@ class Shutdown {
 
     /* Invoked by Runtime.runFinalizersOnExit */
     static void setRunFinalizersOnExit(boolean run) {
-	synchronized (lock) {
-	    runFinalizersOnExit = run;
-	}
+        synchronized (lock) {
+            runFinalizersOnExit = run;
+        }
     }
 
 
@@ -71,19 +71,19 @@ class Shutdown {
     /* Run all registered shutdown hooks
      */
     private static void runHooks() {
-	/* We needn't bother acquiring the lock just to read the hooks field,
-	 * since the hooks can't be modified once shutdown is in progress
-	 */
-	for (Runnable hook : hooks) {
-	    try {
-		if (hook != null) hook.run();
-	    } catch(Throwable t) { 
-		if (t instanceof ThreadDeath) {
-   		    ThreadDeath td = (ThreadDeath)t;
-		    throw td;
-		} 
-	    }
-	}
+        /* We needn't bother acquiring the lock just to read the hooks field,
+         * since the hooks can't be modified once shutdown is in progress
+         */
+        for (Runnable hook : hooks) {
+            try {
+                if (hook != null) hook.run();
+            } catch(Throwable t) { 
+                if (t instanceof ThreadDeath) {
+                    ThreadDeath td = (ThreadDeath)t;
+                    throw td;
+                }
+            }
+        }
     }
 
     /* The halt method is synchronized on the halt lock
@@ -114,19 +114,19 @@ class Shutdown {
      * response to SIGINT, SIGTERM, etc.
      */
     private static void sequence() {
-	synchronized (lock) {
-	    /* Guard against the possibility of a daemon thread invoking exit
-	     * after DestroyJavaVM initiates the shutdown sequence
-	     */
-	    if (state != HOOKS) return;
-	}
-	runHooks();
-	boolean rfoe;
-	synchronized (lock) {
-	    state = FINALIZERS;
-	    rfoe = runFinalizersOnExit;
-	}
-	if (rfoe) runAllFinalizers();
+        synchronized (lock) {
+            /* Guard against the possibility of a daemon thread invoking exit
+             * after DestroyJavaVM initiates the shutdown sequence
+             */
+            if (state != HOOKS) return;
+        }
+        runHooks();
+        boolean rfoe;
+        synchronized (lock) {
+            state = FINALIZERS;
+            rfoe = runFinalizersOnExit;
+        }
+        if (rfoe) runAllFinalizers();
     }
 
 
@@ -135,39 +135,39 @@ class Shutdown {
      * which should pass a nonzero status code.
      */
     static void exit(int status) {
-	boolean runMoreFinalizers = false;
-	synchronized (lock) {
-	    if (status != 0) runFinalizersOnExit = false;
-	    switch (state) {
-	    case RUNNING:	/* Initiate shutdown */
-		state = HOOKS;
-		break;
-	    case HOOKS:		/* Stall and halt */
-		break;
-	    case FINALIZERS:
-		if (status != 0) {
-		    /* Halt immediately on nonzero status */
-		    halt(status);
-		} else {
-		    /* Compatibility with old behavior:
-		     * Run more finalizers and then halt
-		     */
-		    runMoreFinalizers = runFinalizersOnExit;
-		}
-		break;
-	    }
-	}
-	if (runMoreFinalizers) {
-	    runAllFinalizers();
-	    halt(status);
-	}
-	synchronized (Shutdown.class) {
-	    /* Synchronize on the class object, causing any other thread
-             * that attempts to initiate shutdown to stall indefinitely
-	     */
-	    sequence();
-	    halt(status);
-	}
+        boolean runMoreFinalizers = false;
+        synchronized (lock) {
+            if (status != 0) runFinalizersOnExit = false;
+            switch (state) {
+            case RUNNING:	/* Initiate shutdown */
+            state = HOOKS;
+            break;
+            case HOOKS:		/* Stall and halt */
+            break;
+            case FINALIZERS:
+            if (status != 0) {
+                /* Halt immediately on nonzero status */
+                halt(status);
+            } else {
+                /* Compatibility with old behavior:
+                 * Run more finalizers and then halt
+                 */
+                runMoreFinalizers = runFinalizersOnExit;
+            }
+            break;
+            }
+        }
+        if (runMoreFinalizers) {
+            runAllFinalizers();
+            halt(status);
+        }
+        synchronized (Shutdown.class) {
+            /* Synchronize on the class object, causing any other thread
+                 * that attempts to initiate shutdown to stall indefinitely
+             */
+            sequence();
+            halt(status);
+        }
     }
 
 
@@ -176,19 +176,19 @@ class Shutdown {
      * actually halt the VM.
      */
     static void shutdown() {
-	synchronized (lock) {
-	    switch (state) {
-	    case RUNNING:	/* Initiate shutdown */
-		state = HOOKS;
-		break;
-	    case HOOKS:		/* Stall and then return */
-	    case FINALIZERS:
-		break;
-	    }
-	}
-	synchronized (Shutdown.class) {
-	    sequence();
-	}
+        synchronized (lock) {
+            switch (state) {
+            case RUNNING:	/* Initiate shutdown */
+            state = HOOKS;
+            break;
+            case HOOKS:		/* Stall and then return */
+            case FINALIZERS:
+            break;
+            }
+        }
+        synchronized (Shutdown.class) {
+            sequence();
+        }
     }
 
 }

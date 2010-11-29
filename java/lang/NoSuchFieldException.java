@@ -1,14 +1,14 @@
 /*
  * @(#)NoSuchFieldException.java	1.16 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Signals that the class doesn't have a field of a specified name.
+ * Сообщает, что класс не имеет поля с указанным именем.
  *
  * @author  unascribed
  * @version 1.16, 03/23/10
@@ -16,18 +16,18 @@ package java.lang;
  */
 public class NoSuchFieldException extends Exception {
     /**
-     * Constructor.
+     * Конструктор.
      */
     public NoSuchFieldException() {
-	super();
+        super();
     }
 
     /**
-     * Constructor with a detail message.
+     * Конструктор с уточняющим сообщением.
      *
-     * @param s the detail message
+     * @param s уточняющее сообщение.
      */
     public NoSuchFieldException(String s) {
-	super(s);
+        super(s);
     }
 }

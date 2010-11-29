@@ -1,16 +1,16 @@
 /*
  * @(#)OutOfMemoryError.java	1.23 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown when the Java Virtual Machine cannot allocate an object 
- * because it is out of memory, and no more memory could be made 
- * available by the garbage collector. 
+ * Кидается, когда виртуальная машина Java не может разместить объект,
+ * потому что закончилась память и больше нет памяти, которую мог бы
+ * сделать доступной сборщик мусора. 
  *
  * @author  unascribed
  * @version 1.23, 03/23/10
@@ -19,19 +19,19 @@ package java.lang;
 public
 class OutOfMemoryError extends VirtualMachineError {
     /**
-     * Constructs an <code>OutOfMemoryError</code> with no detail message.
+     * Конструирует <code>OutOfMemoryError</code> без уточняющего сообщения.
      */
     public OutOfMemoryError() {
-	super();
+        super();
     }
 
     /**
-     * Constructs an <code>OutOfMemoryError</code> with the specified 
-     * detail message. 
+     * Конструирует <code>OutOfMemoryError</code> с указанным 
+     * уточняющим сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public OutOfMemoryError(String s) {
-	super(s);
+        super(s);
     }
 }

@@ -1,16 +1,16 @@
 /*
  * @(#)NumberFormatException.java	1.22 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown to indicate that the application has attempted to convert 
- * a string to one of the numeric types, but that the string does not 
- * have the appropriate format. 
+ * Кидается, чтобы сказать, что приложение попыталось сконвертировать
+ * строку в один из числовых типов, но та строка не имеет соответствующего
+ * формата. 
  *
  * @author  unascribed
  * @version 1.22, 03/23/10
@@ -22,27 +22,27 @@ class NumberFormatException extends IllegalArgumentException {
     static final long serialVersionUID = -2848938806368998894L;
 
     /**
-     * Constructs a <code>NumberFormatException</code> with no detail message.
+     * Конструирует <code>NumberFormatException</code> без уточняющего сообщения.
      */
-    public NumberFormatException () {
-	super();
+    public NumberFormatException() {
+        super();
     }
 
     /**
-     * Constructs a <code>NumberFormatException</code> with the 
-     * specified detail message. 
+     * Конструирует <code>NumberFormatException</code> с указанным 
+     * уточняющим сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
-    public NumberFormatException (String s) {
-	super (s);
+    public NumberFormatException(String s) {
+        super(s);
     }
 
     /**
-     * Factory method for making a <code>NumberFormatException</code>
-     * given the specified input which caused the error.
+     * Фабричный метод для создания <code>NumberFormatException</code>
+     * получает указанный вход, который вызвал ошибку.
      *
-     * @param   s   the input causing the error
+     * @param   s   вход, который вызвал ошибку.
      */
     static NumberFormatException forInputString(String s) {
         return new NumberFormatException("For input string: \"" + s + "\"");

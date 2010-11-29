@@ -1,17 +1,17 @@
 /*
  * @(#)IllegalMonitorStateException.java	1.14 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown to indicate that a thread has attempted to wait on an 
- * object's monitor or to notify other threads waiting on an object's
- * monitor without owning the specified monitor. 
- *
+ * Кидается, чтобы сказать, что поток пытался ожидать на мониторе объекта или уведомить
+ * другие потоки, ожидающие на мониторе объекта без владения указанным монитором. 
+ * <p>Про синхронизацию отлично написано на {@link http://www.skipy.ru/technics/synchronization.html}
+ * 
  * @author  unascribed
  * @version 1.14, 03/23/10
  * @see     java.lang.Object#notify()
@@ -24,20 +24,20 @@ package java.lang;
 public
 class IllegalMonitorStateException extends RuntimeException {
     /**
-     * Constructs an <code>IllegalMonitorStateException</code> with no 
-     * detail message. 
+     * Конструирует <code>IllegalMonitorStateException</code> без 
+     * уточняющего сообщения. 
      */
     public IllegalMonitorStateException() {
-	super();
+        super();
     }
 
     /**
-     * Constructs an <code>IllegalMonitorStateException</code> with the 
-     * specified detail message. 
+     * Конструирует <code>IllegalMonitorStateException</code> с указанным 
+     * уточняющим сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public IllegalMonitorStateException(String s) {
-	super(s);
+        super(s);
     }
 }

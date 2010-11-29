@@ -1,8 +1,8 @@
 /*
  * @(#)SuppressWarnings.java	1.5 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
@@ -12,17 +12,17 @@ import java.lang.annotation.ElementType;
 import static java.lang.annotation.ElementType.*;
 
 /**
- * Indicates that the named compiler warnings should be suppressed in the
- * annotated element (and in all program elements contained in the annotated
- * element).  Note that the set of warnings suppressed in a given element is
- * a superset of the warnings suppressed in all containing elements.  For
- * example, if you annotate a class to suppress one warning and annotate a
- * method to suppress another, both warnings will be suppressed in the method.
+ * Указывает, что именованные предупреждения компилятора должны быть подавлены в
+ * аннотируемом элементе (и во всех программных элементах, содержащихся в аннотируемом
+ * элементе). Заметьте, что множество предупреждений, подавляемых в данном элементе,
+ * является надмножеством предупреждений, подавляемых во всех содержащихся элементах.
+ * Например, если вы аннотируете класс для подавления одного предупреждения и аннотируете
+ * метод для подавления другого, оба предупреждения будут подавлены в методе.
  *
- * <p>As a matter of style, programmers should always use this annotation
- * on the most deeply nested element where it is effective.  If you want to
- * suppress a warning in a particular method, you should annotate that
- * method rather than its class.
+ * <p>Как вопрос стиля, программисты должны всегда использовать эту аннотацию
+ * на наиболее глубоко вложенном элементе, где она эффективна. Если вы хотите
+ * подавить предупреждение в отдельном методе, вы должны анотировать этот 
+ * метод, а не его класс.
  *
  * @since 1.5
  * @author Josh Bloch
@@ -31,17 +31,17 @@ import static java.lang.annotation.ElementType.*;
 @Retention(RetentionPolicy.SOURCE)
 public @interface SuppressWarnings {
     /**
-     * The set of warnings that are to be suppressed by the compiler in the
-     * annotated element.  Duplicate names are permitted.  The second and
-     * successive occurrences of a name are ignored.  The presence of
-     * unrecognized warning names is <i>not</i> an error: Compilers must
-     * ignore any warning names they do not recognize.  They are, however,
-     * free to emit a warning if an annotation contains an unrecognized
-     * warning name.
+     * Множество предупреждений, которые могут подавлены компилятором в
+     * аннотируемом элементе. Допускаются повторяющиеся имена. Второе и
+     * последующие вхождения имени игнорируются. Присутствие непризнанных
+     * имен предупреждений <i>не</i> является ошибкой: Компиляторы должны
+     * игнорировать любые имена предупреждений, которые они не признают. 
+     * Они, однако, вправе выдать предупреждение, если аннотация содержит
+     * непризнанное имя предупреждения.
      *
-     * <p>Compiler vendors should document the warning names they support in
-     * conjunction with this annotation type. They are encouraged to cooperate
-     * to ensure that the same names work across multiple compilers.
+     * <p>Производители компиляторов должны документировать имена предупреждений,
+     * которые они поддерживают для этого типа аннотации. Поощряется их объединение,
+     * чтобы гарантировать, что одни и те же имена работают на множестве компиляторов.
      */
     String[] value();
 }

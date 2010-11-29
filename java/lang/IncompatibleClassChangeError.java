@@ -1,16 +1,16 @@
 /*
  * @(#)IncompatibleClassChangeError.java	1.20 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown when an incompatible class change has occurred to some class 
- * definition. The definition of some class, on which the currently 
- * executing method depends, has since changed. 
+ * Кидается, когда произошли несовместимые изменения класса в некотором
+ * определении класса. Определение некоторого класса, от которого в настоящее
+ * время зависит исполняемый метод, с тех пор изменилось. 
  *
  * @author  unascribed
  * @version 1.20, 03/23/10
@@ -19,20 +19,20 @@ package java.lang;
 public
 class IncompatibleClassChangeError extends LinkageError {
     /**
-     * Constructs an <code>IncompatibleClassChangeError</code> with no 
-     * detail message. 
+     * Конструирует <code>IncompatibleClassChangeError</code> без уточняющего 
+     * сообщения.
      */
     public IncompatibleClassChangeError () {
-	super();
+        super();
     }
 
     /**
-     * Constructs an <code>IncompatibleClassChangeError</code> with the 
-     * specified detail message. 
+     * Конструирует <code>IncompatibleClassChangeError</code> с указанным 
+     * уточняющим сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public IncompatibleClassChangeError(String s) {
-	super(s);
+        super(s);
     }
 }

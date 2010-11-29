@@ -1,15 +1,15 @@
 /*
  * @(#)StackOverflowError.java	1.23 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown when a stack overflow occurs because an application 
- * recurses too deeply. 
+ * Кидается, когда переполняется стек из-за того, что рекурсия в приложении
+ * слишком глубокая. 
  *
  * @author unascribed
  * @version 1.23, 03/23/10
@@ -18,19 +18,19 @@ package java.lang;
 public
 class StackOverflowError extends VirtualMachineError {
     /**
-     * Constructs a <code>StackOverflowError</code> with no detail message.
+     * Конструирует <code>StackOverflowError</code> без уточняющего сообщения.
      */
     public StackOverflowError() {
-	super();
+        super();
     }
 
     /**
-     * Constructs a <code>StackOverflowError</code> with the specified 
-     * detail message. 
+     * Конструирует <code>StackOverflowError</code> с указанным 
+     * уточняющим сообщением.
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public StackOverflowError(String s) {
-	super(s);
+        super(s);
     }
 }

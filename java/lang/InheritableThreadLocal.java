@@ -1,26 +1,26 @@
 /*
  * @(#)InheritableThreadLocal.java	1.23 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 import java.lang.ref.*;
 
 /**
- * This class extends <tt>ThreadLocal</tt> to provide inheritance of values
- * from parent thread to child thread: when a child thread is created, the
- * child receives initial values for all inheritable thread-local variables
- * for which the parent has values.  Normally the child's values will be
- * identical to the parent's; however, the child's value can be made an
- * arbitrary function of the parent's by overriding the <tt>childValue</tt>
- * method in this class.
+ * Этот класс расширяет <tt>ThreadLocal</tt> для обеспечения наследуемости 
+ * значений от родительского потока дочерним потокам: когда создается 
+ * дочерний поток, он получает начальные значения для всех наследуемых 
+ * локальных для потока переменных, для которых родитель имеет значения. 
+ * Обычно дочерние значения будут идентичны родительским; однако, дочерние 
+ * значения могут быть сделаны любой функцией родителя переопределением 
+ * метода <tt>childValue</tt> в этом классе.
  * 
- * <p>Inheritable thread-local variables are used in preference to
- * ordinary thread-local variables when the per-thread-attribute being
- * maintained in the variable (e.g., User ID, Transaction ID) must be
- * automatically transmitted to any child threads that are created.
+ * <p>Наследуемые локальные для потока переменные используются вместо
+ * обычных локальных для потока переменных, когда атрибут для каждого потока, 
+ * поддерживаемый в переменной (например, User ID, Transaction ID) должен
+ * автоматически передаваться любым создаваемым дочерним потокам.
  *
  * @author  Josh Bloch and Doug Lea
  * @version 1.23, 03/23/10
@@ -30,36 +30,36 @@ import java.lang.ref.*;
 
 public class InheritableThreadLocal<T> extends ThreadLocal<T> {
     /**
-     * Computes the child's initial value for this inheritable thread-local
-     * variable as a function of the parent's value at the time the child
-     * thread is created.  This method is called from within the parent
-     * thread before the child is started.
+     * Вычисляет дочернее начальное значение для этой наследуемой локальной
+     * для потока переменой, как функци от родительского значения во время 
+     * создания дочернего потока. Этот метод вызывается из родительского 
+     * потока до того, как дочерний будет запущен.
      * <p>
-     * This method merely returns its input argument, and should be overridden
-     * if a different behavior is desired.
+     * Этот метод просто возвращает свой входной аргумент и должен быть
+     * переопределен, если желательно другое поведение.
      *
-     * @param parentValue the parent thread's value
-     * @return the child thread's initial value
+     * @param parentValue значение родительского потока.
+     * @return начальное значение дочернего потока.
      */
     protected T childValue(T parentValue) {
         return parentValue;
     }
 
     /**
-     * Get the map associated with a ThreadLocal. 
+     * Получает карту, ассоциированную с <code>ThreadLocal</code>. 
      *
-     * @param t the current thread
+     * @param t текущий поток
      */
     ThreadLocalMap getMap(Thread t) {
        return t.inheritableThreadLocals;
     }
 
     /**
-     * Create the map associated with a ThreadLocal. 
+     * Создает карту, ассоциированную с <code>ThreadLocal</code>. 
      *
-     * @param t the current thread
-     * @param firstValue value for the initial entry of the table.
-     * @param map the map to store.
+     * @param t текущий поток
+     * @param firstValue значение для начальной записи таблицы.
+     * @param map карта для хранения.
      */
     void createMap(Thread t, T firstValue) {
         t.inheritableThreadLocals = new ThreadLocalMap(this, firstValue);

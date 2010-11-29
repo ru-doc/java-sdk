@@ -1,8 +1,8 @@
 /*
  * @(#)Terminator.java	1.12 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
@@ -12,8 +12,8 @@ import sun.misc.SignalHandler;
 
 
 /**
- * Package-private utility class for setting up and tearing down
- * platform-specific support for termination-triggered shutdowns.
+ * Внутрипакетный вспомогательный класс для установки и снятия специфичной 
+ * для платформы поддержки выключения при по сигналу завершения (termination-triggered shutdowns).
  *
  * @author   Mark Reinhold
  * @version  1.12, 10/03/23
@@ -24,32 +24,32 @@ class Terminator {
 
     private static SignalHandler handler = null;
 
-    /* Invocations of setup and teardown are already synchronized
-     * on the shutdown lock, so no further synchronization is needed here
+    /* Вызовы setup и teardown уже синхронизированы на блокировке 
+     * shutdown, так что дополнительная синхронизация здесь не требуется. 
      */
 
     static void setup() {
-	if (handler != null) return;
-	SignalHandler sh = new SignalHandler() {
-	    public void handle(Signal sig) {
-		Shutdown.exit(sig.getNumber() + 0200);
-	    }
-	};
-	handler = sh;
+        if (handler != null) return;
+        SignalHandler sh = new SignalHandler() {
+            public void handle(Signal sig) {
+                Shutdown.exit(sig.getNumber() + 0200);
+            }
+        };
+        handler = sh;
         try {
             Signal.handle(new Signal("INT"), sh);
             Signal.handle(new Signal("TERM"), sh);
         } catch (IllegalArgumentException e) {
-            // When -Xrs is specified the user is responsible for
-            // ensuring that shutdown hooks are run by calling
-            // System.exit()
+            // При указании -Xrs пользователь отвечает за 
+            // обеспечение того, что ловушки при выключении (shutdown hooks)  
+            // запустятся при вызове System.exit()
         }
     }
 
     static void teardown() {
-	/* The current sun.misc.Signal class does not support
-	 * the cancellation of handlers
-	 */
+        /* В настоящее время класс sun.misc.Signal не поддерживает
+         * отмену обработчиков.
+         */
     }
 
 }

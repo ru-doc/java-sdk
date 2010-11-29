@@ -1,21 +1,21 @@
 /*
  * @(#)Number.java	1.31 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * The abstract class <code>Number</code> is the superclass of classes
+ * Абстрактный класс <code>Number</code> является суперклассом классов
  * <code>BigDecimal</code>, <code>BigInteger</code>,
  * <code>Byte</code>, <code>Double</code>, <code>Float</code>,
- * <code>Integer</code>, <code>Long</code>, and <code>Short</code>.
+ * <code>Integer</code>, <code>Long</code>, и <code>Short</code>.
  * <p>
- * Subclasses of <code>Number</code> must provide methods to convert 
- * the represented numeric value to <code>byte</code>, <code>double</code>,
- * <code>float</code>, <code>int</code>, <code>long</code>, and
+ * Подклассы <code>Number</code> должны предоставить методы для преобразования
+ * представляемого числового значения в <code>byte</code>, <code>double</code>,
+ * <code>float</code>, <code>int</code>, <code>long</code>, и
  * <code>short</code>.
  *
  * @author	Lee Boynton
@@ -31,65 +31,65 @@ package java.lang;
  */
 public abstract class Number implements java.io.Serializable {
     /**
-     * Returns the value of the specified number as an <code>int</code>.
-     * This may involve rounding or truncation.
+     * Возвращает значение указанного числа как <code>int</code>.
+     * Это может привести к округлению или урезанию.
      *
-     * @return  the numeric value represented by this object after conversion
-     *          to type <code>int</code>.
+     * @return  числовое значение, представляющее этот объект после 
+     *          преобразования к типу <code>int</code>.
      */
     public abstract int intValue();
 
     /**
-     * Returns the value of the specified number as a <code>long</code>.
-     * This may involve rounding or truncation.
+     * Возвращает значение указанного числа как <code>long</code>.
+     * Это может привести к округлению или урезанию.
      *
-     * @return  the numeric value represented by this object after conversion
-     *          to type <code>long</code>.
+     * @return  числовое значение, представляющее этот объект после 
+     *          преобразования к типу <code>long</code>.
      */
     public abstract long longValue();
 
     /**
-     * Returns the value of the specified number as a <code>float</code>.
-     * This may involve rounding.
+     * Возвращает значение указанного числа как <code>float</code>.
+     * Это может привести к округлению.
      *
-     * @return  the numeric value represented by this object after conversion
-     *          to type <code>float</code>.
+     * @return  числовое значение, представляющее этот объект после 
+     *          преобразования к типу <code>float</code>.
      */
     public abstract float floatValue();
 
     /**
-     * Returns the value of the specified number as a <code>double</code>.
-     * This may involve rounding.
+     * Возвращает значение указанного числа как <code>double</code>.
+     * Это может привести к округлению.
      *
-     * @return  the numeric value represented by this object after conversion
-     *          to type <code>double</code>.
+     * @return  числовое значение, представляющее этот объект после 
+     *          преобразования к типу <code>double</code>.
      */
     public abstract double doubleValue();
 
     /**
-     * Returns the value of the specified number as a <code>byte</code>.
-     * This may involve rounding or truncation.
+     * Возвращает значение указанного числа как <code>byte</code>.
+     * Это может привести к округлению или урезанию.
      *
-     * @return  the numeric value represented by this object after conversion
-     *          to type <code>byte</code>.
+     * @return  числовое значение, представляющее этот объект после 
+     *          преобразования к типу <code>byte</code>.
      * @since   JDK1.1
      */
     public byte byteValue() {
-	return (byte)intValue();
+        return (byte)intValue();
     }
 
     /**
-     * Returns the value of the specified number as a <code>short</code>.
-     * This may involve rounding or truncation.
+     * Возвращает значение указанного числа как <code>short</code>.
+     * Это может привести к округлению или урезанию.
      *
-     * @return  the numeric value represented by this object after conversion
-     *          to type <code>short</code>.
+     * @return  числовое значение, представляющее этот объект после 
+     *          преобразования к типу <code>short</code>.
      * @since   JDK1.1
      */
     public short shortValue() {
-	return (short)intValue();
+        return (short)intValue();
     }
 
-    /** use serialVersionUID from JDK 1.0.2 for interoperability */
+    /** используется serialVersionUID из JDK 1.0.2 для функциональной совместимости */
     private static final long serialVersionUID = -8742448824652078965L;
 }

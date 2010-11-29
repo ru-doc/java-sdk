@@ -1,13 +1,13 @@
 /*
  * @(#)SecurityException.java	1.18 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 package java.lang;
 
 /**
- * Thrown by the security manager to indicate a security violation. 
+ * Кидается менеджером безопасности для указания на нарушение безопасности. 
  *
  * @author  unascribed
  * @version 1.18, 03/23/10
@@ -19,49 +19,49 @@ public class SecurityException extends RuntimeException {
     private static final long serialVersionUID = 6878364983674394167L;
 
     /**
-     * Constructs a <code>SecurityException</code> with no detail  message.
+     * Конструирует <code>SecurityException</code> без уточняющего сообщения.
      */
     public SecurityException() {
-	super();
+        super();
     }
 
     /**
-     * Constructs a <code>SecurityException</code> with the specified 
-     * detail message. 
+     * Конструирует <code>SecurityException</code> с указанным
+     * уточняющим сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public SecurityException(String s) {
-	super(s);
+        super(s);
     }
 
     /**
-     * Creates a <code>SecurityException</code> with the specified
-     * detail message and cause.
+     * Создает <code>SecurityException</code> с указанным
+     * уточняющим сообщением и причиной.
      *
-     * @param message the detail message (which is saved for later retrieval
-     *        by the {@link #getMessage()} method).
-     * @param cause the cause (which is saved for later retrieval by the
-     *        {@link #getCause()} method).  (A <tt>null</tt> value is permitted,
-     *        and indicates that the cause is nonexistent or unknown.)
+     * @param message уточняющее сообщение (которое сохраняется для 
+     *        последующего получения методом {@link #getMessage()}).
+     * @param cause причина(которая сохраняется для последующего получения
+     *        методом {@link #getCause()}). (Значение <tt>null</tt> допустимо,
+     *        и указывает, что причина не существует или неизвестна.)
      * @since 1.5
      */
     public SecurityException(String message, Throwable cause) {
-	super(message, cause);
+        super(message, cause);
     }
 
     /**
-     * Creates a <code>SecurityException</code> with the specified cause
-     * and a detail message of <tt>(cause==null ? null : cause.toString())</tt>
-     * (which typically contains the class and detail message of
-     * <tt>cause</tt>).
+     * Создает <code>SecurityException</code> с указанной причиной
+     * и уточняющим сообщением <tt>(cause==null ? null : cause.toString())</tt>
+     * (которое обычно содержит класс и уточняющее сообщение причины
+     * (<tt>cause</tt>)).
      *
-     * @param cause the cause (which is saved for later retrieval by the
-     *        {@link #getCause()} method).  (A <tt>null</tt> value is permitted,
-     *        and indicates that the cause is nonexistent or unknown.)
+     * @param cause причина (которая сохраняется для последующего получения
+     *        методом {@link #getCause()}). (Значение <tt>null</tt> допустимо,
+     *        и указывает, что причина не существует или неизвестна.)
      * @since 1.5
      */
     public SecurityException(Throwable cause) {
-	super(cause);
+        super(cause);
     }
 }

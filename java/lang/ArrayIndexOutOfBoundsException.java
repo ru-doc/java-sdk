@@ -1,16 +1,16 @@
 /*
  * @(#)ArrayIndexOutOfBoundsException.java	1.23 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown to indicate that an array has been accessed with an 
- * illegal index. The index is either negative or greater than or 
- * equal to the size of the array. 
+ * Кидается, чтобы сказать, что к массиву обратились по неверному индексу.
+ * Индекс или отрицателен, или больше или равен размеру массива.
+ * 
  *
  * @author  unascribed
  * @version 1.23, 03/23/10
@@ -19,30 +19,30 @@ package java.lang;
 public
 class ArrayIndexOutOfBoundsException extends IndexOutOfBoundsException {
     /**
-     * Constructs an <code>ArrayIndexOutOfBoundsException</code> with no 
-     * detail message. 
+     * Конструирует <code>VerifyError</code> без уточняющего сообщения.
+     *  
      */
     public ArrayIndexOutOfBoundsException() {
-	super();
+        super();
     }
 
     /**
-     * Constructs a new <code>ArrayIndexOutOfBoundsException</code> 
-     * class with an argument indicating the illegal index. 
+     * Конструирует <code>ArrayIndexOutOfBoundsException</code> 
+     * с аргументом, определяющим недопустимый индекс. 
      *
-     * @param   index   the illegal index.
+     * @param   index   недопустимый индекс.
      */
     public ArrayIndexOutOfBoundsException(int index) {
-	super("Array index out of range: " + index);
+        super("Array index out of range: " + index);
     }
 
     /**
-     * Constructs an <code>ArrayIndexOutOfBoundsException</code> class 
-     * with the specified detail message. 
+     * Конструирует <code>ArrayIndexOutOfBoundsException</code> с указанным 
+     * уточняющим сообщением.
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public ArrayIndexOutOfBoundsException(String s) {
-	super(s);
+        super(s);
     }
 }

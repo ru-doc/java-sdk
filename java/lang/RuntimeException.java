@@ -1,21 +1,21 @@
 /*
  * @(#)RuntimeException.java	1.15 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * <code>RuntimeException</code> is the superclass of those 
- * exceptions that can be thrown during the normal operation of the 
- * Java Virtual Machine. 
+ * <code>RuntimeException</code> является суперклассом таких исключений,
+ * которые могут быть брошены во время нормальной операции виртуальной
+ * машины Java. 
  * <p>
- * A method is not required to declare in its <code>throws</code> 
- * clause any subclasses of <code>RuntimeException</code> that might 
- * be thrown during the execution of the method but not caught. 
- *
+ * Метод не требует объявления в его <code>throws</code> предложении
+ * каких-либо подклассов <code>RuntimeException</code>, которые могут
+ * быть брошены во время выполнения метода, но не перехвачены.
+ * 
  *
  * @author  Frank Yellin
  * @version 1.15, 03/23/10
@@ -24,53 +24,53 @@ package java.lang;
 public class RuntimeException extends Exception {
     static final long serialVersionUID = -7034897190745766939L;
 
-    /** Constructs a new runtime exception with <code>null</code> as its
-     * detail message.  The cause is not initialized, and may subsequently be
-     * initialized by a call to {@link #initCause}.
+    /** Конструирует новое исключение времени выполнения с <code>null</code> 
+     * как его уточняющим сообщением. Причина не инициализируется и может 
+     * впоследствии быть инициализирована вызовом {@link #initCause}.
      */
     public RuntimeException() {
-	super();
+        super();
     }
 
-    /** Constructs a new runtime exception with the specified detail message.
-     * The cause is not initialized, and may subsequently be initialized by a
-     * call to {@link #initCause}.
+    /** Конструирует новое исключение времени выполнения с указанным уточняющим
+     * сообщением. Причина не инициализируется и может впоследствии быть 
+     * инициализирована вызовом {@link #initCause}.
      *
-     * @param   message   the detail message. The detail message is saved for 
-     *          later retrieval by the {@link #getMessage()} method.
+     * @param   message   уточняющее сообщение. Уточняющее сообщение сохраняется 
+     *          для последующего получения методом {@link #getMessage()}.
      */
     public RuntimeException(String message) {
-	super(message);
+        super(message);
     }
 
     /**
-     * Constructs a new runtime exception with the specified detail message and
-     * cause.  <p>Note that the detail message associated with
-     * <code>cause</code> is <i>not</i> automatically incorporated in
-     * this runtime exception's detail message.
+     * Конструирует новое исключение времени выполнения с указанным уточняющим 
+     * собщением и причиной. <p>Заметьте, что уточняющее сообщение, ассоциированное 
+     * с <code>cause</code>, автоматически <i>не</i> включается в уточняющее сообщение 
+     * этого исключения времени выполнения.
      *
-     * @param  message the detail message (which is saved for later retrieval
-     *         by the {@link #getMessage()} method).
-     * @param  cause the cause (which is saved for later retrieval by the
-     *         {@link #getCause()} method).  (A <tt>null</tt> value is
-     *         permitted, and indicates that the cause is nonexistent or
-     *         unknown.)
+     * @param  message уточняющее сообщение (которое сохраняется для последующего 
+     *         получения методом {@link Throwable#getMessage()}).
+     * @param  cause причина (которая сохраняется для последующего получения
+     *         методом {@link Throwable#getCause()}). (Значение <tt>null</tt>
+     *         допускается и сообщает, что причина несуществует или 
+     *         неизвестна.)
      * @since  1.4
      */
     public RuntimeException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    /** Constructs a new runtime exception with the specified cause and a
-     * detail message of <tt>(cause==null ? null : cause.toString())</tt>
-     * (which typically contains the class and detail message of
-     * <tt>cause</tt>).  This constructor is useful for runtime exceptions
-     * that are little more than wrappers for other throwables.
+    /** Конструирует новое исключение времени выполнения с указанной причиной 
+     * и уточняющим сообщением <tt>(cause==null ? null : cause.toString())</tt>
+     * (которое обычно содержит класс и уточняющее сообщение причины (<tt>cause</tt>)). 
+     * Этот конструктор полезен для исключений времени выполнения, которые 
+     * являются несколько большим, чем обертками над другими кидаемыми объектами.
      *
-     * @param  cause the cause (which is saved for later retrieval by the
-     *         {@link #getCause()} method).  (A <tt>null</tt> value is
-     *         permitted, and indicates that the cause is nonexistent or
-     *         unknown.)
+     * @param  cause причина (которая сохраняется для последующего получения
+     *         методом {@link #getCause()}). (Значение <tt>null</tt> допустимо,
+     *         и указывает, что причина не существует или неизвестна.)
+     *
      * @since  1.4
      */
     public RuntimeException(Throwable cause) {

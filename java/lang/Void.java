@@ -1,16 +1,16 @@
 /*
  * @(#)Void.java	1.16 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * The Void class is an uninstantiable placeholder class to hold a
- * reference to the Class object representing the Java keyword
- * void.
+ * Класс Void является неинстанцируемым классом-заглушкой, хранящим
+ * ссылку на объект Class, представляющий ключевое слово Java 
+ * <code>void</code>.
  *
  * @author  unascribed
  * @version 1.16, 03/23/10
@@ -20,13 +20,13 @@ public final
 class Void {
 
     /**
-     * The Class object representing the pseudo-type corresponding to
-     * the keyword void.
+     * Объект Class, представляющий псевдо-тип, соответствующий
+     * ключевому слову <code>void</code>.
      */
     public static final Class<Void> TYPE = Class.getPrimitiveClass("void");
 
     /*
-     * The Void class cannot be instantiated.
+     * Класс Void не может быть инстанцирован.
      */
     private Void() {}
 }

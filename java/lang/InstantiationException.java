@@ -1,23 +1,23 @@
 /*
  * @(#)InstantiationException.java	1.20 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown when an application tries to create an instance of a class
- * using the {@code newInstance} method in class
- * {@code Class}, but the specified class object cannot be
- * instantiated.  The instantiation can fail for a variety of
- * reasons including but not limited to:
+ * Кидается, когда приложение пытается создать инстанцию класса,
+ * используя метод {@code newInstance} в классе 
+ * {@code Class}, но указанный объект класса не может быть инстанцирован.
+ * Инстанцирование может потерпеть неудачу по различным причинам,
+ *  включая, но не ограничиваясь:
  *
  * <ul>
- * <li> the class object represents an abstract class, an interface,
- *      an array class, a primitive type, or {@code void}
- * <li> the class has no nullary constructor
+ * <li> объект класса представляет абстрактный класс, интерфейс или 
+ *      класс массива, иримитивный тип или {@code void};
+ * <li> класс не имеет безаргументного конструктора.
  *</ul>
  *
  * @author  unascribed
@@ -28,19 +28,19 @@ package java.lang;
 public
 class InstantiationException extends Exception {
     /**
-     * Constructs an {@code InstantiationException} with no detail message.
+     * Конструирует {@code InstantiationException} без уточняющего сообщения.
      */
     public InstantiationException() {
-	super();
+        super();
     }
 
     /**
-     * Constructs an {@code InstantiationException} with the 
-     * specified detail message. 
+     * Конструирует {@code InstantiationException} с указанным 
+     * уточняющим сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public InstantiationException(String s) {
-	super(s);
+        super(s);
     }
 }

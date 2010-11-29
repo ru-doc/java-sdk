@@ -1,16 +1,16 @@
 /*
  * @(#)IllegalThreadStateException.java	1.23 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown to indicate that a thread is not in an appropriate state 
- * for the requested operation. See, for example, the 
- * <code>suspend</code> and <code>resume</code> methods in class 
+ * Кидается, чтобы сказать, что поток не в соответствующем состоянии 
+ * для запрашиваемой операции. Смотрите, например, методы
+ * <code>suspend</code> и <code>resume</code> с классе
  * <code>Thread</code>. 
  *
  * @author  unascribed
@@ -21,20 +21,20 @@ package java.lang;
  */
 public class IllegalThreadStateException extends IllegalArgumentException {
     /**
-     * Constructs an <code>IllegalThreadStateException</code> with no 
-     * detail message. 
+     * Конструирует <code>IllegalThreadStateException</code> без 
+     * уточняющего сообщения. 
      */
     public IllegalThreadStateException() {
-	super();
+        super();
     }
 
     /**
-     * Constructs an <code>IllegalThreadStateException</code> with the 
-     * specified detail message. 
+     * Конструирует <code>IllegalThreadStateException</code> с указанным 
+     * уточняющим сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public IllegalThreadStateException(String s) {
-	super(s);
+        super(s);
     }
 }

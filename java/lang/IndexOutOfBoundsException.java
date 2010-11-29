@@ -1,17 +1,17 @@
 /*
  * @(#)IndexOutOfBoundsException.java	1.13 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown to indicate that an index of some sort (such as to an array, to a
- * string, or to a vector) is out of range. 
+ * Кидается для сообщения о том, что индекс некоторого рода (такой, как массива,
+ * строки или вектора) вне диапазона. 
  * <p>
- * Applications can subclass this class to indicate similar exceptions. 
+ * Приложения могут подклассифицировать этот класс для сообщения о подобных исключениях. 
  *
  * @author  Frank Yellin
  * @version 1.13, 03/23/10
@@ -20,20 +20,20 @@ package java.lang;
 public
 class IndexOutOfBoundsException extends RuntimeException {
     /**
-     * Constructs an <code>IndexOutOfBoundsException</code> with no 
-     * detail message. 
+     * Конструирует <code>IndexOutOfBoundsException</code> без уточняющего 
+     * сообщения.
      */
     public IndexOutOfBoundsException() {
-	super();
+        super();
     }
 
     /**
-     * Constructs an <code>IndexOutOfBoundsException</code> with the 
-     * specified detail message. 
+     * Конструирует <code>IndexOutOfBoundsException</code> с указанным 
+     * уточняющим сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public IndexOutOfBoundsException(String s) {
-	super(s);
+        super(s);
     }
 }

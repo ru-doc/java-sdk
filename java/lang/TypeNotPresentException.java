@@ -1,22 +1,22 @@
 /*
  * @(#)TypeNotPresentException.java	1.6 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown when an application tries to access a type using a string
- * representing the type's name, but no definition for the type with
- * the specified name can be found.   This exception differs from
- * {@link ClassNotFoundException} in that <tt>ClassNotFoundException</tt> is a
- * checked exception, whereas this exception is unchecked.
- *
- * <p>Note that this exception may be used when undefined type variables
- * are accessed as well as when types (e.g., classes, interfaces or
- * annotation types) are loaded.
+ * Кидается, когда приложение пытается получить доступ к типу, используя 
+ * строковое представление имени типа, но определение для типа с указанным 
+ * именем не было найдено. Это исключение отличается от 
+ * {@link ClassNotFoundException} тем, что <tt>ClassNotFoundException</tt> 
+ * проверяемое исключение, в то время как это исключение не проверяется 
+ * компилятором на предмет обязательного перехвата.
+ * <p>Заметьте, что это исключение может использоваться, когда к переменным
+ * неопределенного типа обращались, в то время как типы (например, классы, 
+ * интерфейсы или типы аннотаций) еще загружались.
  *
  * @author  Josh Bloch
  * @since 1.5
@@ -25,22 +25,22 @@ public class TypeNotPresentException extends RuntimeException {
     private String typeName;
 
     /**
-     * Constructs a <tt>TypeNotPresentException</tt> for the named type
-     * with the specified cause.
+     * Конструирует <tt>TypeNotPresentException</tt> для именованного типа
+     * с указанной причиной.
      *
-     * @param typeName the fully qualified name of the unavailable type
-     * @param cause the exception that was thrown when the system attempted to
-     *    load the named type, or <tt>null</tt> if unavailable or inapplicable
+     * @param typeName полностью квалифицированное имя недоступного типа.
+     * @param cause исключение, которое было брошено, когда система пыталась загрузить
+     *              именованный тип, или <tt>null</tt>, если недоступно или неприминимо.
      */
     public TypeNotPresentException(String typeName, Throwable cause) {
         super("Type " + typeName + " not present", cause);
-	this.typeName = typeName;
+        this.typeName = typeName;
     }
 
     /**
-     * Returns the fully qualified name of the unavailable type.
+     * Возвращает полностью квалифицированное имя недоступного типа.
      *
-     * @return the fully qualified name of the unavailable type
+     * @return полностью квалифицированное имя недоступного типа.
      */
     public String typeName() { return typeName;}
 }

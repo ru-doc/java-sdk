@@ -1,14 +1,14 @@
 /*
  * @(#)ClassCircularityError.java	1.17 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown when a circularity has been detected while initializing a class.
+ * Кидается, когда была обнаружена циклическая зависимость при инициализации класса.
  *
  * @author     unascribed
  * @version    1.17, 03/23/10
@@ -16,19 +16,19 @@ package java.lang;
  */
 public class ClassCircularityError extends LinkageError {
     /**
-     * Constructs a <code>ClassCircularityError</code> with no detail  message.
+     * Конструирует <code>ClassCircularityError</code> без уточняющего сообщения.
      */
     public ClassCircularityError() {
-	super();
+        super();
     }
 
     /**
-     * Constructs a <code>ClassCircularityError</code> with the 
-     * specified detail message. 
+     * Конструирует <code>ClassCircularityError</code> с указанным 
+     * уточняющим сообщением.
      *
-     * @param      s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public ClassCircularityError(String s) {
-	super(s);
+        super(s);
     }
 }

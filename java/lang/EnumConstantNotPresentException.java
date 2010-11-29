@@ -1,55 +1,55 @@
 /*
  * @(#)EnumConstantNotPresentException.java	1.3 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown when an application tries to access an enum constant by name
- * and the enum type contains no constant with the specified name.
+ * Кидается, когда приложение пытается получить доступ к константе перечисления
+ * по имени и тип константы перечисления не содержит константы с указанным именем.
  *
  * @author  Josh Bloch
  * @since   1.5
  */
 public class EnumConstantNotPresentException extends RuntimeException {
     /**
-     * The type of the missing enum constant.
+     * Тип отсутствующей константы перечисления.
      */
     private Class<? extends Enum> enumType;
 
     /**
-     * The name of the missing enum constant.
+     * Имя отсутствующей константы перечисления.
      */
     private String constantName;
 
     /**
-     * Constructs an <tt>EnumConstantNotPresentException</tt> for the 
-     * specified constant.
+     * Конструирует <tt>EnumConstantNotPresentException</tt> для 
+     * указанной константы.
      *
-     * @param enumType the type of the missing enum constant
-     * @param constantName the name of the missing enum constant
+     * @param enumType тип отсутствующей константы перечисления.
+     * @param constantName имя отсутствующей константы перечисления.
      */
     public EnumConstantNotPresentException(Class<? extends Enum> enumType,
                                            String constantName) {
         super(enumType.getName() + "." + constantName);
-	this.enumType = enumType;
-	this.constantName  = constantName;
+        this.enumType = enumType;
+        this.constantName  = constantName;
     }
 
     /**
-     * Returns the type of the missing enum constant.
+     * Возвращает тип отсутствующей константы перечисления.
      *
-     * @return the type of the missing enum constant
+     * @return тип отсутствующей константы перечисления.
      */
     public Class<? extends Enum> enumType() { return enumType; }
 
     /**
-     * Returns the name of the missing enum constant.
+     * Возвращает имя отсутствующей константы перечисления.
      *
-     * @return the name of the missing enum constant
+     * @return имя отсутствующей константы перечисления.
      */
     public String constantName() { return constantName; }
 }

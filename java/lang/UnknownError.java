@@ -1,15 +1,15 @@
 /*
  * @(#)UnknownError.java	1.15 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown when an unknown but serious exception has occurred in the 
- * Java Virtual Machine. 
+ * Кидается, когда произошло неизвестное, но серьезное исключение в 
+ * виртуальной машине Java.
  *
  * @author unascribed
  * @version 1.15, 03/23/10
@@ -18,19 +18,19 @@ package java.lang;
 public
 class UnknownError extends VirtualMachineError {
     /**
-     * Constructs an <code>UnknownError</code> with no detail message. 
+     * Конструирует <code>UnknownError</code> без уточняющего сообщения. 
      */
     public UnknownError() {
-	super();
+        super();
     }
 
     /**
-     * Constructs an <code>UnknownError</code> with the specified detail 
-     * message. 
+     * Конструирует <code>UnknownError</code> с указанным уточняющим сообщением.
+     * 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public UnknownError(String s) {
-	super(s);
+        super(s);
     }
 }

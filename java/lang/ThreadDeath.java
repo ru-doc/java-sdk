@@ -1,30 +1,30 @@
 /*
  * @(#)ThreadDeath.java	1.17 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * An instance of <code>ThreadDeath</code> is thrown in the victim 
- * thread when the <code>stop</code> method with zero arguments in 
- * class <code>Thread</code> is called. 
+ * Инстанция <code>ThreadDeath</code> кидается в потоке жертвы, когда
+ * вызывается метод <code>stop</code> с нулевым количеством аргуметнов 
+ * в классе <code>Thread</code>. 
  * <p>
- * An application should catch instances of this class only if it 
- * must clean up after being terminated asynchronously. If 
- * <code>ThreadDeath</code> is caught by a method, it is important 
- * that it be rethrown so that the thread actually dies. 
+ * Приложение должно перехватывать инстанции этого класса только если оно
+ * должно произвести очистку после асинхронного завершения. Если 
+ * <code>ThreadDeath</code> перехватывается методом, важно повторно
+ * бросить его, чтобы поток фактически умер. 
  * <p>
- * The top-level error handler does not print out a message if 
- * <code>ThreadDeath</code> is never caught. 
+ * Верхнеуровневый обработчик ошибок не распечатывает сообщение, если 
+ * <code>ThreadDeath</code> никогда не перехватывается. 
  * <p>
- * The class <code>ThreadDeath</code> is specifically a subclass of 
- * <code>Error</code> rather than <code>Exception</code>, even though 
- * it is a "normal occurrence", because many applications 
- * catch all occurrences of <code>Exception</code> and then discard 
- * the exception. 
+ * Класс <code>ThreadDeath</code> специально подклассирует 
+ * <code>Error</code>, а не <code>Exception</code>, даже при том, что
+ * он возникает при "нормальной работе", потому что многие приложения
+ * перехватывают все вхождения <code>Exception</code> и затем отменяют 
+ * исключение.
  *
  * @author unascribed
  * @version 1.17, 03/23/10

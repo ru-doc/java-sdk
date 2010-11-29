@@ -1,14 +1,14 @@
 /*
  * @(#)NoSuchMethodException.java	1.15 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown when a particular method cannot be found.
+ * Кидается, когда указанный метод не может быть найден.
  *
  * @author     unascribed
  * @version    1.15, 03/23/10
@@ -17,18 +17,18 @@ package java.lang;
 public
 class NoSuchMethodException extends Exception {
     /**
-     * Constructs a <code>NoSuchMethodException</code> without a detail message.
+     * Конструирует <code>NoSuchMethodException</code> без уточняющего сообщения.
      */
     public NoSuchMethodException() {
-	super();
+        super();
     }
 
     /**
-     * Constructs a <code>NoSuchMethodException</code> with a detail message. 
+     * Конструирует <code>NoSuchMethodException</code> с уточняющим сообщением. 
      *
-     * @param      s   the detail message.
+     * @param      s   уточняющее сообщение.
      */
     public NoSuchMethodException(String s) {
-	super(s);
+        super(s);
     }
 }

@@ -1,24 +1,24 @@
 /*
  * @(#)Error.java	1.18 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * An <code>Error</code> is a subclass of <code>Throwable</code> 
- * that indicates serious problems that a reasonable application 
- * should not try to catch. Most such errors are abnormal conditions. 
- * The <code>ThreadDeath</code> error, though a "normal" condition,
- * is also a subclass of <code>Error</code> because most applications
- * should not try to catch it. 
+ * <code>Error</code> является подклассом <code>Throwable</code>, который 
+ * сообщает о серъезной проблеме, которую грамотное приложение не должно
+ * пытаться перехватить. Большинство таких ошибок являются ненормальными 
+ * состояниями. Ошибка <code>ThreadDeath</code>, хотя и "нормальное" состояние,
+ * также является подклассом <code>Error</code>, потому что большинство 
+ * приложений не должны пытаться перехватывать ее. 
  * <p>
- * A method is not required to declare in its <code>throws</code> 
- * clause any subclasses of <code>Error</code> that might be thrown 
- * during the execution of the method but not caught, since these 
- * errors are abnormal conditions that should never occur. 
+ * Метод не требует объявления в его <code>throws</code> предложении
+ * каких-либо подклассов <code>Error</code>, которые могут быть брошены 
+ * во время выполнения метода, но не перехвачены, так как эти ошибки
+ * являются ненормальными состояниями и никогда не должны возникать. 
  *
  * @author  Frank Yellin
  * @version 1.18, 03/23/10
@@ -29,38 +29,38 @@ public class Error extends Throwable {
     static final long serialVersionUID = 4980196508277280342L;
 
     /**
-     * Constructs a new error with <code>null</code> as its detail message.
-     * The cause is not initialized, and may subsequently be initialized by a
-     * call to {@link #initCause}.
+     * Конструирует новую ошибку с <code>null</code> как ее 
+     * уточняющим сообщением. Причина не инициализируется и может 
+     * впоследствии быть инициализирована вызовом {@link #initCause}.
      */
     public Error() {
-	super();
+        super();
     }
 
     /**
-     * Constructs a new error with the specified detail message.  The
-     * cause is not initialized, and may subsequently be initialized by
-     * a call to {@link #initCause}.
+     * Конструирует новую ошибку с указанным уточняющим сообщением. 
+     * Причина не инициализируется и может впоследствии быть 
+     * инициализирована вызовом {@link #initCause}.
      *
-     * @param   message   the detail message. The detail message is saved for 
-     *          later retrieval by the {@link #getMessage()} method.
+     * @param   message   уточняющее сообщение. Уточняющее сообщение сохраняется 
+     *          для последующего получения методом {@link #getMessage()}.
      */
     public Error(String message) {
-	super(message);
+        super(message);
     }
 
     /**
-     * Constructs a new error with the specified detail message and
-     * cause.  <p>Note that the detail message associated with
-     * <code>cause</code> is <i>not</i> automatically incorporated in
-     * this error's detail message.
+     * Конструирует новую ошибку с указанным уточняющим собщением и причиной. 
+     * <p>Заметьте, что уточняющее сообщение, ассоциированное с 
+     * <code>cause</code>, автоматически <i>не</i> включается в уточняющее 
+     * сообщение этой ошибки.
      *
-     * @param  message the detail message (which is saved for later retrieval
-     *         by the {@link #getMessage()} method).
-     * @param  cause the cause (which is saved for later retrieval by the
-     *         {@link #getCause()} method).  (A <tt>null</tt> value is
-     *         permitted, and indicates that the cause is nonexistent or
-     *         unknown.)
+     * @param  message уточняющее сообщение (которое сохраняется для последующего 
+     *         получения методом {@link Throwable#getMessage()}).
+     * @param  cause причина (которая сохраняется для последующего получения
+     *         методом {@link Throwable#getCause()}). (Значение <tt>null</tt>
+     *         допускается и сообщает, что причина несуществует или 
+     *         неизвестна.)
      * @since  1.4
      */
     public Error(String message, Throwable cause) {
@@ -68,16 +68,16 @@ public class Error extends Throwable {
     }
 
     /**
-     * Constructs a new error with the specified cause and a detail
-     * message of <tt>(cause==null ? null : cause.toString())</tt> (which
-     * typically contains the class and detail message of <tt>cause</tt>).
-     * This constructor is useful for errors that are little more than
-     * wrappers for other throwables.
+     * Конструирует новую ошибку с указанной причиной и уточняющим сообщением
+     * <tt>(cause==null ? null : cause.toString())</tt> (которое обычно 
+     * содержит класс и уточняющее сообщение причины (<tt>cause</tt>)). 
+     * Этот конструктор полезен для ошибок, которые являются несколько
+     * большим, чем обертками над другими кидаемыми объектами.
      *
-     * @param  cause the cause (which is saved for later retrieval by the
-     *         {@link #getCause()} method).  (A <tt>null</tt> value is
-     *         permitted, and indicates that the cause is nonexistent or
-     *         unknown.)
+     * @param  cause причина (которая сохраняется для последующего получения
+     *         методом {@link #getCause()}). (Значение <tt>null</tt> допустимо,
+     *         и указывает, что причина не существует или неизвестна.)
+     *
      * @since  1.4
      */
     public Error(Throwable cause) {

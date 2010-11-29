@@ -1,8 +1,8 @@
 /*
  * @(#)Deprecated.java	1.6 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
@@ -10,10 +10,10 @@ package java.lang;
 import java.lang.annotation.*;
 
 /**
- * A program element annotated &#64;Deprecated is one that programmers
- * are discouraged from using, typically because it is dangerous,
- * or because a better alternative exists.  Compilers warn when a
- * deprecated program element is used or overridden in non-deprecated code.
+ * Элемент программы, аннотированный элементом &#64;Deprecated (Устаревший), говорит,
+ * что программисты не должны его использовать, обычно потому, что это опасно или 
+ * потому, что существует лучшая альтернатива. Компиляторы предупреждают, когда устаревший 
+ * элемент программы используется или переопределяется в не-устаревшем коде.
  *
  * @author  Neal Gafter
  * @version 1.6, 03/23/10

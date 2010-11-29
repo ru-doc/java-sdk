@@ -1,21 +1,21 @@
 /*
  * @(#)InterruptedException.java	1.18 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown when a thread is waiting, sleeping, or otherwise occupied,
- * and the thread is interrupted, either before or during the activity.
- * Occasionally a method may wish to test whether the current
- * thread has been interrupted, and if so, to immediately throw
- * this exception.  The following code can be used to achieve
- * this effect:
+ * Кидается, когда поток ожидает, спит или занят чем-то другим,
+ * и поток прерывается, или до, или во время активности.
+ * Иногда метод может пожелать проверить, был ли текущий поток прерван
+ * и если да, то немедленно бросает это исключение.
+ * Следующий код может использоваться для достижения этого эффекта:
+ * 
  * <pre>
- *  if (Thread.interrupted())  // Clears interrupted status!
+ *  if (Thread.interrupted())  // Очищает статус прерывания!
  *      throw new InterruptedException();
  * </pre>
  *
@@ -32,19 +32,19 @@ package java.lang;
 public
 class InterruptedException extends Exception {
     /**
-     * Constructs an <code>InterruptedException</code> with no detail  message. 
+     * Конструирует <code>InterruptedException</code> без уточняющего сообщения.
      */
     public InterruptedException() {
-	super();
+        super();
     }
 
     /**
-     * Constructs an <code>InterruptedException</code> with the 
-     * specified detail message. 
+     * Конструирует <code>InterruptedException</code> с указанным 
+     * уточняющим сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public InterruptedException(String s) {
-	super(s);
+        super(s);
     }
 }

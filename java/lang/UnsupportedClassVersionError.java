@@ -1,36 +1,36 @@
 /*
  * @(#)UnsupportedClassVersionError.java	1.12 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown when the Java Virtual Machine attempts to read a class 
- * file and determines that the major and minor version numbers
- * in the file are not supported.
+ * Кидается, когда виртуальная машина Java пытается прочитать файл класса
+ * и определяет, что старший и младший номера версий в файле не 
+ * поддерживаются.
  *
  * @since   1.2
  */
 public
 class UnsupportedClassVersionError extends ClassFormatError {
     /**
-     * Constructs a <code>UnsupportedClassVersionError</code> 
-     * with no detail message. 
+     * Конструирует <code>UnsupportedClassVersionError</code> без уточняющего 
+     * сообщения. 
      */
     public UnsupportedClassVersionError() {
-	super();
+        super();
     }
 
     /**
-     * Constructs a <code>UnsupportedClassVersionError</code> with
-     * the specified detail message. 
+     * Конструирует <code>UnsupportedClassVersionError</code> с указанным 
+     * уточняющим сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public UnsupportedClassVersionError(String s) {
-	super(s);
+        super(s);
     }
 }

@@ -1,18 +1,18 @@
 /*
  * @(#)IllegalAccessException.java	1.16 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * An IllegalAccessException is thrown when an application tries 
- * to reflectively create an instance (other than an array), 
- * set or get a field, or invoke a method, but the currently 
- * executing method does not have access to the definition of 
- * the specified class, field, method or constructor.
+ * <code>IllegalAccessException</code> кидается, когда приложение пытается 
+ * рефлексивно создать инстанцию (не являющуюся массивом), 
+ * установить или получить поле или вызвать метод, но выполняемый метод
+ * не имеет доступа к определению указанного класса, поля, метода или
+ * конструктора.
  *
  * @author  unascribed
  * @version 1.16, 03/23/10
@@ -41,19 +41,19 @@ package java.lang;
  */
 public class IllegalAccessException extends Exception {
     /**
-     * Constructs an <code>IllegalAccessException</code> without a 
-     * detail message. 
+     * Конструирует <code>IllegalAccessException</code> без 
+     * уточняющего сообщения.
      */
     public IllegalAccessException() {
-	super();
+        super();
     }
 
     /**
-     * Constructs an <code>IllegalAccessException</code> with a detail message. 
+     * Конструирует <code>IllegalAccessException</code> с указанным уточняющим сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public IllegalAccessException(String s) {
-	super(s);
+        super(s);
     }
 }

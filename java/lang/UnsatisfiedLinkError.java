@@ -1,15 +1,15 @@
 /*
  * @(#)UnsatisfiedLinkError.java	1.23 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown if the Java Virtual Machine cannot find an appropriate 
- * native-language definition of a method declared <code>native</code>. 
+ * Кидается, когда виртуальная машина Java не может найти соответствующее
+ * определение метода, объявленного как <code>native</code>, на "родном" языке.
  *
  * @author unascribed
  * @version 1.23, 03/23/10
@@ -19,19 +19,19 @@ package java.lang;
 public
 class UnsatisfiedLinkError extends LinkageError {
     /**
-     * Constructs an <code>UnsatisfiedLinkError</code> with no detail message.
+     * Конструирует <code>UnsatisfiedLinkError</code> без уточняющего сообщения.
      */
     public UnsatisfiedLinkError() {
-	super();
+        super();
     }
 
     /**
-     * Constructs an <code>UnsatisfiedLinkError</code> with the 
-     * specified detail message. 
+     * Конструирует <code>UnsatisfiedLinkError</code> с указанным 
+     * уточняющим сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public UnsatisfiedLinkError(String s) {
-	super(s);
+        super(s);
     }
 }

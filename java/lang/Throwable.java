@@ -1,20 +1,20 @@
 /*
  * @(#)Throwable.java	1.57 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 import  java.io.*;
 
 /**
- * The <code>Throwable</code> class is the superclass of all errors and
- * exceptions in the Java language. Only objects that are instances of this
- * class (or one of its subclasses) are thrown by the Java Virtual Machine or
- * can be thrown by the Java <code>throw</code> statement. Similarly, only
- * this class or one of its subclasses can be the argument type in a
- * <code>catch</code> clause.
+ * Класс <code>Throwable</code> является суперклассом всех ошибок и исключений
+ * в языке Java. Только объекты, являющиеся инстанцией этого класса (или 
+ * одного из его подклассов), кидаются виртуальной машиной Java или могут
+ * быть выкинуты выращением Java <code>throw</code>. Точно так же, только
+ * этот класс или один из его подклассов, может быть типом аргумента в
+ * предложении <code>catch</code>.
  *
  * <p>Instances of two subclasses, {@link java.lang.Error} and
  * {@link java.lang.Exception}, are conventionally used to indicate

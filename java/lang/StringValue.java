@@ -1,8 +1,8 @@
 /*
  * @(#)StringValue.java	1.2 10/03/23
  *
- * Copyright (c) 2009, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
@@ -10,15 +10,15 @@ package java.lang;
 import java.util.Arrays;
 
 /**
- * This class consists exclusively of static methods that operate on
- * character arrays used by Strings for storing the value.
+ * Этот класс состоит исключительно из статических методов, работающих с 
+ * символьными массивами, используемыми строками для хранения значения.
  */
 
 class StringValue {
     private StringValue() { }
 
     /**
-     * Returns a char array that is a copy of the given char array.
+     * Возвращает массив символов, являющейся копией данного массива символов.
      */
     static char[] from(char[] value) {
         return Arrays.copyOf(value, value.length);

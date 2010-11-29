@@ -1,22 +1,22 @@
 /*
  * @(#)Boolean.java	1.54 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * The Boolean class wraps a value of the primitive type 
- * <code>boolean</code> in an object. An object of type 
- * <code>Boolean</code> contains a single field whose type is 
+ * Класс <code>Boolean</code> обертывает значение примитивного типа
+ * <code>boolean</code> в объект. Объект типа
+ * <code>Boolean</code> содержит одно поле, имеющее тип
  * <code>boolean</code>. 
  * <p>
- * In addition, this class provides many methods for 
- * converting a <code>boolean</code> to a <code>String</code> and a 
- * <code>String</code> to a <code>boolean</code>, as well as other 
- * constants and methods useful when dealing with a 
+ * В дополнение, класс предоставляет много методов для преобразования
+ * примитивных булевых значений в строки и 
+ * строк в примитивные булевы значения, равно как и другие
+ * константы и методы, полезные, когда имеешь дело с
  * <code>boolean</code>. 
  *
  * @author  Arthur van Hoff
@@ -27,77 +27,77 @@ public final class Boolean implements java.io.Serializable,
                                       Comparable<Boolean>
 {
     /** 
-     * The <code>Boolean</code> object corresponding to the primitive 
-     * value <code>true</code>. 
+     * Объект <code>Boolean</code>, соответствующий примитивному
+     * значению <code>true</code>. 
      */
     public static final Boolean TRUE = new Boolean(true);
 
     /** 
-     * The <code>Boolean</code> object corresponding to the primitive 
-     * value <code>false</code>. 
+     * Объект <code>Boolean</code>, соответствующий примитивному
+     * значению <code>false</code>. 
      */
     public static final Boolean FALSE = new Boolean(false);
 
     /**
-     * The Class object representing the primitive type boolean.
+     * Объект Class, представляющий примитивный тип boolean.
      *
      * @since   JDK1.1
      */
     public static final Class<Boolean> TYPE = Class.getPrimitiveClass("boolean");
 
     /**
-     * The value of the Boolean.
+     * Значение <code>Boolean</code>.
      *
      * @serial
      */
     private final boolean value;
 
-    /** use serialVersionUID from JDK 1.0.2 for interoperability */
+    /** используется serialVersionUID из JDK 1.0.2 для функциональной совместимости */
     private static final long serialVersionUID = -3665804199014368530L;
 
     /**
-     * Allocates a <code>Boolean</code> object representing the 
-     * <code>value</code> argument. 
+     * Выделяет память под объект <code>Boolean</code>, представляющий аргумент
+     * <code>value</code>. 
      *
-     * <p><b>Note: It is rarely appropriate to use this constructor.
-     * Unless a <i>new</i> instance is required, the static factory
-     * {@link #valueOf(boolean)} is generally a better choice. It is
-     * likely to yield significantly better space and time performance.</b>
+     * <p><b>Примечание: Редка когда следует использовать этот конструктор.
+     * Если не требуется <i>новая</i> инстанция, статическая фабрика 
+     * {@link #valueOf(boolean)} обычно лучший выбор. Она, вероятно, займет 
+     * существенно меньше места и будет производительнее по времени.</b>
      * 
-     * @param   value   the value of the <code>Boolean</code>.
+     * @param   value   значение <code>Boolean</code>.
      */
     public Boolean(boolean value) {
-	this.value = value;
+        this.value = value;
     }
 
     /**
-     * Allocates a <code>Boolean</code> object representing the value 
-     * <code>true</code> if the string argument is not <code>null</code> 
-     * and is equal, ignoring case, to the string {@code "true"}. 
-     * Otherwise, allocate a <code>Boolean</code> object representing the 
-     * value <code>false</code>. Examples:<p>
-     * {@code new Boolean("True")} produces a <tt>Boolean</tt> object 
-     * that represents <tt>true</tt>.<br>
-     * {@code new Boolean("yes")} produces a <tt>Boolean</tt> object 
-     * that represents <tt>false</tt>.
+     * Выделяет память под объект <code>Boolean</code>, представляющий значение 
+     * <code>true</code>, если строковый аргумент не <code>null</code> 
+     * и равен, игнорируя регистр, строке {@code "true"}. 
+     * В противном случае выделяет память под объект <code>Boolean</code>, 
+     * представляющий значение <code>false</code>. Примеры:<p>
+     * {@code new Boolean("True")} создаст объект <tt>Boolean</tt>, 
+     * представляющий <tt>true</tt>.<br>
+     * {@code new Boolean("yes")} создаст объект <tt>Boolean</tt>, 
+     * представляющий <tt>false</tt>.
      *
-     * @param   s   the string to be converted to a <code>Boolean</code>.
+     * @param   s   строка для конвертации в <code>Boolean</code>.
      */
     public Boolean(String s) {
-	this(toBoolean(s));
+        this(toBoolean(s));
     }
 
     /**
-     * Parses the string argument as a boolean.  The <code>boolean</code> 
-     * returned represents the value <code>true</code> if the string argument 
-     * is not <code>null</code> and is equal, ignoring case, to the string 
+     * Парсит строковый аргумент как булево значение. Возвращается <code>boolean</code> 
+     * представляющий значение <code>true</code>, если строковый аргумент 
+     * не <code>null</code> и равен, игнорируя регистр, строке
      * {@code "true"}. <p>
-     * Example: {@code Boolean.parseBoolean("True")} returns <tt>true</tt>.<br>
-     * Example: {@code Boolean.parseBoolean("yes")} returns <tt>false</tt>.
+     * Пример: {@code Boolean.parseBoolean("True")} возвращает <tt>true</tt>.<br>
+     * Пример: {@code Boolean.parseBoolean("yes")} возвращает <tt>false</tt>.
      *
-     * @param      s   the <code>String</code> containing the boolean
-     *                 representation to be parsed
-     * @return     the boolean represented by the string argument
+     * @param      s   строка, содержащая булево представление,
+     *                 для разбора.
+     * @return     булево значение, представляющее строковый аргумент.
      * @since 1.5
      */
     public static boolean parseBoolean(String s) {
@@ -105,27 +105,27 @@ public final class Boolean implements java.io.Serializable,
     }
 
     /**
-     * Returns the value of this <tt>Boolean</tt> object as a boolean 
-     * primitive.
+     * Возвращает значение этого объекта <tt>Boolean</tt> как <code>boolean</code> 
+     * примитив.
      *
-     * @return  the primitive <code>boolean</code> value of this object.
+     * @return  примитивное значение <code>boolean</code> этого объекта.
      */
     public boolean booleanValue() {
-	return value;
+        return value;
     }
 
     /**
-     * Returns a <tt>Boolean</tt> instance representing the specified
-     * <tt>boolean</tt> value.  If the specified <tt>boolean</tt> value
-     * is <tt>true</tt>, this method returns <tt>Boolean.TRUE</tt>;
-     * if it is <tt>false</tt>, this method returns <tt>Boolean.FALSE</tt>.
-     * If a new <tt>Boolean</tt> instance is not required, this method
-     * should generally be used in preference to the constructor
-     * {@link #Boolean(boolean)}, as this method is likely to yield
-     * significantly better space and time performance.
+     * Возвращает инстанцию <tt>Boolean</tt>, представляющую указанное значение 
+     * <tt>boolean</tt>. Если указанное <tt>boolean</tt> значение равно
+     * <tt>true</tt>, этот метод возвращает <tt>Boolean.TRUE</tt>;
+     * если оно равно <tt>false</tt>, этот метод возвращает <tt>Boolean.FALSE</tt>.
+     * Если новая инстанция <tt>Boolean</tt> не требуется, этот метод
+     * должен обычно использоваться вместо конструктора {@link #Boolean(boolean)},
+     * так как этот метод, вероятно, займет существенно меньше места и
+     * будет производительнее по времени.
      *
-     * @param  b a boolean value.
-     * @return a <tt>Boolean</tt> instance representing <tt>b</tt>.
+     * @param  b булево значение.
+     * @return инстанция <tt>Boolean</tt>, представляющая <tt>b</tt>.
      * @since  1.4
      */
     public static Boolean valueOf(boolean b) {
@@ -133,26 +133,26 @@ public final class Boolean implements java.io.Serializable,
     }
 
     /**
-     * Returns a <code>Boolean</code> with a value represented by the
-     * specified string.  The <code>Boolean</code> returned represents a
-     * true value if the string argument is not <code>null</code>
-     * and is equal, ignoring case, to the string {@code "true"}.
+     * Возвращает <code>Boolean</code> со значением, представляемым указанной 
+     * строкой.  Возвращенный <code>Boolean</code> представляет значение 
+     * <code>true</code>, если строковый аргумент не <code>null</code>
+     * и равен, игнорируя регистр, строке {@code "true"}.
      *
-     * @param   s   a string.
-     * @return  the <code>Boolean</code> value represented by the string.
+     * @param   s   строка.
+     * @return  значение <code>Boolean</code>, представляемое строкой.
      */
     public static Boolean valueOf(String s) {
-	return toBoolean(s) ? TRUE : FALSE;
+        return toBoolean(s) ? TRUE : FALSE;
     }
 
     /**
-     * Returns a <tt>String</tt> object representing the specified
-     * boolean.  If the specified boolean is <code>true</code>, then
-     * the string {@code "true"} will be returned, otherwise the
-     * string {@code "false"} will be returned.
+     * Возвращает объект <tt>String</tt>, представляющий это <code>Boolean</code>
+     * значение. Если этот объект возвращает значение <code>true</code>,
+     * возвращаемая строка равна {@code "true"}. Иначе возвращаемая строка
+     * равна {@code "false"}.
      *
-     * @param b	the boolean to be converted
-     * @return the string representation of the specified <code>boolean</code>
+     * @param b	<code>boolean</code> значение для конвертирования
+     * @return строка, представляющая указанный <code>boolean</code>
      * @since 1.4
      */
     public static String toString(boolean b) {
@@ -160,58 +160,58 @@ public final class Boolean implements java.io.Serializable,
     }
 
     /**
-     * Returns a <tt>String</tt> object representing this Boolean's
-     * value.  If this object represents the value <code>true</code>,
-     * a string equal to {@code "true"} is returned. Otherwise, a
-     * string equal to {@code "false"} is returned.
+     * Возвращает объект <tt>String</tt>, представляющий это <code>Boolean</code>
+     * значение. Если этот объект возвращает значение <code>true</code>,
+     * возвращаемая строка равна {@code "true"}. Иначе возвращаемая строка
+     * равна {@code "false"}.
      *
-     * @return  a string representation of this object. 
+     * @return  строковое представление этого объекта. 
      */
     public String toString() {
-	return value ? "true" : "false";
+        return value ? "true" : "false";
     }
 
     /**
-     * Returns a hash code for this <tt>Boolean</tt> object.
+     * Возвращает хеш-код для этого объекта <tt>Boolean</tt>.
      *
-     * @return  the integer <tt>1231</tt> if this object represents 
-     * <tt>true</tt>; returns the integer <tt>1237</tt> if this 
-     * object represents <tt>false</tt>. 
+     * @return  число <tt>1231</tt>, елси этот объект представляет
+     * <tt>true</tt>; возвращает число <tt>1237</tt>, если этот объект
+     * представляет <tt>false</tt>. 
      */
     public int hashCode() {
-	return value ? 1231 : 1237;
+        return value ? 1231 : 1237;
     }
 
     /**
-     * Returns <code>true</code> if and only if the argument is not 
-     * <code>null</code> and is a <code>Boolean</code> object that 
-     * represents the same <code>boolean</code> value as this object. 
+     * Возвращает <code>true</code> тогда и только тогда, когда аргумент не
+     * <code>null</code> и объект <code>Boolean</code>, представляет
+     * такое же булево значение, как и этот объект. 
      *
-     * @param   obj   the object to compare with.
-     * @return  <code>true</code> if the Boolean objects represent the 
-     *          same value; <code>false</code> otherwise.
+     * @param   obj   объект для сравнения.
+     * @return  <code>true</code>, если объект <code>Boolean</code> представляет
+     *          такое же значение; иначе <code>false</code>.
      */
     public boolean equals(Object obj) {
-	if (obj instanceof Boolean) {
-	    return value == ((Boolean)obj).booleanValue();
-	} 
-	return false;
+        if (obj instanceof Boolean) {
+            return value == ((Boolean)obj).booleanValue();
+        } 
+        return false;
     }
 
     /**
-     * Returns <code>true</code> if and only if the system property 
-     * named by the argument exists and is equal to the string 
-     * {@code "true"}. (Beginning with version 1.0.2 of the 
-     * Java<small><sup>TM</sup></small> platform, the test of 
-     * this string is case insensitive.) A system property is accessible 
-     * through <code>getProperty</code>, a method defined by the 
-     * <code>System</code> class.
+     * Возвращает <code>true</code> тогда и только тогда, когда системное 
+     * свойство, именуемое аргументом, существует и равняется строке
+     * {@code "true"}. (Начиная с версии 1.0.2 платформы 
+     * Java<small><sup>TM</sup></small>, проверка этой строки 
+     * регистронезависимо.) Системное свойство получается
+     * через <code>getProperty</code>, метод, определенный в классе
+     * <code>System</code>.
      * <p>
-     * If there is no property with the specified name, or if the specified
-     * name is empty or null, then <code>false</code> is returned.
+     * Если нет свойства с указанным именем, или если указанное имя
+     * пустое или равно <code>null</code>, возвращается <code>false</code>.
      *
-     * @param   name   the system property name.
-     * @return  the <code>boolean</code> value of the system property.
+     * @param   name   имя системного свойства.
+     * @return  булево значение системного свояства.
      * @see     java.lang.System#getProperty(java.lang.String)
      * @see     java.lang.System#getProperty(java.lang.String, java.lang.String)
      */
@@ -226,14 +226,14 @@ public final class Boolean implements java.io.Serializable,
     }
 
     /**
-     * Compares this <tt>Boolean</tt> instance with another.
+     * Сравнивает эту инстанцию <tt>Boolean</tt> с другой.
      *
-     * @param   b the <tt>Boolean</tt> instance to be compared
-     * @return  zero if this object represents the same boolean value as the
-     *          argument; a positive value if this object represents true
-     *          and the argument represents false; and a negative value if
-     *          this object represents false and the argument represents true
-     * @throws  NullPointerException if the argument is <tt>null</tt>
+     * @param   b инстанция <tt>Boolean</tt> для сравнения
+     * @return  ноль, есль этот объект представляет такое же булево значение, как 
+     *          аргумент; положительное число, если этот объект представляет <code>true</code>
+     *          и аргумент представляет <code>false</code>; и отрицательное значение, если
+     *          этот объект представляет <code>false</code> и аргумент представляет <code>true</code>.
+     * @throws  NullPointerException если аргумент равен <tt>null</tt>
      * @see     Comparable
      * @since  1.5
      */
@@ -242,6 +242,6 @@ public final class Boolean implements java.io.Serializable,
     }
 
     private static boolean toBoolean(String name) { 
-	return ((name != null) && name.equalsIgnoreCase("true"));
+        return ((name != null) && name.equalsIgnoreCase("true"));
     }
 }

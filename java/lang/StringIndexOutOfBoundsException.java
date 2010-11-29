@@ -1,17 +1,17 @@
 /*
  * @(#)StringIndexOutOfBoundsException.java	1.24 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown by <code>String</code> methods to indicate that an index
- * is either negative or greater than the size of the string.  For
- * some methods such as the charAt method, this exception also is
- * thrown when the index is equal to the size of the string.
+ * Кидается методами <code>String</code>, чтобы сказать, что индекс или
+ * отрицателен, или больше чем размер строки. Для некоторых методов,
+ * таких как метод {@link String#charAt charAt}, это исключение также 
+ * бросается когда индекс равен размеру строки.
  *
  * @author  unascribed
  * @version 1.24, 03/23/10
@@ -21,32 +21,32 @@ package java.lang;
 public
 class StringIndexOutOfBoundsException extends IndexOutOfBoundsException {
     /**
-     * Constructs a <code>StringIndexOutOfBoundsException</code> with no 
-     * detail message. 
+     * Конструирует <code>StringIndexOutOfBoundsException</code> без 
+     * уточняющего сообщения.
      *
      * @since   JDK1.0.
      */
     public StringIndexOutOfBoundsException() {
-	super();
+        super();
     }
 
     /**
-     * Constructs a <code>StringIndexOutOfBoundsException</code> with 
-     * the specified detail message. 
+     * Конструирует <code>StringIndexOutOfBoundsException</code> с указанным 
+     * уточняющим сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public StringIndexOutOfBoundsException(String s) {
-	super(s);
+        super(s);
     }
 
     /**
-     * Constructs a new <code>StringIndexOutOfBoundsException</code> 
-     * class with an argument indicating the illegal index. 
+     * Конструирует <code>StringIndexOutOfBoundsException</code> 
+     * с аргументом, определяющим недопустимый индекс. 
      *
-     * @param   index   the illegal index.
+     * @param   index   недопустимый индекс.
      */
     public StringIndexOutOfBoundsException(int index) {
-	super("String index out of range: " + index);
+        super("String index out of range: " + index);
     }
 }

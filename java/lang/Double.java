@@ -1,8 +1,8 @@
 /*
  * @(#)Double.java	1.101 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
@@ -12,16 +12,16 @@ import sun.misc.FpUtils;
 import sun.misc.DoubleConsts;
 
 /**
- * The <code>Double</code> class wraps a value of the primitive type
- * <code>double</code> in an object. An object of type
- * <code>Double</code> contains a single field whose type is
- * <code>double</code>.
+ * Класс <code>Double</code> обертывает значение примитивного типа
+ * <code>double</code> в объект. Объект типа <code>Double</code> 
+ * содержит одно поле, имеющее тип <code>double</code>. 
+ * 
  * <p>
- * In addition, this class provides several methods for converting a
- * <code>double</code> to a <code>String</code> and a
- * <code>String</code> to a <code>double</code>, as well as other
- * constants and methods useful when dealing with a
- * <code>double</code>.
+ *
+ * В дополнение, класс предоставляет несколько методов для преобразования
+ * значений <code>double</code> в строки и строк в <code>double</code>, 
+ * равно как и другие константы и методы, полезные, когда имеешь 
+ * дело с <code>double</code>. 
  *
  * @author  Lee Boynton
  * @author  Arthur van Hoff
@@ -99,19 +99,19 @@ public final class Double extends Number implements Comparable<Double> {
     public static final int MIN_EXPONENT = -1022;
 
     /**
-     * The number of bits used to represent a <tt>double</tt> value.
+     * Число бит, используемых для представления значения <tt>double</tt>.
      *
      * @since 1.5
      */
     public static final int SIZE = 64;
 
     /**
-     * The <code>Class</code> instance representing the primitive type
+     * Инстанция <code>Class</code>, представляющая примитивный тип 
      * <code>double</code>.
      *
      * @since JDK1.1 
      */
-    public static final Class<Double>	TYPE = (Class<Double>) Class.getPrimitiveClass("double");
+    public static final Class<Double>   TYPE = (Class<Double>) Class.getPrimitiveClass("double");
 
     /**
      * Returns a string representation of the <code>double</code> 
@@ -176,7 +176,7 @@ public final class Double extends Number implements Comparable<Double> {
      * @return a string representation of the argument.
      */
     public static String toString(double d) {
-	return new FloatingDecimal(d).toJavaFormatString();
+        return new FloatingDecimal(d).toJavaFormatString();
     }
 
     /**
@@ -231,8 +231,8 @@ public final class Double extends Number implements Comparable<Double> {
      * </ul>
      *
      * <table border>
-     * <caption><h3>Examples</h3></caption>
-     * <tr><th>Floating-point Value</th><th>Hexadecimal String</th>
+     * <caption><h3>Примеры</h3></caption>
+     * <tr><th>Значение с плавающей точкой</th><th>Шестнадцатеричная строка</th>
      * <tr><td><code>1.0</code></td>	<td><code>0x1.0p0</code></td>
      * <tr><td><code>-1.0</code></td>	<td><code>-0x1.0p0</code></td>
      * <tr><td><code>2.0</code></td>	<td><code>0x1.0p1</code></td>
@@ -254,61 +254,61 @@ public final class Double extends Number implements Comparable<Double> {
      * @author Joseph D. Darcy
      */
     public static String toHexString(double d) {
-	/*
-	 * Modeled after the "a" conversion specifier in C99, section
-	 * 7.19.6.1; however, the output of this method is more
-	 * tightly specified.
-	 */
-	if (!FpUtils.isFinite(d) )
-	    // For infinity and NaN, use the decimal output.
-	    return Double.toString(d);
-	else {
-	    // Initialized to maximum size of output.
-	    StringBuffer answer = new StringBuffer(24); 
- 	    
-	    if (FpUtils.rawCopySign(1.0, d) == -1.0) // value is negative,
-		answer.append("-");		     // so append sign info
+        /*
+         * Modeled after the "a" conversion specifier in C99, section
+         * 7.19.6.1; however, the output of this method is more
+         * tightly specified.
+         */
+        if (!FpUtils.isFinite(d) )
+            // For infinity and NaN, use the decimal output.
+            return Double.toString(d);
+        else {
+            // Initialized to maximum size of output.
+            StringBuffer answer = new StringBuffer(24); 
+            
+            if (FpUtils.rawCopySign(1.0, d) == -1.0) // значение отрицательно,
+            answer.append("-");                      // так что добавим информацию о знаке
 
-	    answer.append("0x"); 
+            answer.append("0x"); 
 
-	    d = Math.abs(d);
+            d = Math.abs(d);
 
-	    if(d == 0.0) {
-		answer.append("0.0p0");
-	    }
-	    else {
-		boolean subnormal = (d < DoubleConsts.MIN_NORMAL);
+            if(d == 0.0) {
+                answer.append("0.0p0");
+            }
+            else {
+                boolean subnormal = (d < DoubleConsts.MIN_NORMAL);
 
-		// Isolate significand bits and OR in a high-order bit
-		// so that the string representation has a known
-		// length.
-		long signifBits = (Double.doubleToLongBits(d) 
-				   & DoubleConsts.SIGNIF_BIT_MASK) |
-		    0x1000000000000000L;
+                // Isolate significand bits and OR in a high-order bit
+                // so that the string representation has a known
+                // length.
+                long signifBits = (Double.doubleToLongBits(d) 
+                           & DoubleConsts.SIGNIF_BIT_MASK) |
+                    0x1000000000000000L;
 
-		// Subnormal values have a 0 implicit bit; normal
-		// values have a 1 implicit bit.
-		answer.append(subnormal ? "0." : "1.");
+                // Subnormal values have a 0 implicit bit; normal
+                // values have a 1 implicit bit.
+                answer.append(subnormal ? "0." : "1.");
 
-		// Isolate the low-order 13 digits of the hex
-		// representation.  If all the digits are zero,
-		// replace with a single 0; otherwise, remove all
-		// trailing zeros.
-		String signif = Long.toHexString(signifBits).substring(3,16);
-		answer.append(signif.equals("0000000000000") ? // 13 zeros
-			      "0":
-			      signif.replaceFirst("0{1,12}$", ""));
+                // Isolate the low-order 13 digits of the hex
+                // representation.  If all the digits are zero,
+                // replace with a single 0; otherwise, remove all
+                // trailing zeros.
+                String signif = Long.toHexString(signifBits).substring(3,16);
+                answer.append(signif.equals("0000000000000") ? // 13 zeros
+                          "0":
+                          signif.replaceFirst("0{1,12}$", ""));
 
-		// If the value is subnormal, use the E_min exponent
-		// value for double; otherwise, extract and report d's
-		// exponent (the representation of a subnormal uses
-		// E_min -1).
-		answer.append("p" + (subnormal ?
-			       DoubleConsts.MIN_EXPONENT:
-			       FpUtils.getExponent(d) ));
-	    }
-	    return answer.toString();
-	}
+                // If the value is subnormal, use the E_min exponent
+                // value for double; otherwise, extract and report d's
+                // exponent (the representation of a subnormal uses
+                // E_min -1).
+                answer.append("p" + (subnormal ?
+                           DoubleConsts.MIN_EXPONENT:
+                           FpUtils.getExponent(d) ));
+            }
+            return answer.toString();
+        }
     }
     
     /**
@@ -418,32 +418,32 @@ public final class Double extends Number implements Comparable<Double> {
      *
      * <code>
      * <pre>
-     *	final String Digits	= "(\\p{Digit}+)";
+     *  final String Digits = "(\\p{Digit}+)";
      *  final String HexDigits  = "(\\p{XDigit}+)";
-     *	// an exponent is 'e' or 'E' followed by an optionally 
-     *	// signed decimal integer.
-     *	final String Exp	= "[eE][+-]?"+Digits;
-     *	final String fpRegex	=
-     *	    ("[\\x00-\\x20]*"+	// Optional leading &quot;whitespace&quot;
-     *	     "[+-]?(" +	// Optional sign character
-     *	     "NaN|" +		// "NaN" string
-     *	     "Infinity|" +	// "Infinity" string
+     *  // an exponent is 'e' or 'E' followed by an optionally 
+     *  // signed decimal integer.
+     *  final String Exp    = "[eE][+-]?"+Digits;
+     *  final String fpRegex    =
+     *      ("[\\x00-\\x20]*"+  // Необязяательные &quot;пробелы&quot; в начале
+     *       "[+-]?(" +         // Необязательный символ знака
+     *       "NaN|" +           // строка "NaN" (не-число)
+     *       "Infinity|" +      // строка "Infinity" (бесконечность)
      *
-     *	     // A decimal floating-point string representing a finite positive
-     *	     // number without a leading sign has at most five basic pieces:
-     *	     // Digits . Digits ExponentPart FloatTypeSuffix
-     *	     // 
-     *	     // Since this method allows integer-only strings as input
-     *	     // in addition to strings of floating-point literals, the
-     *	     // two sub-patterns below are simplifications of the grammar
-     *	     // productions from the Java Language Specification, 2nd 
-     *	     // edition, section 3.10.2.
+     *       // A decimal floating-point string representing a finite positive
+     *       // number without a leading sign has at most five basic pieces:
+     *       // Digits . Digits ExponentPart FloatTypeSuffix
+     *       // 
+     *       // Since this method allows integer-only strings as input
+     *       // in addition to strings of floating-point literals, the
+     *       // two sub-patterns below are simplifications of the grammar
+     *       // productions from the Java Language Specification, 2nd 
+     *       // edition, section 3.10.2.
      *
-     *	     // Digits ._opt Digits_opt ExponentPart_opt FloatTypeSuffix_opt
-     *	     "((("+Digits+"(\\.)?("+Digits+"?)("+Exp+")?)|"+
+     *       // Digits ._opt Digits_opt ExponentPart_opt FloatTypeSuffix_opt
+     *       "((("+Digits+"(\\.)?("+Digits+"?)("+Exp+")?)|"+
      *
-     *	     // . Digits ExponentPart_opt FloatTypeSuffix_opt
-     *	     "(\\.("+Digits+")("+Exp+")?)|"+
+     *       // . Digits ExponentPart_opt FloatTypeSuffix_opt
+     *       "(\\.("+Digits+")("+Exp+")?)|"+
      *
      *       // Hexadecimal strings
      *       "((" +
@@ -454,38 +454,38 @@ public final class Double extends Number implements Comparable<Double> {
      *        "(0[xX]" + HexDigits + "?(\\.)" + HexDigits + ")" +
      *
      *        ")[pP][+-]?" + Digits + "))" +
-     *	     "[fFdD]?))" +
-     *	     "[\\x00-\\x20]*");// Optional trailing &quot;whitespace&quot;
-     *	    
+     *       "[fFdD]?))" +
+     *       "[\\x00-\\x20]*");// Необязательные &quot;пробелы&quot; в конце
+     *      
      *  if (Pattern.matches(fpRegex, myString))
-     *	    Double.valueOf(myString); // Will not throw NumberFormatException
-     *	else {
-     *	    // Perform suitable alternative action
-     *	}
+     *      Double.valueOf(myString); // Will not throw NumberFormatException
+     *  else {
+     *      // Perform suitable alternative action
+     *  }
      * </pre>
      * </code>
      *
      * @param      s   the string to be parsed.
      * @return     a <code>Double</code> object holding the value
      *             represented by the <code>String</code> argument.
-     * @exception  NumberFormatException  if the string does not contain a
-     *               parsable number.
+     * @exception   NumberFormatException Если строка не содержит
+     *              распознаваемое значение числа.
      */
     public static Double valueOf(String s) throws NumberFormatException {
-	return new Double(FloatingDecimal.readJavaFormatString(s).doubleValue());
+        return new Double(FloatingDecimal.readJavaFormatString(s).doubleValue());
     }
 
     /**
-     * Returns a <tt>Double</tt> instance representing the specified
-     * <tt>double</tt> value.
-     * If a new <tt>Double</tt> instance is not required, this method
-     * should generally be used in preference to the constructor
-     * {@link #Double(double)}, as this method is likely to yield
-     * significantly better space and time performance by caching
-     * frequently requested values.
+     * Возвращает инстанцию <tt>Double</tt>, представляющую указанное
+     * значение <tt>double</tt>.
+     * Если новая инстанция <tt>Double</tt> не требуется, этот метод
+     * должен обычно использоваться вместо конструктора
+     * {@link #Double(double)}, так как этот метод, вероятно, использует 
+     * существенно меньше места и лучше по производительности, из-за 
+     * кеширования часто требуемых значений.
      *
-     * @param  d a double value.
-     * @return a <tt>Double</tt> instance representing <tt>d</tt>.
+     * @param  d значение <tt>double</tt>.
+     * @return инстанция <tt>Double</tt>, представляющая <tt>d</tt>.
      * @since  1.5
      */
     public static Double valueOf(double d) {
@@ -501,54 +501,54 @@ public final class Double extends Number implements Comparable<Double> {
      * @param      s   the string to be parsed.
      * @return the <code>double</code> value represented by the string
      *         argument.
-     * @exception NumberFormatException if the string does not contain
-     *            a parsable <code>double</code>.
+     * @exception   NumberFormatException Если строка не содержит
+     *              распознаваемое значение <code>double</code>.
      * @see        java.lang.Double#valueOf(String)
      * @since 1.2
      */
     public static double parseDouble(String s) throws NumberFormatException {
-	return FloatingDecimal.readJavaFormatString(s).doubleValue();
+        return FloatingDecimal.readJavaFormatString(s).doubleValue();
     }
 
     /**
      * Returns <code>true</code> if the specified number is a
      * Not-a-Number (NaN) value, <code>false</code> otherwise.
      *
-     * @param   v   the value to be tested.
-     * @return  <code>true</code> if the value of the argument is NaN;
-     *          <code>false</code> otherwise.
+     * @param   v   значение для проверки.
+     * @return  <code>true</code> если значение аргумента является NaN;
+     *          иначе <code>false</code>.
      */
     static public boolean isNaN(double v) {
-	return (v != v);
+        return (v != v);
     }
 
     /**
      * Returns <code>true</code> if the specified number is infinitely
      * large in magnitude, <code>false</code> otherwise.
      *
-     * @param   v   the value to be tested.
+     * @param   v   значение для проверки.
      * @return  <code>true</code> if the value of the argument is positive
      *          infinity or negative infinity; <code>false</code> otherwise.
      */
     static public boolean isInfinite(double v) {
-	return (v == POSITIVE_INFINITY) || (v == NEGATIVE_INFINITY);
+        return (v == POSITIVE_INFINITY) || (v == NEGATIVE_INFINITY);
     }
 
     /**
-     * The value of the Double.
+     * Значение <code>Double</code>.
      *
      * @serial
      */
     private final double value;
 
     /**
-     * Constructs a newly allocated <code>Double</code> object that
-     * represents the primitive <code>double</code> argument.
+     * Конструирует и размещает в памяти новый объект <code>Double</code>,
+     * представляющий указанное значение <code>double</code>'а.
      *
-     * @param   value   the value to be represented by the <code>Double</code>.
+     * @param value значение, которое будет представлено <code>Double</code>'ом.
      */
     public Double(double value) {
-	this.value = value;
+        this.value = value;
     }
 
     /**
@@ -557,14 +557,14 @@ public final class Double extends Number implements Comparable<Double> {
      * represented by the string. The string is converted to a
      * <code>double</code> value as if by the <code>valueOf</code> method.
      *
-     * @param      s   a string to be converted to a <code>Double</code>.
-     * @exception  NumberFormatException  if the string does not contain a
-     *               parsable number.
+     * @param      s   строка, конвертируемая в <code>Double</code>.
+     * @exception  NumberFormatException Если строка не содержит
+     *             распознаваемое значение числа.
      * @see        java.lang.Double#valueOf(java.lang.String)
      */
     public Double(String s) throws NumberFormatException {
-	// REMIND: this is inefficient
-	this(valueOf(s).doubleValue());
+        // REMIND: это неэффективно
+        this(valueOf(s).doubleValue());
     }
 
     /**
@@ -575,7 +575,7 @@ public final class Double extends Number implements Comparable<Double> {
      *          NaN; <code>false</code> otherwise.
      */
     public boolean isNaN() {
-	return isNaN(value);
+        return isNaN(value);
     }
 
     /**
@@ -587,7 +587,7 @@ public final class Double extends Number implements Comparable<Double> {
      *          <code>false</code> otherwise.
      */
     public boolean isInfinite() {
-	return isInfinite(value);
+        return isInfinite(value);
     }
 
     /**
@@ -596,79 +596,79 @@ public final class Double extends Number implements Comparable<Double> {
      * object is converted to a string exactly as if by the method
      * <code>toString</code> of one argument.
      *
-     * @return  a <code>String</code> representation of this object.
+     * @return  строковое представление этого объекта.
      * @see java.lang.Double#toString(double)
      */
     public String toString() {
-	return String.valueOf(value);
+        return String.valueOf(value);
     }
 
     /**
-     * Returns the value of this <code>Double</code> as a <code>byte</code> (by
-     * casting to a <code>byte</code>).
+     * Возвращает значение этого объекта <code>Double</code> как 
+     * <code>byte</code> (приведением к типу <code>byte</code>).
      *
-     * @return  the <code>double</code> value represented by this object
-     *          converted to type <code>byte</code>
+     * @return  <code>double</code> значение, представляющее этот объект,
+     *          преобразованное к типу <code>byte</code>.
      * @since JDK1.1 
      */
     public byte byteValue() {
-	return (byte)value;
+        return (byte)value;
     }
 
     /**
-     * Returns the value of this <code>Double</code> as a
-     * <code>short</code> (by casting to a <code>short</code>).
+     * Возвращает значение этого объекта <code>Double</code> как
+     * <code>short</code> (приведением к типу <code>short</code>).
      *
-     * @return  the <code>double</code> value represented by this object
-     *          converted to type <code>short</code>
+     * @return  <code>double</code> значение, представляющее этот объект,
+     *          преобразованное к типу <code>short</code>.
      * @since JDK1.1 
      */
     public short shortValue() {
-	return (short)value;
+        return (short)value;
     }
 
     /**
-     * Returns the value of this <code>Double</code> as an
-     * <code>int</code> (by casting to type <code>int</code>).
+     * Возвращает значение этого объекта <code>Double</code> как
+     * <code>int</code> (приведением к типу <code>int</code>).
      *
-     * @return  the <code>double</code> value represented by this object
-     *          converted to type <code>int</code>
+     * @return  <code>double</code> значение, представляющее этот объект,
+     *          преобразованное к типу <code>int</code>.
      */
     public int intValue() {
-	return (int)value;
+        return (int)value;
     }
 
     /**
-     * Returns the value of this <code>Double</code> as a
-     * <code>long</code> (by casting to type <code>long</code>).
+     * Возвращает значение этого объекта <code>Double</code> как
+     * <code>long</code> (приведением к типу <code>long</code>).
      *
-     * @return  the <code>double</code> value represented by this object
-     *          converted to type <code>long</code>
+     * @return  <code>double</code> значение, представляющее этот объект,
+     *          преобразованное к типу <code>long</code>.
      */
     public long longValue() {
-	return (long)value;
+        return (long)value;
     }
 
     /**
-     * Returns the <code>float</code> value of this
-     * <code>Double</code> object.
+     * Возвращает <code>float</code> значение этого объекта
+     * <code>Double</code>.
      *
-     * @return  the <code>double</code> value represented by this object
-     *          converted to type <code>float</code>
+     * @return  <code>double</code> значение, представляющее этот объект,
+     *          преобразованное в тип <code>float</code>.
      * @since JDK1.0 
      */
     public float floatValue() {
-	return (float)value;
+        return (float)value;
     }
 
     /**
-     * Returns the <code>double</code> value of this
-     * <code>Double</code> object.
+     * Возвращает <code>double</code> значение этого объекта
+     * <code>Double</code>.
      *
-     * @return the <code>double</code> value represented by this object
+     * @return <code>double</code> значение, представляющее этот объект
      */
     public double doubleValue() {
-	return (double)value;
+        return (double)value;
     }
 
     /**
@@ -690,8 +690,8 @@ public final class Double extends Number implements Comparable<Double> {
      * @return  a <code>hash code</code> value for this object.
      */
     public int hashCode() {
-	long bits = doubleToLongBits(value);
-	return (int)(bits ^ (bits >>> 32));
+        long bits = doubleToLongBits(value);
+        return (int)(bits ^ (bits >>> 32));
     }
 
     /**
@@ -733,9 +733,9 @@ public final class Double extends Number implements Comparable<Double> {
      * @see java.lang.Double#doubleToLongBits(double)
      */
     public boolean equals(Object obj) {
-	return (obj instanceof Double)
-	       && (doubleToLongBits(((Double)obj).value) ==
-		      doubleToLongBits(value));
+        return (obj instanceof Double)
+               && (doubleToLongBits(((Double)obj).value) ==
+                  doubleToLongBits(value));
     }
 
     /**
@@ -771,14 +771,14 @@ public final class Double extends Number implements Comparable<Double> {
      * @return the bits that represent the floating-point number.  
      */
     public static long doubleToLongBits(double value) {
-	long result = doubleToRawLongBits(value);
-	// Check for NaN based on values of bit fields, maximum
-	// exponent and nonzero significand.
-	if ( ((result & DoubleConsts.EXP_BIT_MASK) == 
-	      DoubleConsts.EXP_BIT_MASK) &&
-	     (result & DoubleConsts.SIGNIF_BIT_MASK) != 0L)
-	    result = 0x7ff8000000000000L;
-	return result;
+        long result = doubleToRawLongBits(value);
+        // Check for NaN based on values of bit fields, maximum
+        // exponent and nonzero significand.
+        if ( ((result & DoubleConsts.EXP_BIT_MASK) == 
+              DoubleConsts.EXP_BIT_MASK) &&
+             (result & DoubleConsts.SIGNIF_BIT_MASK) != 0L)
+            result = 0x7ff8000000000000L;
+        return result;
     }
 
     /**
@@ -899,15 +899,15 @@ public final class Double extends Number implements Comparable<Double> {
      * <tt>Double</tt> objects imposed by this method is <i>consistent
      * with equals</i>.
      *
-     * @param   anotherDouble   the <code>Double</code> to be compared.
-     * @return  the value <code>0</code> if <code>anotherDouble</code> is
-     *		numerically equal to this <code>Double</code>; a value
-     *		less than <code>0</code> if this <code>Double</code>
-     *		is numerically less than <code>anotherDouble</code>;
-     *		and a value greater than <code>0</code> if this
-     *		<code>Double</code> is numerically greater than
-     *		<code>anotherDouble</code>.
-     *		
+     * @param   anotherDouble   <code>Double</code> для сравнения.
+     * @return  значение <code>0</code>, если <code>anotherDouble</code> в
+     *          числовом смысле равен этому объекту <code>Double</code>; 
+     *          значение, меньшее <code>0</code>, если этот объект 
+     *          <code>Double</code> в числовом смысле меньше, чем 
+     *          <code>anotherDouble</code>; и значение большее <code>0</code>, 
+     *          если этот объект <code>Double</code> в числовом смысле больше, 
+     *          чем <code>anotherDouble</code>.
+     *
      * @since   1.2
      */
     public int compareTo(Double anotherDouble) {
@@ -946,6 +946,6 @@ public final class Double extends Number implements Comparable<Double> {
                  1));                          // (0.0, -0.0) or (NaN, !NaN)
     }
 
-    /** use serialVersionUID from JDK 1.0.2 for interoperability */
+    /** используется serialVersionUID из JDK 1.0.2 для функциональной совместимости */
     private static final long serialVersionUID = -9172774392245257468L;
 }

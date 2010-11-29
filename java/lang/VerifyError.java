@@ -1,16 +1,16 @@
 /*
  * @(#)VerifyError.java	1.15 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown when the "verifier" detects that a class file, 
- * though well formed, contains some sort of internal inconsistency 
- * or security problem. 
+ * Кидается, когда "верификатор" обнаруживает, что файл класса, хотя и имеет 
+ * верный формат, содержит некоторого рода внутреннюю несогласованность
+ * или проблему безопасности. 
  *
  * @author  unascribed
  * @version 1.15, 03/23/10
@@ -19,18 +19,18 @@ package java.lang;
 public
 class VerifyError extends LinkageError {
     /**
-     * Constructs an <code>VerifyError</code> with no detail message.
+     * Конструирует <code>VerifyError</code> без уточняющего сообщения.
      */
     public VerifyError() {
-	super();
+        super();
     }
 
     /**
-     * Constructs an <code>VerifyError</code> with the specified detail message.
-     *
-     * @param   s   the detail message.
+     * Конструирует <code>VerifyError</code> с указанным уточняющим сообщением.
+     * 
+     * @param   s   уточняющее сообщение.
      */
     public VerifyError(String s) {
-	super(s);
+        super(s);
     }
 }

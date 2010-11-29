@@ -1,18 +1,18 @@
 /*
  * @(#)UnsupportedOperationException.java	1.22 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown to indicate that the requested operation is not supported.<p>
+ * Кидается, чтобы сказать, что запрошенная операция не поддерживается.<p>
  *
- * This class is a member of the
+ * Этот класс член
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
- * Java Collections Framework</a>.
+ * Фреймворка коллекций Java (Java Collections Framework)</a>.
  *
  * @author  Josh Bloch
  * @version 1.22, 03/23/10
@@ -20,35 +20,35 @@ package java.lang;
  */
 public class UnsupportedOperationException extends RuntimeException {
     /**
-     * Constructs an UnsupportedOperationException with no detail message.
+     * Конструирует <code>UnsupportedOperationException</code> без уточняющего собщения.
      */
     public UnsupportedOperationException() {
     }
 
     /**
-     * Constructs an UnsupportedOperationException with the specified
-     * detail message.
+     * Конструирует <code>UnsupportedOperationException</code> с указанным
+     * уточняющим сообщением.
      *
-     * @param message the detail message
+     * @param message уточняющее сообщение.
      */
     public UnsupportedOperationException(String message) {
-	super(message);
+        super(message);
     }
 
     /**
-     * Constructs a new exception with the specified detail message and
-     * cause.
+     * Конструирует новое исключение с указанным уточняющим собщением и 
+     * причиной.
      *
-     * <p>Note that the detail message associated with <code>cause</code> is
-     * <i>not</i> automatically incorporated in this exception's detail
-     * message.
+     * <p>Заметьте, что уточняющее сообщение, ассоциированное с <code>cause</code>, 
+     * автоматически <i>не</i> включается в уточняющее сообщение этого 
+     * исключения.
      *
-     * @param  message the detail message (which is saved for later retrieval
-     *         by the {@link Throwable#getMessage()} method).
-     * @param  cause the cause (which is saved for later retrieval by the
-     *         {@link Throwable#getCause()} method).  (A <tt>null</tt> value
-     *         is permitted, and indicates that the cause is nonexistent or
-     *         unknown.)
+     * @param  message уточняющее сообщение (которое сохраняется для последующего 
+     *         получения методом {@link Throwable#getMessage()}).
+     * @param  cause причина (которая сохраняется для последующего получения
+     *         методом {@link Throwable#getCause()}). (Значение <tt>null</tt>
+     *         допускается и сообщает, что причина несуществует или 
+     *         неизвестна.)
      * @since 1.5
      */
     public UnsupportedOperationException(String message, Throwable cause) {
@@ -56,17 +56,17 @@ public class UnsupportedOperationException extends RuntimeException {
     }
  
     /**
-     * Constructs a new exception with the specified cause and a detail
-     * message of <tt>(cause==null ? null : cause.toString())</tt> (which
-     * typically contains the class and detail message of <tt>cause</tt>).
-     * This constructor is useful for exceptions that are little more than
-     * wrappers for other throwables (for example, {@link
-     * java.security.PrivilegedActionException}).
+     * Конструирует новое исключение с указанной причиной и уточняющим 
+     * сообщением <tt>(cause==null ? null : cause.toString())</tt>
+     * (которое обычно содержит класс и уточняющее сообщение причины 
+     * (<tt>cause</tt>)). Этот конструктор полезен для исключений, которые 
+     * являются несколько большим, чем обертками над другими кидаемыми объектами. 
+     * (например, {@link java.security.PrivilegedActionException}).
      *
-     * @param  cause the cause (which is saved for later retrieval by the
-     *         {@link Throwable#getCause()} method).  (A <tt>null</tt> value is
-     *         permitted, and indicates that the cause is nonexistent or
-     *         unknown.)
+     * @param  cause причина (которая сохраняется для последующего получения
+     *         методом {@link #getCause()}). (Значение <tt>null</tt> допустимо,
+     *         и указывает, что причина не существует или неизвестна.)
+     *
      * @since  1.5
      */
     public UnsupportedOperationException(Throwable cause) {

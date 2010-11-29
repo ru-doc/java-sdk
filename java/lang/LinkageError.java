@@ -1,16 +1,16 @@
 /*
  * @(#)LinkageError.java	1.15 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Subclasses of <code>LinkageError</code> indicate that a class has 
- * some dependency on another class; however, the latter class has 
- * incompatibly changed after the compilation of the former class. 
+ * Подклассы <code>LinkageError</code> сообщают, что класс имеет некоторые
+ * зависимости от другого класса; однако, последний класс имеет
+ * несовместимые изменения после компиляции прежнего класса. 
  *
  *
  * @author  Frank Yellin
@@ -20,19 +20,19 @@ package java.lang;
 public
 class LinkageError extends Error {
     /**
-     * Constructs a <code>LinkageError</code> with no detail message. 
+     * Конструирует <code>LinkageError</code> без уточняющего сообщения.
      */
     public LinkageError() {
-	super();
+        super();
     }
 
     /**
-     * Constructs a <code>LinkageError</code> with the specified detail 
-     * message. 
+     * Конструирует <code>LinkageError</code> с указанным 
+     * уточняющим сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public LinkageError(String s) {
-	super(s);
+        super(s);
     }
 }

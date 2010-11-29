@@ -1,24 +1,24 @@
 /*
  * @(#)Iterable.java	1.6 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 import java.util.Iterator;
 
-/** Implementing this interface allows an object to be the target of
- *  the "foreach" statement.
+/** Реализация этого интерфейса позволяет объекту быть целью выражения
+ *  "foreach".
  * @since 1.5
  */
 public interface Iterable<T> {
 
     /**
-     * Returns an iterator over a set of elements of type T.
+     * Возвращает итератор по множеству элементов типа T.
      * 
-     * @return an Iterator.
+     * @return итератор.
      */
     Iterator<T> iterator();
 }

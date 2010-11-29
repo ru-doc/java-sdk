@@ -1,8 +1,8 @@
 /*
  * @(#)StringCoding.java	1.21	10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
@@ -28,14 +28,14 @@ import sun.misc.MessageUtils;
 import sun.nio.cs.HistoricallyNamedCharset;
 
 /**
- * Utility class for string encoding and decoding.
+ * Вспомогательный класс для кодирования и декодирования строк.
  */
 
 class StringCoding {
 
     private StringCoding() { }
 
-    /* The cached coders for each thread
+    /** Закешированные кодеки для каждого потока
      */
     private static ThreadLocal decoder = new ThreadLocal();
     private static ThreadLocal encoder = new ThreadLocal();
@@ -44,258 +44,258 @@ class StringCoding {
 
     private static Object deref(ThreadLocal tl) {
         SoftReference sr = (SoftReference)tl.get();
-	if (sr == null)
-	    return null;
-	return sr.get();
+        if (sr == null)
+            return null;
+        return sr.get();
     }
 
     private static void set(ThreadLocal tl, Object ob) {
-	tl.set(new SoftReference(ob));
+        tl.set(new SoftReference(ob));
     }
 
-    // Trim the given byte array to the given length
-    //
+    /** Обрезает данный байтовый массив до указанной длины.
+    */
     private static byte[] safeTrim(byte[] ba, int len, Charset cs) {
- 	if (len == ba.length 
-	    && (System.getSecurityManager() == null
-		|| cs.getClass().getClassLoader0() == null))
-	    return ba;
+        if (len == ba.length 
+            && (System.getSecurityManager() == null
+            || cs.getClass().getClassLoader0() == null))
+            return ba;
         else
             return Arrays.copyOf(ba, len);
     }
 
-    // Trim the given char array to the given length
-    //
+    /** Обрезает данный символьный массив до указанной длины.
+    */
     private static char[] safeTrim(char[] ca, int len, Charset cs) {
- 	if (len == ca.length 
-	    && (System.getSecurityManager() == null
-		|| cs.getClass().getClassLoader0() == null))
-	    return ca;
+        if (len == ca.length 
+            && (System.getSecurityManager() == null
+            || cs.getClass().getClassLoader0() == null))
+            return ca;
         else
             return Arrays.copyOf(ca, len);
     }
 
     private static int scale(int len, float expansionFactor) {
-	// We need to perform double, not float, arithmetic; otherwise
-	// we lose low order bits when len is larger than 2**24.
-	return (int)(len * (double)expansionFactor);
+        // Мы должны использовать арифметику двойной точности; в противном случае
+        // мы потеряем младшие биты, когда len больше чем 2**24.
+        return (int)(len * (double)expansionFactor);
     }
 
     private static Charset lookupCharset(String csn) {
-	if (Charset.isSupported(csn)) {
-	    try {
-		return Charset.forName(csn);
-	    } catch (UnsupportedCharsetException x) {
-		throw new Error(x);
-	    }
-	}
-	return null;
+        if (Charset.isSupported(csn)) {
+            try {
+                return Charset.forName(csn);
+            } catch (UnsupportedCharsetException x) {
+                throw new Error(x);
+            }
+        }
+        return null;
     }
 
     private static void warnUnsupportedCharset(String csn) {
-	if (warnUnsupportedCharset) {
-	    // Use sun.misc.MessageUtils rather than the Logging API or
-	    // System.err since this method may be called during VM
-	    // initialization before either is available.
-	    MessageUtils.err("WARNING: Default charset " + csn +
-			     " not supported, using ISO-8859-1 instead");
-	    warnUnsupportedCharset = false;
-	}
+        if (warnUnsupportedCharset) {
+            // Используем sun.misc.MessageUtils вместо API логирования или
+            // System.err так как этот метод может вызываться во время 
+            // инициализации VM до того, как они станут доступны.
+            MessageUtils.err("WARNING: Default charset " + csn +
+                     " not supported, using ISO-8859-1 instead");
+            warnUnsupportedCharset = false;
+        }
     }
 
 
-    // -- Decoding --
+    // -- Декодирование --
     private static class StringDecoder {
-	private final String requestedCharsetName;
-	private final Charset cs;
-	private final CharsetDecoder cd;
+        private final String requestedCharsetName;
+        private final Charset cs;
+        private final CharsetDecoder cd;
 
-	private StringDecoder(Charset cs, String rcn) {
+        private StringDecoder(Charset cs, String rcn) {
             this.requestedCharsetName = rcn;
-	    this.cs = cs;
-	    this.cd = cs.newDecoder()
-		.onMalformedInput(CodingErrorAction.REPLACE)
-		.onUnmappableCharacter(CodingErrorAction.REPLACE);
-	}
+            this.cs = cs;
+            this.cd = cs.newDecoder()
+                .onMalformedInput(CodingErrorAction.REPLACE)
+                .onUnmappableCharacter(CodingErrorAction.REPLACE);
+        }
 
-	String charsetName() {
- 	    if (cs instanceof HistoricallyNamedCharset)
- 		return ((HistoricallyNamedCharset)cs).historicalName();
- 	    return cs.name();
-	}
+        String charsetName() {
+            if (cs instanceof HistoricallyNamedCharset)
+                return ((HistoricallyNamedCharset)cs).historicalName();
+            return cs.name();
+        }
 
-	final String requestedCharsetName() {
-	    return requestedCharsetName;
-	}
+        final String requestedCharsetName() {
+            return requestedCharsetName;
+        }
 
-	char[] decode(byte[] ba, int off, int len) {
-	    int en = scale(len, cd.maxCharsPerByte());
-	    char[] ca = new char[en];
-	    if (len == 0)
-		return ca;
-	    cd.reset();
-	    ByteBuffer bb = ByteBuffer.wrap(ba, off, len);
-	    CharBuffer cb = CharBuffer.wrap(ca);
-	    try {
-		CoderResult cr = cd.decode(bb, cb, true);
-		if (!cr.isUnderflow())
-		    cr.throwException();
-		cr = cd.flush(cb);
-		if (!cr.isUnderflow())
-		    cr.throwException();
-	    } catch (CharacterCodingException x) {
-		// Substitution is always enabled,
-		// so this shouldn't happen
-		throw new Error(x);
-	    }
-	    return safeTrim(ca, cb.position(), cs);
-	}
+        char[] decode(byte[] ba, int off, int len) {
+            int en = scale(len, cd.maxCharsPerByte());
+            char[] ca = new char[en];
+            if (len == 0)
+                return ca;
+            cd.reset();
+            ByteBuffer bb = ByteBuffer.wrap(ba, off, len);
+            CharBuffer cb = CharBuffer.wrap(ca);
+            try {
+                CoderResult cr = cd.decode(bb, cb, true);
+                if (!cr.isUnderflow())
+                    cr.throwException();
+                cr = cd.flush(cb);
+                if (!cr.isUnderflow())
+                    cr.throwException();
+            } catch (CharacterCodingException x) {
+                // Подстановка всегда включена,
+                // так что это никогда не должно случиться
+                throw new Error(x);
+            }
+            return safeTrim(ca, cb.position(), cs);
+        }
 
     }
 
     static char[] decode(String charsetName, byte[] ba, int off, int len)
-	throws UnsupportedEncodingException
+        throws UnsupportedEncodingException
     {
-	StringDecoder sd = (StringDecoder)deref(decoder);
-	String csn = (charsetName == null) ? "ISO-8859-1" : charsetName;
-	if ((sd == null) || !(csn.equals(sd.requestedCharsetName())
-			      || csn.equals(sd.charsetName()))) {
-	    sd = null;
-	    try {
-		Charset cs = lookupCharset(csn);
-		if (cs != null)
-		    sd = new StringDecoder(cs, csn);
-	    } catch (IllegalCharsetNameException x) {}
+        StringDecoder sd = (StringDecoder)deref(decoder);
+        String csn = (charsetName == null) ? "ISO-8859-1" : charsetName;
+        if ((sd == null) || !(csn.equals(sd.requestedCharsetName())
+                           || csn.equals(sd.charsetName()))) {
+            sd = null;
+            try {
+                Charset cs = lookupCharset(csn);
+                if (cs != null)
+                    sd = new StringDecoder(cs, csn);
+            } catch (IllegalCharsetNameException x) {}
             if (sd == null)
                 throw new UnsupportedEncodingException(csn);
-	    set(decoder, sd);
-	}
-	return sd.decode(ba, off, len);
+            set(decoder, sd);
+        }
+        return sd.decode(ba, off, len);
     }
 
     static char[] decode(Charset cs, byte[] ba, int off, int len) {
- 	StringDecoder sd = new StringDecoder(cs, cs.name());
-	byte[] b = Arrays.copyOf(ba, ba.length);
-	return sd.decode(b, off, len);
+        StringDecoder sd = new StringDecoder(cs, cs.name());
+        byte[] b = Arrays.copyOf(ba, ba.length);
+        return sd.decode(b, off, len);
     }
 
     static char[] decode(byte[] ba, int off, int len) {
-	String csn = Charset.defaultCharset().name();
-	try {
-	    return decode(csn, ba, off, len);
-	} catch (UnsupportedEncodingException x) {
-	    warnUnsupportedCharset(csn);
-	}
-	try {
-	    return decode("ISO-8859-1", ba, off, len);
-	} catch (UnsupportedEncodingException x) {
-	    // If this code is hit during VM initialization, MessageUtils is
-	    // the only way we will be able to get any kind of error message.
-	    MessageUtils.err("ISO-8859-1 charset not available: "
-			     + x.toString());
-	    // If we can not find ISO-8859-1 (a required encoding) then things
-	    // are seriously wrong with the installation.
-	    System.exit(1);
-	    return null;
-	}
+        String csn = Charset.defaultCharset().name();
+        try {
+            return decode(csn, ba, off, len);
+        } catch (UnsupportedEncodingException x) {
+            warnUnsupportedCharset(csn);
+        }
+        try {
+            return decode("ISO-8859-1", ba, off, len);
+        } catch (UnsupportedEncodingException x) {
+            // Если этот код выполнится во время инициализации VM, MessageUtils является 
+            // единственным путем, которым можно получить любой вид сообщений об ошибках.
+            MessageUtils.err("ISO-8859-1 charset not available: "
+                     + x.toString());
+            // Если мы не смогли найти ISO-8859-1 (требуемую кодировку) это 
+            // говорит о серьезных неполадках с инсталляцией.
+            System.exit(1);
+            return null;
+        }
     }
 
 
 
 
-    // -- Encoding --
+    // -- Кодирование --
     private static class StringEncoder {
-	private Charset cs;
-	private CharsetEncoder ce;
-	private final String requestedCharsetName;
+        private Charset cs;
+        private CharsetEncoder ce;
+        private final String requestedCharsetName;
 
-	private StringEncoder(Charset cs, String rcn) {
-	    this.requestedCharsetName = rcn;
-	    this.cs = cs;
-	    this.ce = cs.newEncoder()
-		.onMalformedInput(CodingErrorAction.REPLACE)
-		.onUnmappableCharacter(CodingErrorAction.REPLACE);
-	}
+        private StringEncoder(Charset cs, String rcn) {
+            this.requestedCharsetName = rcn;
+            this.cs = cs;
+            this.ce = cs.newEncoder()
+                .onMalformedInput(CodingErrorAction.REPLACE)
+                .onUnmappableCharacter(CodingErrorAction.REPLACE);
+        }
 
-	String charsetName() {
- 	    if (cs instanceof HistoricallyNamedCharset)
- 		return ((HistoricallyNamedCharset)cs).historicalName();
- 	    return cs.name();
-	}
+        String charsetName() {
+            if (cs instanceof HistoricallyNamedCharset)
+                return ((HistoricallyNamedCharset)cs).historicalName();
+            return cs.name();
+        }
 
-	final String requestedCharsetName() {
-	    return requestedCharsetName;
-	}
+        final String requestedCharsetName() {
+            return requestedCharsetName;
+        }
 
-	byte[] encode(char[] ca, int off, int len) {
-	    int en = scale(len, ce.maxBytesPerChar());
-	    byte[] ba = new byte[en];
-	    if (len == 0)
-		return ba;
+        byte[] encode(char[] ca, int off, int len) {
+            int en = scale(len, ce.maxBytesPerChar());
+            byte[] ba = new byte[en];
+            if (len == 0)
+                return ba;
 
-	    ce.reset();
-	    ByteBuffer bb = ByteBuffer.wrap(ba);
-	    CharBuffer cb = CharBuffer.wrap(ca, off, len);
-	    try {
-		CoderResult cr = ce.encode(cb, bb, true);
-		if (!cr.isUnderflow())
-		    cr.throwException();
-		cr = ce.flush(bb);
-		if (!cr.isUnderflow())
-		    cr.throwException();
-	    } catch (CharacterCodingException x) {
-		// Substitution is always enabled,
-		// so this shouldn't happen
-		throw new Error(x);
-	    }
-	    return safeTrim(ba, bb.position(), cs);
-	}
+            ce.reset();
+            ByteBuffer bb = ByteBuffer.wrap(ba);
+            CharBuffer cb = CharBuffer.wrap(ca, off, len);
+            try {
+                CoderResult cr = ce.encode(cb, bb, true);
+                if (!cr.isUnderflow())
+                    cr.throwException();
+                cr = ce.flush(bb);
+                if (!cr.isUnderflow())
+                    cr.throwException();
+            } catch (CharacterCodingException x) {
+                // Подстановка всегда включена,
+                // так что это никогда не должно случиться
+                throw new Error(x);
+            }
+            return safeTrim(ba, bb.position(), cs);
+        }
     }
 
     static byte[] encode(String charsetName, char[] ca, int off, int len)
-	throws UnsupportedEncodingException
+        throws UnsupportedEncodingException
     {
-	StringEncoder se = (StringEncoder)deref(encoder);
-	String csn = (charsetName == null) ? "ISO-8859-1" : charsetName;
- 	if ((se == null) || !(csn.equals(se.requestedCharsetName())
- 			      || csn.equals(se.charsetName()))) {
-	    se = null;
-	    try {
-		Charset cs = lookupCharset(csn);
-		if (cs != null)
-		    se = new StringEncoder(cs, csn);
-	    } catch (IllegalCharsetNameException x) {}
-	    if (se == null)
+        StringEncoder se = (StringEncoder)deref(encoder);
+        String csn = (charsetName == null) ? "ISO-8859-1" : charsetName;
+        if ((se == null) || !(csn.equals(se.requestedCharsetName())
+                           || csn.equals(se.charsetName()))) {
+            se = null;
+            try {
+                Charset cs = lookupCharset(csn);
+                if (cs != null)
+                    se = new StringEncoder(cs, csn);
+            } catch (IllegalCharsetNameException x) {}
+            if (se == null)
                 throw new UnsupportedEncodingException (csn);
-	    set(encoder, se);
-	}
-	return se.encode(ca, off, len);
+            set(encoder, se);
+        }
+        return se.encode(ca, off, len);
     }
 
     static byte[] encode(Charset cs, char[] ca, int off, int len) {
-	StringEncoder se = new StringEncoder(cs, cs.name());
-	char[] c = Arrays.copyOf(ca, ca.length);
-	return se.encode(c, off, len);
+        StringEncoder se = new StringEncoder(cs, cs.name());
+        char[] c = Arrays.copyOf(ca, ca.length);
+        return se.encode(c, off, len);
     }
 
     static byte[] encode(char[] ca, int off, int len) {
-	String csn = Charset.defaultCharset().name();
-	try {
-	    return encode(csn, ca, off, len);
-	} catch (UnsupportedEncodingException x) {
-	    warnUnsupportedCharset(csn);
-	}
-	try {
-	    return encode("ISO-8859-1", ca, off, len);
-	} catch (UnsupportedEncodingException x) {
-	    // If this code is hit during VM initialization, MessageUtils is
-	    // the only way we will be able to get any kind of error message.
-	    MessageUtils.err("ISO-8859-1 charset not available: "
-			     + x.toString());
-	    // If we can not find ISO-8859-1 (a required encoding) then things
-	    // are seriously wrong with the installation.
-	    System.exit(1);
-	    return null;
-	}
+        String csn = Charset.defaultCharset().name();
+        try {
+            return encode(csn, ca, off, len);
+        } catch (UnsupportedEncodingException x) {
+            warnUnsupportedCharset(csn);
+        }
+        try {
+            return encode("ISO-8859-1", ca, off, len);
+        } catch (UnsupportedEncodingException x) {
+            // Если этот код выполнится во время инициализации VM, MessageUtils является 
+            // единственным путем, которым можно получить любой вид сообщений об ошибках.
+            MessageUtils.err("ISO-8859-1 charset not available: "
+                     + x.toString());
+            // Если мы не смогли найти ISO-8859-1 (требуемую кодировку) это 
+            // говорит о серьезных неполадках с инсталляцией.
+            System.exit(1);
+            return null;
+        }
     }
 }

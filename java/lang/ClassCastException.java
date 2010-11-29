@@ -1,16 +1,16 @@
 /*
  * @(#)ClassCastException.java	1.22 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown to indicate that the code has attempted to cast an object 
- * to a subclass of which it is not an instance. For example, the 
- * following code generates a <code>ClassCastException</code>: 
+ * Кидается, чтобы указать, что код пытается привести тип объекта
+ * к подклассу, инстанцией которого он не является. Например, 
+ * следующий код генерирует <code>ClassCastException</code>: 
  * <p><blockquote><pre>
  *     Object x = new Integer(0);
  *     System.out.println((String)x);
@@ -23,19 +23,19 @@ package java.lang;
 public
 class ClassCastException extends RuntimeException {
     /**
-     * Constructs a <code>ClassCastException</code> with no detail message. 
+     * Конструирует <code>ClassCastException</code> без уточняющего сообщения. 
      */
     public ClassCastException() {
-	super();
+        super();
     }
 
     /**
-     * Constructs a <code>ClassCastException</code> with the specified 
-     * detail message. 
+     * Конструирует <code>ClassCastException</code> с указанным уточняющим
+     * сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public ClassCastException(String s) {
-	super(s);
+        super(s);
     }
 }

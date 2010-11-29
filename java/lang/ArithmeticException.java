@@ -1,16 +1,16 @@
 /*
  * @(#)ArithmeticException.java	1.24 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown when an exceptional arithmetic condition has occurred. For 
- * example, an integer "divide by zero" throws an 
- * instance of this class. 
+ * Кидается, когда возникает исключительное арифметическое условие. 
+ * Например, целочисленное "деление на ноль" кидается как
+ * инстанция этого класса. 
  *
  * @author  unascribed
  * @version 1.24, 03/23/10
@@ -19,20 +19,20 @@ package java.lang;
 public
 class ArithmeticException extends RuntimeException {
     /**
-     * Constructs an <code>ArithmeticException</code> with no detail 
-     * message. 
+     * Конструирует <code>ArithmeticException</code> без уточняющего 
+     * сообщения.
      */
     public ArithmeticException() {
-	super();
+        super();
     }
 
     /**
-     * Constructs an <code>ArithmeticException</code> with the specified 
-     * detail message. 
+     * Конструирует <code>ArithmeticException</code> с указанным 
+     * уточняющим сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public ArithmeticException(String s) {
-	super(s);
+        super(s);
     }
 }

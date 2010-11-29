@@ -1,8 +1,8 @@
 /*
  * @(#)Character.java	1.36 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
@@ -147,7 +147,7 @@ class Character extends Object implements java.io.Serializable, Comparable<Chara
     public static final char   MAX_VALUE = '\uffff';
 
     /**
-     * The <code>Class</code> instance representing the primitive type
+     * Инстанция <code>Class</code>, представляющая примитивный тип 
      * <code>char</code>.
      *
      * @since   1.1
@@ -2043,7 +2043,7 @@ class Character extends Object implements java.io.Serializable, Comparable<Chara
      */
     private final char value;
 
-    /** use serialVersionUID from JDK 1.0.2 for interoperability */
+    /** используется serialVersionUID из JDK 1.0.2 для функциональной совместимости */
     private static final long serialVersionUID = 3786198910865385080L;
 
     /**
