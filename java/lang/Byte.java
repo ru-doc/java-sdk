@@ -35,7 +35,7 @@ public final class Byte extends Number implements Comparable<Byte> {
     public static final byte   MIN_VALUE = -128;
 
     /**
-     * AКонстанта, хранящая максимальное значение для типа <code>byte</code>,
+     * Константа, хранящая максимальное значение для типа <code>byte</code>,
      * 2<sup>7</sup>-1.
      */
     public static final byte   MAX_VALUE = 127;
@@ -72,11 +72,11 @@ public final class Byte extends Number implements Comparable<Byte> {
     /**
      * Возвращает инстанцию <tt>Byte</tt>, представляющую указанное значение
      * <tt>byte</tt>.
-     * Если новая инстанция <tt>Byte</tt> не требуется, этот метод
-     * должен обычно использоваться вместо конструктора
+     * Если новая инстанция <tt>Byte</tt> не требуется, обычно должен
+     * использоваться этот метод вместо конструктора
      * {@link #Byte(byte)}, так как этот метод, вероятно, использует 
-     * существенно меньше места и лучше по производительности, из-за 
-     * кеширования часто требуемых значений.
+     * существенно меньше места и лучше по производительности, благодаря 
+     * кешированию часто требуемых значений.
      *
      * @param  b байтовое значение.
      * @return инстанция <tt>Byte</tt>, представляющая <tt>b</tt>.
@@ -88,63 +88,63 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Parses the string argument as a signed decimal
-     * <code>byte</code>. The characters in the string must all be
-     * decimal digits, except that the first character may be an ASCII
-     * minus sign <code>'-'</code> (<code>'&#92;u002D'</code>) to
-     * indicate a negative value. The resulting <code>byte</code> value is
-     * returned, exactly as if the argument and the radix 10 were
-     * given as arguments to the {@link #parseByte(java.lang.String,
-     * int)} method.
+     * Разбирает строковый аргумент как знаковое десятичное число типа
+     * <code>byte</code>. Все символы в строке должны быть десятичными 
+     * цифрами, исключая первый символ, который может быть ASCII-символом
+     * знака минус <code>'-'</code> (<code>'&#92;u002D'</code>) для 
+     * указания на отрицательное значение. Возвращает такое же значение типа 
+     * <code>byte</code>, как если бы был вызван метод 
+     * {@link #parseByte(java.lang.String, int)} со вторым аргументом, 
+     * равным 10.
      *
-     * @param s     a <code>String</code> containing the 
-     *              <code>byte</code> representation to be parsed
-     * @return      the <code>byte</code> value represented by the 
-     *              argument in decimal
-     * @exception   NumberFormatException if the string does not
-     *              contain a parsable <code>byte</code>.
+     * @param s     строка для разбора, содержащая представление значения 
+     *              типа <code>byte</code> 
+     * @return      значение типа <code>byte</code>, представляющее 
+     *              аргумент в десятичном виде
+     * @exception   NumberFormatException Если строка не содержит
+     *              распознаваемое значение <code>byte</code>.
      */
     public static byte parseByte(String s) throws NumberFormatException {
         return parseByte(s, 10);
     }
 
     /**
-     * Parses the string argument as a signed <code>byte</code> in the
-     * radix specified by the second argument. The characters in the
-     * string must all be digits, of the specified radix (as
-     * determined by whether {@link java.lang.Character#digit(char,
-     * int)} returns a nonnegative value) except that the first
-     * character may be an ASCII minus sign <code>'-'</code>
-     * (<code>'&#92;u002D'</code>) to indicate a negative value.  The
-     * resulting <code>byte</code> value is returned.
+     * Разбирает строковый аргумент как знаковое число типа <code>byte</code> по
+     * основанию, указанному вторым аргументом. Все символы в строке должны
+     * быть цифрами в указанной системе счисления (что определяется 
+     * неотрицательностью результата, возвращеного методом 
+     * {@link java.lang.Character#digit(char, int)}), исключая первый символ, 
+     * который может быть ASCII-символом знака минус <code>'-'</code>
+     * (<code>'&#92;u002D'</code>) для указания на отрицательное значение.
+     * В результате возвращает значение <code>byte</code>.
      * <p>
-     * An exception of type <code>NumberFormatException</code> is
-     * thrown if any of the following situations occurs:
+     * При возникновении одной из следующих ситуаций кидается исключение 
+     * типа <code>NumberFormatException</code>:
      * <ul>
-     * <li> The first argument is <code>null</code> or is a string of
-     * length zero.
+     * <li> Первый аргумент равен <code>null</code> или строка нулевой 
+     * длины.
      *
-     * <li> The radix is either smaller than {@link
-     * java.lang.Character#MIN_RADIX} or larger than {@link
+     * <li> Основание системы счисления меньше, чем {@link
+     * java.lang.Character#MIN_RADIX} или больше, чем {@link
      * java.lang.Character#MAX_RADIX}.
      *
-     * <li> Any character of the string is not a digit of the specified
-     * radix, except that the first character may be a minus sign
-     * <code>'-'</code> (<code>'&#92;u002D'</code>) provided that the
-     * string is longer than length 1.
+     * <li> Какой-то символ строки не является цифрой в указанной системе 
+     * счисления, исключая первый символ, который может быть знаком 
+     * <code>'-'</code> (<code>'&#92;u002D'</code>), при условии того, что
+     * длина строки больше, чем 1.
      *
-     * <li> The value represented by the string is not a value of type
+     * <li> Значение, представляемое строкой, не является значением типа 
      * <code>byte</code>.
      * </ul>
      *
-     * @param s     the <code>String</code> containing the 
-     *              <code>byte</code>
-     *              representation to be parsed
-     * @param radix the radix to be used while parsing <code>s</code>
-     * @return      the <code>byte</code> value represented by the string 
-     *                   argument in the specified radix
-     * @exception   NumberFormatException If the string does
-     *              not contain a parsable <code>byte</code>.
+     * @param s     строка, содержащая представление 
+     *              <code>byte</code>,
+     *              которая должна быть разобрана
+     * @param radix основание системы счисления, которую надо использовать при разборе <code>s</code>
+     * @return      значение <code>byte</code>, представляемое строковым аргументом 
+     *              в указанной системе счисления
+     * @exception   NumberFormatException Если строка не содержит
+     *              распознаваемое значение <code>byte</code>.
      */
     public static byte parseByte(String s, int radix)
         throws NumberFormatException {
@@ -156,28 +156,28 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Returns a <code>Byte</code> object holding the value
-     * extracted from the specified <code>String</code> when parsed
-     * with the radix given by the second argument. The first argument
-     * is interpreted as representing a signed <code>byte</code> in
-     * the radix specified by the second argument, exactly as if the
-     * argument were given to the {@link #parseByte(java.lang.String,
-     * int)} method. The result is a <code>Byte</code> object that
-     * represents the <code>byte</code> value specified by the string.
-     * <p> In other words, this method returns a <code>Byte</code> object
-     * equal to the value of:
+     * Возвращает объект <code>Byte</code>, хранящий значение, извлеченное
+     * из указанной строки при ее разборе в системе счисления с основанием,
+     * равным второму аргументу. Первый аргумент интерпретируется как 
+     * представление знакового <code>byte</code> в системе счисления, указанной
+     * вторым аргументом, точно так же, как если бы аргумент был передан в
+     * метод {@link #parseByte(java.lang.String, int)}. Результатом является 
+     * объект <code>Byte</code>, представляющий значение <code>byte</code>,
+     * представленное строкой.
+     * <p> Другими словами, этот метод возвращает объект <code>Byte</code>,
+     * тождественный значению выражения:
      *
      * <blockquote><code>
      * new Byte(Byte.parseByte(s, radix))
      * </code></blockquote>
      *
-     * @param s     the string to be parsed
-     * @param radix the radix to be used in interpreting <code>s</code>
-     * @return      a <code>Byte</code> object holding the value 
-     *              represented by the string argument in the 
-     *              specified radix.
-     * @exception   NumberFormatException If the <code>String</code> does 
-     *              not contain a parsable <code>byte</code>.
+     * @param s     строка для разбора
+     * @param radix основание системы счисления, используемое при интерпретации <code>s</code>
+     * @return      объект <code>Byte</code>, хранящий значение,
+     *              представленное аргументом-строкой
+     *              в указанной системе счисления
+     * @exception   NumberFormatException Если строка не содержит
+     *              распознаваемое значение <code>byte</code>.
      */
     public static Byte valueOf(String s, int radix)
         throws NumberFormatException {
@@ -185,24 +185,24 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Returns a <code>Byte</code> object holding the value
-     * given by the specified <code>String</code>. The argument is
-     * interpreted as representing a signed decimal <code>byte</code>,
-     * exactly as if the argument were given to the {@link
-     * #parseByte(java.lang.String)} method. The result is a
-     * <code>Byte</code> object that represents the <code>byte</code>
-     * value specified by the string.  <p> In other words, this method
-     * returns a <code>Byte</code> object equal to the value of:
+     * Возвращает объект <code>Byte</code>, хранящий значение, 
+     * представленное указанной строкой. Аргумент интерпретируется как
+     * представление знакового десятичного <code>byte</code>-а,
+     * точно так же, как если аргумент был передан в метод {@link
+     * #parseByte(java.lang.String)}. Результатом является объект 
+     * <code>Byte</code>, представляющий значение <code>byte</code>
+     * представленное строкой. <p> Другими словами, этот метод возвращает 
+     * объект <code>Byte</code>, тождественный значению выражения:
      *
      * <blockquote><code>
      * new Byte(Byte.parseByte(s))
      * </code></blockquote>
      *
-     * @param s     the string to be parsed
-     * @return      a <code>Byte</code> object holding the value
-     *              represented by the string argument
-     * @exception   NumberFormatException If the <code>String</code> does
-     *              not contain a parsable <code>byte</code>.
+     * @param s     строка для разбора
+     * @return      объект <code>Byte</code>, хранящий значение,
+     *              представленное аргументом-строкой
+     * @exception   NumberFormatException Если строка не содержит
+     *              распознаваемое значение <code>byte</code>.
      */
     public static Byte valueOf(String s) throws NumberFormatException {
         return valueOf(s, 10);
@@ -309,11 +309,11 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Constructs a newly allocated <code>Byte</code> object that
-     * represents the <code>byte</code> value indicated by the
-     * <code>String</code> parameter. The string is converted to a
-     * <code>byte</code> value in exactly the manner used by the
-     * <code>parseByte</code> method for radix 10.
+     * Создает в динамической памяти (а не берет из кеша) объект <code>Byte</code>, 
+     * представляющий значение байта, представленного в виде строкового
+     * параметра. Строка преобразуется в значение <code>byte</code> в 
+     * точности так, как оисано в методе <code>parseByte</code>, принимая
+     * за основание системы счисления число 10.
      *
      * @param s     строка, конвертируемая в 
      *              <code>Byte</code>
@@ -430,7 +430,7 @@ public final class Byte extends Number implements Comparable<Byte> {
 
     /**
      * Число бит, используемых для представления значения <tt>byte</tt> 
-     * in two's complement binary form.
+     * в дополнительном коде.
      *
      * @since 1.5
      */

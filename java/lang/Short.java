@@ -58,62 +58,62 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Parses the string argument as a signed decimal
-     * <code>short</code>. The characters in the string must all be
-     * decimal digits, except that the first character may be an ASCII
-     * minus sign <code>'-'</code> (<code>'&#92;u002D'</code>) to
-     * indicate a negative value. The resulting <code>short</code> value is
-     * returned, exactly as if the argument and the radix 10 were
-     * given as arguments to the {@link #parseShort(java.lang.String,
-     * int)} method.
+     * Разбирает строковый аргумент как знаковое десятичное число типа
+     * <code>short</code>. Все символы в строке должны быть десятичными 
+     * цифрами, исключая первый символ, который может быть ASCII-символом
+     * знака минус <code>'-'</code> (<code>'&#92;u002D'</code>) для 
+     * указания на отрицательное значение. Возвращает такое же значение типа 
+     * <code>short</code>, как если бы был вызван метод 
+     * {@link #parseShort(java.lang.String, int)} со вторым аргументом, 
+     * равным 10.
      *
-     * @param s     a <code>String</code> containing the <code>short</code>
-     *                  representation to be parsed
-     * @return          the <code>short</code> value represented by the 
-     *                  argument in decimal.
-     * @exception   NumberFormatException If the string does not
-     *          contain a parsable <code>short</code>.
+     * @param s     строка для разбора, содержащая представление значения 
+     *              типа <code>short</code> 
+     * @return      значение типа <code>short</code>, представляющее 
+     *              аргумент в десятичном виде
+     * @exception   NumberFormatException Если строка не содержит
+     *              распознаваемое значение <code>short</code>.
      */
     public static short parseShort(String s) throws NumberFormatException {
         return parseShort(s, 10);
     }
 
     /**
-     * Parses the string argument as a signed <code>short</code> in
-     * the radix specified by the second argument. The characters in
-     * the string must all be digits, of the specified radix (as
-     * determined by whether {@link java.lang.Character#digit(char,
-     * int)} returns a nonnegative value) except that the first
-     * character may be an ASCII minus sign <code>'-'</code>
-     * (<code>'&#92;u002D'</code>) to indicate a negative value.  The
-     * resulting <code>byte</code> value is returned.
+     * Разбирает строковый аргумент как знаковое число типа <code>short</code> по
+     * основанию, указанному вторым аргументом. Все символы в строке должны
+     * быть цифрами в указанной системе счисления (что определяется 
+     * неотрицательностью результата, возвращеного методом 
+     * {@link java.lang.Character#digit(char, int)}), исключая первый символ, 
+     * который может быть ASCII-символом знака минус <code>'-'</code>
+     * (<code>'&#92;u002D'</code>) для указания на отрицательное значение.
+     * В результате возвращает значение <code>short</code>.
      * <p>
-     * An exception of type <code>NumberFormatException</code> is
-     * thrown if any of the following situations occurs:
+     * При возникновении одной из следующих ситуаций кидается исключение 
+     * типа <code>NumberFormatException</code>:
      * <ul>
-     * <li> The first argument is <code>null</code> or is a string of
-     * length zero.
+     * <li> Первый аргумент равен <code>null</code> или строка нулевой 
+     * длины.
      *
-     * <li> The radix is either smaller than {@link
-     * java.lang.Character#MIN_RADIX} or larger than {@link
+     * <li> Основание системы счисления меньше, чем {@link
+     * java.lang.Character#MIN_RADIX} или больше, чем {@link
      * java.lang.Character#MAX_RADIX}.
      *
-     * <li> Any character of the string is not a digit of the specified
-     * radix, except that the first character may be a minus sign
-     * <code>'-'</code> (<code>'&#92;u002D'</code>) provided that the
-     * string is longer than length 1.
+     * <li> Какой-то символ строки не является цифрой в указанной системе 
+     * счисления, исключая первый символ, который может быть знаком 
+     * <code>'-'</code> (<code>'&#92;u002D'</code>), при условии того, что
+     * длина строки больше, чем 1.
      *
-     * <li> The value represented by the string is not a value of type
+     * <li> Значение, представляемое строкой, не является значением типа 
      * <code>short</code>.
      * </ul>
      *
-     * @param s     the <code>String</code> containing the 
-     *          <code>short</code> representation to be parsed
-     * @param radix the radix to be used while parsing <code>s</code>
-     * @return      the <code>short</code> represented by the string 
-     *              argument in the specified radix.
-     * @exception   NumberFormatException If the <code>String</code> 
-     *          does not contain a parsable <code>short</code>.
+     * @param s     строка, содержащая представление 
+     *              <code>short</code>, которая должна быть разобрана
+     * @param radix основание системы счисления, используемое при интерпретации <code>s</code>
+     * @return      значение <code>short</code>, представляемое строковым аргументом 
+     *              в указанной системе счисления
+     * @exception   NumberFormatException Если строка не содержит
+     *              распознаваемое значение <code>short</code>.
      */
     public static short parseShort(String s, int radix)
         throws NumberFormatException {
@@ -125,28 +125,28 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Returns a <code>Short</code> object holding the value
-     * extracted from the specified <code>String</code> when parsed
-     * with the radix given by the second argument. The first argument
-     * is interpreted as representing a signed <code>short</code> in
-     * the radix specified by the second argument, exactly as if the
-     * argument were given to the {@link #parseShort(java.lang.String,
-     * int)} method. The result is a <code>Short</code> object that
-     * represents the <code>short</code> value specified by the string.
-     * <p> In other words, this method returns a <code>Short</code> object
-     * equal to the value of:
+     * Возвращает объект <code>Short</code>, хранящий значение, извлеченное
+     * из указанной строки при ее разборе в системе счисления с основанием,
+     * равным второму аргументу. Первый аргумент интерпретируется как 
+     * представление знакового <code>short</code> в системе счисления, указанной
+     * вторым аргументом, точно так же, как если бы аргумент был передан в
+     * метод {@link #parseShort(java.lang.String, int)}. Результатом является 
+     * объект <code>Short</code>, представляющий значение <code>short</code>,
+     * представленное строкой.
+     * <p> Другими словами, этот метод возвращает объект <code>Short</code>,
+     * тождественный значению выражения:
      *
      * <blockquote><code>
      * new Short(Short.parseShort(s, radix))
      * </code></blockquote>
      *
-     * @param s     the string to be parsed
+     * @param s     строка для разбора
      * @param radix the radix to be used in interpreting <code>s</code>
-     * @return      a <code>Short</code> object holding the value 
-     *              represented by the string argument in the 
-     *              specified radix.
-     * @exception   NumberFormatException If the <code>String</code> does
-     *              not contain a parsable <code>short</code>.
+     * @return      объект <code>Short</code>, хранящий значение,
+     *              представленное аргументом-строкой
+     *              в указанной системе счисления
+     * @exception   NumberFormatException Если строка не содержит
+     *              распознаваемое значение <code>short</code>.
      */
     public static Short valueOf(String s, int radix)
         throws NumberFormatException {
@@ -154,25 +154,25 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Returns a <code>Short</code> object holding the
-     * value given by the specified <code>String</code>. The argument
-     * is interpreted as representing a signed decimal
-     * <code>short</code>, exactly as if the argument were given to
-     * the {@link #parseShort(java.lang.String)} method. The result is
-     * a <code>Short</code> object that represents the
-     * <code>short</code> value specified by the string.  <p> In other
-     * words, this method returns a <code>Byte</code> object equal to
-     * the value of:
+     * Возвращает объект <code>Short</code>, хранящий значение, 
+     * представленное указанной строкой. Аргумент интерпретируется как
+     * представление знакового десятичного <code>short</code>-а,
+     * точно так же, как если аргумент был передан в метод {@link
+     * #parseShort(java.lang.String)}. Результатом является объект 
+     * <code>Short</code>, представляющий значение <code>short</code>
+     * представленное строкой. 
+     * <p> Другими словами, этот метод возвращает 
+     * объект <code>Short</code>, тождественный значению выражения:
      *
      * <blockquote><code>
      * new Short(Short.parseShort(s))
      * </code></blockquote>
      *
-     * @param s     the string to be parsed
+     * @param s     строка для разбора
      * @return      объект <code>Short</code>, хранящий значение,
      *              представляемое строковым аргументом.
-     * @exception   NumberFormatException If the <code>String</code> does
-     *              not contain a parsable <code>short</code>.
+     * @exception   NumberFormatException Если строка не содержит
+     *              распознаваемое значение <code>short</code>.
      */
     public static Short valueOf(String s) throws NumberFormatException {
         return valueOf(s, 10);
@@ -192,11 +192,11 @@ public final class Short extends Number implements Comparable<Short> {
     /**
      * Возвращает инстанцию <tt>Short</tt>, представляющую указанное значение
      * <tt>short</tt>.
-     * Если новая инстанция <tt>Short</tt> не требуется, этот метод
-     * должен обычно использоваться вместо конструктора
+     * Если новая инстанция <tt>Short</tt> не требуется, обычно должен 
+     * использоваться этот метод вместо конструктора
      * {@link #Short(short)}, так как этот метод, вероятно, использует 
-     * существенно меньше места и лучше по производительности, из-за 
-     * кеширования часто требуемых значений.
+     * существенно меньше места и лучше по производительности, благодаря 
+     * кешированию часто требуемых значений.
      *
      * @param  s значение <tt>short</tt>.
      * @return инстанция <tt>Short</tt>, представляющая <tt>s</tt>.
@@ -315,11 +315,11 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Constructs a newly allocated <code>Short</code> object that
-     * represents the <code>short</code> value indicated by the
-     * <code>String</code> parameter. The string is converted to a
-     * <code>short</code> value in exactly the manner used by the
-     * <code>parseShort</code> method for radix 10.
+     * Создает в динамической памяти (а не берет из кеша) объект <code>Short</code>, 
+     * представляющий значение <code>short</code>, представленного в виде строкового
+     * параметра. Строка преобразуется в значение <code>short</code> в 
+     * точности так, как оисано в методе <code>parseShort</code>, принимая
+     * за основание системы счисления число 10.
      *
      * @param s     строка, конвертируемая в 
      *              <code>Short</code>
@@ -436,14 +436,14 @@ public final class Short extends Number implements Comparable<Short> {
 
     /**
      * Число бит, используемых для представления значения <tt>short</tt> 
-     * in two's complement binary form.
+     * в дополнительном коде.
      * @since 1.5
      */
     public static final int SIZE = 16;
  
     /**
      * Возвращает значение, получаемое обращением порядка байт
-     * in the two's complement представлении указанного значения <tt>short</tt>.
+     * дополнительного кода представлении указанного значения <tt>short</tt>.
      *
      * @return значение, получаемое обращением (или, эквивалентно, обменом)
      *         байт в указанном значении <tt>short</tt>.

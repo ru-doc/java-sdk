@@ -1,76 +1,76 @@
 /*
  * @(#)AssertionStatusDirectives.java	1.7 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * A collection of assertion status directives (such as "enable assertions
- * in package p" or "disable assertions in class c").  This class is used by
- * the JVM to communicate the assertion status directives implied by 
- * the <tt>java</tt> command line flags <tt>-enableassertions</tt>
- * (<tt>-ea</tt>) and <tt>-disableassertions</tt> (<tt>-da</tt>).
+ * Коллекция директив статусов assert-ов (таких, как "включить assert-ы
+ * в пакете p" или "отключить assert-ы в классе c").  Этот класс используется
+ * JVM для взаимодействия с директивами статусов assert-ов следующих флагов
+ * командной строки <tt>java</tt>: <tt>-enableassertions</tt>
+ * (<tt>-ea</tt>) и <tt>-disableassertions</tt> (<tt>-da</tt>).
  *
  * @since  1.4
  * @author Josh Bloch
  */
 class AssertionStatusDirectives {
     /**
-     * The classes for which assertions are to be enabled or disabled.
-     * The strings in this array are fully qualified class names (for
-     * example,"com.xyz.foo.Bar").
+     * Классы, для которых assert-ы включены или выключены. Строки в этом
+     * массиве являются послностью квалифицированными именами классов 
+     * (например, "com.xyz.foo.Bar").
      */
     String[] classes;
 
     /**
-     * A parallel array to <tt>classes</tt>, indicating whether each class
-     * is to have assertions enabled or disabled.  A value of <tt>true</tt>
-     * for <tt>classEnabled[i]</tt> indicates that the class named by
-     * <tt>classes[i]</tt> should have assertions enabled; a value of
-     * <tt>false</tt> indicates that it should have classes disabled.
-     * This array must have the same number of elements as <tt>classes</tt>.
-     *
-     * <p>In the case of conflicting directives for the same class, the
-     * last directive for a given class wins.  In other words, if a string
-     * <tt>s</tt> appears multiple times in the <tt>classes</tt> array
-     * and <tt>i</tt> is the highest integer for which
-     * <tt>classes[i].equals(s)</tt>, then <tt>classEnabled[i]</tt>
-     * indicates whether assertions are to be enabled in class <tt>s</tt>.
+     * Параллельный массив к <tt>classes</tt>, определяющий, должны ли у каждого
+     * класса быть включены или выключены assert-ы.  Значение <tt>true</tt>
+     * для <tt>classEnabled[i]</tt> означает, что класс с именем 
+     * <tt>classes[i]</tt> должен иметь включенные assert-ы; значение
+     * <tt>false</tt> говорит о том, что они должны быть выключены. Этот 
+     * массив должен иметь такое же число элементов, как и <tt>classes</tt>.
+     * <p>
+     * В случае конфликта директив для одного и того же класса, последняя
+     * для данного класса имеет приоритет.  Другими словами, если строка
+     * <tt>s</tt> появляется несколько раз в массиве <tt>classes</tt> и
+     * <tt>i</tt> - наибольшее значение, для которого <tt>classes[i].equals(s)</tt>, 
+     * тогда <tt>classEnabled[i]</tt> определяет, должны ли assert-ы быть
+     * включены или выключены в классе <tt>s</tt>.
      */
     boolean[] classEnabled;
 
     /**
-     * The package-trees for which assertions are to be enabled or disabled.
-     * The strings in this array are compete or partial package names
-     * (for example, "com.xyz" or "com.xyz.foo").
+     * Дерево пакетов, для которого assert-ы включены или выключены.
+     * Строки в этом массиве являются полными или частичными именами пакетов
+     * (например, "com.xyz" или "com.xyz.foo").
      */
     String[] packages;
 
     /**
-     * A parallel array to <tt>packages</tt>, indicating whether each
-     * package-tree is to have assertions enabled or disabled.  A value of
-     * <tt>true</tt> for <tt>packageEnabled[i]</tt> indicates that the
-     * package-tree named by <tt>packages[i]</tt> should have assertions
-     * enabled; a value of <tt>false</tt> indicates that it should have
-     * assertions disabled.  This array must have the same number of
-     * elements as <tt>packages</tt>.
-     *
-     * In the case of conflicting directives for the same package-tree, the
-     * last directive for a given package-tree wins.  In other words, if a
-     * string <tt>s</tt> appears multiple times in the <tt>packages</tt> array
-     * and <tt>i</tt> is the highest integer for which
-     * <tt>packages[i].equals(s)</tt>, then <tt>packageEnabled[i]</tt>
-     * indicates whether assertions are to be enabled in package-tree
+     * Параллельный массив к <tt>packages</tt>, определяющий, должны ли у каждого
+     * дерева пакетов быть включены или выключены assert-ы.  Значение 
+     * <tt>true</tt> для <tt>packageEnabled[i]</tt> означает, что дерево
+     * пакетов с именем <tt>packages[i]</tt> должно иметь включенные
+     * assert-ы; значение <tt>false</tt> говорит о том, что они должны быть
+     * выключены.  Этот массив должен иметь такое же число элементов, как
+     * и <tt>packages</tt>.
+     * <p>
+     * В случае конфликта директив для одного и того же дерева пакетов, 
+     * последняя для данного дерева пакетов имеет приоритет.  Другими 
+     * словами, если строка <tt>s</tt> появляется несколько раз в массиве 
+     * <tt>packages</tt> и <tt>i</tt> - наибольшее значение, для которого 
+     * <tt>packages[i].equals(s)</tt>, тогда <tt>packageEnabled[i]</tt>
+     * определяет, должны ли assert-ы быть включены в дереве пакетов
      * <tt>s</tt>.
      */
     boolean[] packageEnabled;
 
     /**
-     * Whether or not assertions in non-system classes are to be enabled
-     * by default.
+     * Должны ли assert-ы в несистемных классах быть включены по умолчанию.
+     * 
      */
     boolean deflt;
 }

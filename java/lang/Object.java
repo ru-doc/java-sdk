@@ -8,8 +8,8 @@
 package java.lang;
 
 /**
- * Класс <code>Object</code> является корнем иерархии классов. 
- * Каждый класс имеет <code>Object</code> как суперкласс. Все объекты, 
+ * Класс {@code Object} является корнем иерархии классов. 
+ * Каждый класс имеет {@code Object} как суперкласс. Все объекты, 
  * включая массивы, реализуют методы этого класса. 
  *
  * @author  unascribed
@@ -29,9 +29,9 @@ public class Object {
      * {@code Class} является объектом, который запирается статическими синхронизированными
      * ({@code static synchronized}) методами представляемого класса.
      *
-     * <p><b>The actual result type is {@code Class<? extends |X|>}
-     * where {@code |X|} is the erasure of the static type of the
-     * expression on which {@code getClass} is called.</b> Например,
+     * <p><b>Фактическим типом результата является {@code Class<? extends |X|>}
+     * где {@code |X|} является чистым статическим типом выражения,
+     * на котором вызван {@code getClass}.</b> Например,
      * приведение не требуется для следующего фрагмента кода:</p>
      *
      * <p>
@@ -40,7 +40,7 @@ public class Object {
      * </p>
      *
      * @return Объект {@code Class}, представляющий класс времени выполнения
-     *         этого объекта.
+     *         для этого объекта.
      * @see    <a href="http://java.sun.com/docs/books/jls/">The Java
      *         Language Specification, Third Edition (15.8.2 Class
      *         Literals)</a>
@@ -48,37 +48,37 @@ public class Object {
     public final native Class<?> getClass();
 
     /**
-     * Возвращает значение хеш-кода для этого объекта. This method is 
-     * supported for the benefit of hashtables such as those provided by 
-     * <code>java.util.Hashtable</code>. 
+     * Возвращает значение хеш-кода для этого объекта. Этот метод предоставлен
+     * специально для хеш-таблиц, такого плана, как
+     * {@code java.util.Hashtable}. 
      * <p>
-     * The general contract of <code>hashCode</code> is: 
+     * Общее соглашение для метода {@code hashCode}: 
      * <ul>
-     * <li>Whenever it is invoked on the same object more than once during 
-     *     an execution of a Java application, the <tt>hashCode</tt> method 
-     *     must consistently return the same integer, provided no information 
-     *     used in <tt>equals</tt> comparisons on the object is modified.
-     *     This integer need not remain consistent from one execution of an
-     *     application to another execution of the same application. 
-     * <li>If two objects are equal according to the <tt>equals(Object)</tt>
-     *     method, then calling the <code>hashCode</code> method on each of 
-     *     the two objects must produce the same integer result. 
-     * <li>It is <em>not</em> required that if two objects are unequal 
-     *     according to the {@link java.lang.Object#equals(java.lang.Object)} 
-     *     method, then calling the <tt>hashCode</tt> method on each of the 
-     *     two objects must produce distinct integer results.  However, the 
-     *     programmer should be aware that producing distinct integer results 
-     *     for unequal objects may improve the performance of hashtables.
+     * <li>Каждый раз при вызове на одном и том же объекте более, чем один 
+     *     раз за время выполения приложения Java, метод <tt>hashCode</tt> 
+     *     должен постоянно возвращать одно и то же число, не изменяя
+     *     информацию, используемую в <tt>equals</tt> для сравнения.
+     *     Это число не обязано быть постоянным в различных сессиях работы 
+     *     приложения.
+     * <li>Если два объекта идентичны в терминах метода <tt>equals(Object)</tt>,
+     *     то вызов метода {@code hashCode} каждого из двух объектов
+     *     должен выдать один и тот же результат.
+     * <li><em>Не</em> требуется, чтобы, если два объекта неидентичны в терминах
+     *     метода {@link java.lang.Object#equals(java.lang.Object)}, вызов
+     *     метода <tt>hashCode</tt> для каждого из них давал различные
+     *     значения.  Однако, программист должен знать, что выдача различных
+     *     чисел для неидентичных объектов может повысить производительность
+     *     хеш-таблиц.
      * </ul>
      * <p>
-     * As much as is reasonably practical, метод {@code hashCode}, определенный
+     * Поскольку это разумно практически, метод {@code hashCode}, определенный
      * классом <tt>Object</tt>, возвращает разные коды для разных объектов.
      * (Он обычно реализован конвертированием внутреннего адреса
-     * объекта в код, но эта техника реализации не требуется
+     * объекта в целое значение, но эта техника реализации не требуется
      * языком программирования 
      * Java<font size="-2"><sup>TM</sup></font>.)
      *
-     * @return  значение хеш-кода для этого объекта.
+     * @return  Значение хеш-кода для этого объекта.
      * @see     java.lang.Object#equals(java.lang.Object)
      * @see     java.util.Hashtable
      */
@@ -87,46 +87,46 @@ public class Object {
     /**
      * Показывает, что некоторый другой объект "равен" этому.
      * <p>
-     * Метод <code>equals</code> реализует отношение эквивалентности
+     * Метод {@code equals} реализует отношение эквивалентности
      * на не-null ссылках объектов:
      * <ul>
      * <li>Он <i>рефлексивный</i>: для любого не-null значения ссылки
-     *     <code>x</code>, <code>x.equals(x)</code> должен вернуть
-     *     <code>true</code>.
+     *     {@code x}, {@code x.equals(x)} должен вернуть
+     *     {@code true}.
      * <li>Он <i>симметричный</i>: для любых не-null значений ссылок
-     *     <code>x</code> и <code>y</code>, <code>x.equals(y)</code>
-     *     должен вернуть <code>true</code> тогда и только тогда, когда
-     *     <code>y.equals(x)</code> возвращает <code>true</code>.
+     *     {@code x} и {@code y}, {@code x.equals(y)}
+     *     должен вернуть {@code true} тогда и только тогда, когда
+     *     {@code y.equals(x)} возвращает {@code true}.
      * <li>Он <i>транзитивный</i>: для любых не-null значений ссылок
-     *     <code>x</code>, <code>y</code> и <code>z</code>, если
-     *     <code>x.equals(y)</code> возвращает <code>true</code> и
-     *     <code>y.equals(z)</code> возвращает <code>true</code>, то
-     *     <code>x.equals(z)</code> должен вернуть <code>true</code>.
-     * <li>Он <i>consistent</i>: для любых не-null значений ссылок
-     *     <code>x</code> и <code>y</code>, несколько вызовов
-     *     <tt>x.equals(y)</tt> всегда возвращают <code>true</code>
-     *     или всегда возвращают <code>false</code>, provided no
-     *     information used in <code>equals</code> comparisons on the
-     *     objects is modified.
-     * <li>Для любого не-null значения ссылки <code>x</code>,
-     *     <code>x.equals(null)</code> должен вернуть <code>false</code>.
+     *     {@code x}, {@code y} и {@code z}, если
+     *     {@code x.equals(y)} возвращает {@code true} и
+     *     {@code y.equals(z)} возвращает {@code true}, то
+     *     {@code x.equals(z)} должен вернуть {@code true}.
+     * <li>Он <i>непротиворечивый</i>: для любых не-null значений ссылок
+     *     {@code x} и {@code y}, несколько вызовов
+     *     <tt>x.equals(y)</tt> всегда возвращают {@code true}
+     *     или всегда возвращают {@code false}, если никакая 
+     *     информация, используемая при сравнении методом 
+     *     {@code equals} объектов, не изменяется.
+     * <li>Для любого не-null значения ссылки {@code x},
+     *     {@code x.equals(null)} должен вернуть {@code false}.
      * </ul>
      * <p>
-     * The <tt>equals</tt> method for class <code>Object</code> implements 
-     * the most discriminating possible equivalence relation on objects; 
-     * так, для любых не-null значений ссылок <code>x</code> и <code>y</code>, 
-     * этот метод возвращает <code>true</code> тогда и только тогда, когда
-     * <code>x</code> и <code>y</code> ссылаются на один и тот же объект
-     * (<code>x == y</code> имеет значение <code>true</code>).
+     * Метод <tt>equals</tt> для класса {@code Object} реализует 
+     * наиболее характерное возможное отношение эквивалентности на объектах; 
+     * так, для любых не-null значений ссылок {@code x} и {@code y}, 
+     * этот метод возвращает {@code true} тогда и только тогда, когда
+     * {@code x} и {@code y} ссылаются на один и тот же объект
+     * ({@code x == y} имеет значение {@code true}).
      * <p>
-     * Note that it is generally necessary to override the <tt>hashCode</tt>
-     * method whenever this method is overridden, so as to maintain the
-     * general contract for the <tt>hashCode</tt> method, which states
-     * that equal objects must have equal hash codes. 
+     * Заметьте, что в общем случае необходимо переопределять метод 
+     * <tt>hashCode</tt>, когда переопределен этот метод, чтобы поддерживать 
+     * соглашение для метода <tt>hashCode</tt>, состоящее в том, что равные 
+     * объекты должны иметь равные хеш-коды. 
      *
      * @param   obj   ссылка на объект для сравнения.
-     * @return  <code>true</code> если этот объетк такой же, как аргумент 
-     *          obj; иначе <code>false</code>.
+     * @return  {@code true} если этот объект такой же, как аргумент 
+     *          obj; иначе {@code false}.
      * @see     #hashCode()
      * @see     java.util.Hashtable
      */
@@ -135,13 +135,13 @@ public class Object {
     }
 
     /**
-     * Создает и возвращает копию этого объекта.  The precise meaning 
-     * of "copy" may depend on the class of the object. The general 
-     * intent is that, для любого объекта <tt>x</tt>, выражение:
+     * Создает и возвращает копию этого объекта.  Точное значение
+     * "копии" может зависеть от класса объекта. Общая идея состоит 
+     * в том, что для любого объекта <tt>x</tt>, выражение:
      * <blockquote>
      * <pre>
      * x.clone() != x</pre></blockquote>
-     * должно быть <code>true</code> и выражение:
+     * должно быть {@code true} и выражение:
      * <blockquote>
      * <pre>
      * x.clone().getClass() == x.getClass()</pre></blockquote>
@@ -157,16 +157,16 @@ public class Object {
      * <tt>Object</tt>), следуют этому соглашению, это будет случай, когда
      * <tt>x.clone().getClass() == x.getClass()</tt>.
      * <p>
-     * По соглашению, the object returned by this method should be independent
-     * of this object (which is being cloned).  To achieve this independence,
-     * it may be necessary to modify one or more fields of the object returned
-     * by <tt>super.clone</tt> before returning it.  Typically, this means
-     * copying any mutable objects that comprise the internal "deep structure"
-     * of the object being cloned and replacing the references to these
-     * objects with references to the copies.  If a class contains only
-     * primitive fields or references to immutable objects, then it is usually
-     * the case that no fields in the object returned by <tt>super.clone</tt>
-     * need to be modified.
+     * По соглашению, объект, возвращаемый этим методом, должен быть 
+     * независимым от этого объекта (который клонируется). Чтобы достигнуть
+     * этой независимости, может быть необходимо изменить одно или несколько
+     * полей объекта, возвращаемого вызовом <tt>super.clone</tt> прежде, 
+     * чем возвратить его. Обычно это означает копирование любых изменяемых
+     * объектов, которые входят во внутреннюю "глубокую структуру" клонируемого 
+     * объекта и замену ссылок на эти объекты ссылками на их копии. Если 
+     * класс содержит только примитивные поля или ссылки на неизменяемые 
+     * объекты, то в этом случае обычно не требуется изменять какие-либо 
+     * поля в объекте, возвращанном вызовом <tt>super.clone</tt>.
      * <p>
      * Метод <tt>clone</tt> для класса <tt>Object</tt> выполняет особую операцию
      * клонирования. Первое, если класс этого объекта не реализует интерфейс 
@@ -184,27 +184,27 @@ public class Object {
      * чей класс есть <tt>Object</tt>, приведет к выбросу исключения
      * во время выполнения.
      *
-     * @return     копия этой инстанции.
+     * @return     Копия этой инстанции.
      * @exception  CloneNotSupportedException  если класс объекта не 
-     *               поддерживает интерфейс <code>Cloneable</code>. Подклассы,
-     *               которые переопределяют метод <code>clone</code>, также
-     *               могут кидать это исключение, чтобы сообщить, что инстанция
-     *               не может быть скопирована.
+     *             поддерживает интерфейс {@code Cloneable}. Подклассы,
+     *             которые переопределяют метод {@code clone}, также
+     *             могут кидать это исключение, чтобы сообщить, что инстанция
+     *             не может быть скопирована.
      * @see java.lang.Cloneable
      */
     protected native Object clone() throws CloneNotSupportedException;
 
     /**
      * Возвращает строковое представление объекта. В общем случае, метод
-     * <code>toString</code> возвращает строку, которая 
+     * {@code toString} возвращает строку, которая 
      * "в текстовом виде" представляет этот объект. Результат должен быть
      * кратким, но информативным представлением, легко читаемым человеком.
      * 
      * Рекомендуется, чтобы все подклассы переопределяли этот метод.
      * <p>
-     * Метод <code>toString</code> для класса <code>Object</code> 
+     * Метод {@code toString} для класса {@code Object} 
      * возвращает строку, состоящую из имени класса, инстанцией которого 
-     * объект является, символа собаки `<code>@</code>' и беззнакового 
+     * объект является, символа собаки `{@code @}' и беззнакового 
      * шестнадцатеричного представления хеш-кода объекта. Другими словами, 
      * метод возвращает строку, эквивалентную значению выражения:
      * 
@@ -213,113 +213,113 @@ public class Object {
      * getClass().getName() + '@' + Integer.toHexString(hashCode())
      * </pre></blockquote>
      *
-     * @return  строковое представление объекта.
+     * @return  Строковое представление объекта.
      */
     public String toString() {
         return getClass().getName() + "@" + Integer.toHexString(hashCode());
     }
 
     /**
-     * Wakes up a single thread that is waiting on this object's 
-     * monitor. If any threads are waiting on this object, one of them 
-     * is chosen to be awakened. The choice is arbitrary and occurs at 
-     * the discretion of the implementation. A thread waits on an object's 
-     * monitor by calling one of the <code>wait</code> methods.
+     * Пробуждает один поток, ожидающий на мониторе этого объекта. Если
+     * какие-то потоки ожидают на этом объекте, один из них выбирается для 
+     * пробуждения. Выбор произволен и происходит по усмотрению реализации.
+     * Поток начинает ожидать на мониторе объекта вызовом одного из
+     * {@code wait} методов.
      * <p>
-     * The awakened thread will not be able to proceed until the current 
-     * thread relinquishes the lock on this object. The awakened thread will 
-     * compete in the usual manner with any other threads that might be 
-     * actively competing to synchronize on this object; for example, the 
-     * awakened thread enjoys no reliable privilege or disadvantage in being 
-     * the next thread to lock this object.
+     * Пробужденный поток не будет способен продолжать выполнение, пока 
+     * текущий поток не оставит блокировку этого объекта. Пробужденный поток 
+     * конкурирует обычным способом с любыми другими потоками, которые
+     * могли бы активно конкурировать за синхронизацию на этом объекте; например,
+     * пробужденный поток не обладает никакими привелегиями или препятствиями
+     * для того, чтобы стать следующим потоком, заблокировавшим этот объект.
      * <p>
-     * This method should only be called by a thread that is the owner 
-     * of this object's monitor. A thread becomes the owner of the 
-     * object's monitor in one of three ways: 
+     * Этот метод должен вызываться только потоком, владеющим монитором
+     * этого объекта. Поток становится владельцем монитора объекта одним 
+     * из следующих трех способов: 
      * <ul>
-     * <li>By executing a synchronized instance method of that object. 
-     * <li>By executing the body of a <code>synchronized</code> statement 
-     *     that synchronizes on the object. 
-     * <li>Для объектов типа <code>Class</code> исполнением 
+     * <li>Исполнением синхронизированного метода инстанции этого объекта. 
+     * <li>Исполнением тела {@code synchronized}-выражения, 
+     *     которое синхронизируется по этому объекту. 
+     * <li>Для объектов типа {@code Class} исполнением 
      *     синхронизированного статического метода этого класса. 
      * </ul>
      * <p>В одно и то же время только один поток может владеть монитором объекта. 
      * <p>Про синхронизацию отлично написано на {@link http://www.skipy.ru/technics/synchronization.html}
      * 
      * @exception  IllegalMonitorStateException  если текущий поток не
-     *               является владельцем монитора этого объекта.
+     *             является владельцем монитора этого объекта.
      * @see        java.lang.Object#notifyAll()
      * @see        java.lang.Object#wait()
      */
     public final native void notify();
 
     /**
-     * Wakes up all threads that are waiting on this object's monitor. A 
-     * thread waits on an object's monitor by calling one of the 
-     * <code>wait</code> methods.
+     * Пробуждает все потоки, ожидающие на мониторе этого объекта. 
+     * Поток начинает ожидать на мониторе объекта вызовом одного из
+     * {@code wait} методов.
      * <p>
-     * The awakened threads will not be able to proceed until the current 
-     * thread relinquishes the lock on this object. The awakened threads 
-     * will compete in the usual manner with any other threads that might 
-     * be actively competing to synchronize on this object; for example, 
-     * the awakened threads enjoy no reliable privilege or disadvantage in 
-     * being the next thread to lock this object.
+     * Пробужденный поток не будет способен продолжать выполнение, пока 
+     * текущий поток не оставит блокировку этого объекта. Пробужденный поток 
+     * конкурирует обычным способом с любыми другими потоками, которые
+     * могли бы активно конкурировать за синхронизацию на этом объекте; например,
+     * пробужденный поток не обладает никакими привелегиями или препятствиями
+     * для того, чтобы стать следующим потоком, заблокировавшим этот объект.
      * <p>
      * Этот метод должен вызываться только потоком, который владеет 
-     * монитором этого объекта. Смотрите метод <code>notify</code> для 
+     * монитором этого объекта. Смотрите метод {@code notify} для 
      * описания способов, которыми поток может стать владельцем монитора.
      * <p>Про синхронизацию отлично написано на {@link http://www.skipy.ru/technics/synchronization.html}
      *
      * @exception  IllegalMonitorStateException  если текущий поток не
-     *               является владельцем монитора этого объекта.
+     *             является владельцем монитора этого объекта.
      * @see        java.lang.Object#notify()
      * @see        java.lang.Object#wait()
      */
     public final native void notifyAll();
 
     /**
-     * Causes the current thread to wait until either another thread invokes the 
-     * {@link java.lang.Object#notify()} method or the 
-     * {@link java.lang.Object#notifyAll()} method for this object, or a 
-     * specified amount of time has elapsed. 
+     * Заставляет текущий поток ждать до тех пор, пока какой-нибудь другой 
+     * поток не вызовет метод {@link java.lang.Object#notify()} или 
+     * {@link java.lang.Object#notifyAll()} для этого объекта, или не 
+     * пройдет указанное количество времени. 
      * <p>
-     * The current thread must own this object's monitor. 
+     * Текущий поток должен владеть монитором этого объекта. 
      * <p>
-     * This method causes the current thread (call it <var>T</var>) to 
-     * place itself in the wait set for this object and then to relinquish 
-     * any and all synchronization claims on this object. Thread <var>T</var> 
-     * becomes disabled for thread scheduling purposes and lies dormant 
-     * until one of four things happens:
+     * Этот метод заставляет текущий поток (назовем его <var>T</var>) 
+     * занять место в очереди ожидания для этого объекта и затем уступить
+     * любые и все требования синхронизации на этом объекте. Поток <var>T</var> 
+     * становится неактивным при планировании потоков и бездействует, 
+     * пока не произойдет одна из четырех вещей:
      * <ul>
-     * <li>Some other thread invokes the <tt>notify</tt> method for this 
-     * object and thread <var>T</var> happens to be arbitrarily chosen as 
-     * the thread to be awakened. 
-     * <li>Some other thread invokes the <tt>notifyAll</tt> method for this 
-     * object. 
-     * <li>Some other thread {@linkplain Thread#interrupt() interrupts} 
-     * thread <var>T</var>. 
-     * <li>The specified amount of real time has elapsed, more or less.  If 
-     * <tt>timeout</tt> is zero, however, then real time is not taken into 
-     * consideration and the thread simply waits until notified. 
+     * <li>Какой-нибудь другой поток вызовет метод <tt>notify</tt> для этого
+     * объекта и поток <var>T</var> окажется тем произвольно выбранным 
+     * потоком, который будет пробужден. 
+     * <li>Какой-нибудь другой поток вызовет метод <tt>notifyAll</tt> для
+     * этого объекта. 
+     * <li>Какой-нибудь другой поток {@linkplain Thread#interrupt() прервет} 
+     * поток <var>T</var>. 
+     * <li>Пройдет, более или менее точно, указанное количество реального времени.
+     * Однако, если <tt>timeout</tt> равен нулю, то реальное время не учитывается
+     * и поток будет ждать, пока его не уведомят. 
      * </ul>
-     * The thread <var>T</var> is then removed from the wait set for this 
-     * object and re-enabled for thread scheduling. It then competes in the 
-     * usual manner with other threads for the right to synchronize on the 
-     * object; once it has gained control of the object, all its 
-     * synchronization claims on the object are restored to the status quo 
-     * ante - that is, to the situation as of the time that the <tt>wait</tt> 
-     * method was invoked. Thread <var>T</var> then returns from the 
-     * invocation of the <tt>wait</tt> method. Thus, on return from the 
-     * <tt>wait</tt> method, the synchronization state of the object and of 
-     * thread <tt>T</tt> is exactly as it was when the <tt>wait</tt> method 
-     * was invoked. 
+     * В этом случае поток <var>T</var> будет удален из очереди ожидания для 
+     * этого объекта, и снова включен в планирование потоков. Он снова будет 
+     * конкурировать обычным способом с другими потоками за право синхронизироваться 
+     * на объекте; как только он получит контроль над объектом, все его 
+     * требования синхронизации на объекте восстановят свой статус-кво - 
+     * то есть ситуацию, существующую во время вызова метода <tt>wait</tt>. 
+     * В это время поток <var>T</var> вернет управление из вызова метода
+     * <tt>wait</tt>. Таким образом, по возврату из метода <tt>wait</tt>, 
+     * состояние синхронизации объекта и потока <var>T</var> в точности такое 
+     * же, как перед вызовом метода <tt>wait</tt>. (Строго говоря, это не так.
+     * Смотрите подробности по ссылке [1].)
      * <p>
-     * A thread can also wake up without being notified, interrupted, or
-     * timing out, a so-called <i>spurious wakeup</i>.  While this will rarely
-     * occur in practice, applications must guard against it by testing for
-     * the condition that should have caused the thread to be awakened, and
-     * continuing to wait if the condition is not satisfied.  In other words,
-     * waits should always occur in loops, like this one:
+     * Поток также может проснуться без уведомления, прерывания или истечения
+     * тайм-аута, так называемое <i>побочное пробуждение</i>. Хотя это будет редко
+     * происходить на практике, приложения должны принять меры против этого,
+     * проверяя условие, которое должно вызвать пробуждение потока, и 
+     * продолжать ждать, если это условие не выполнено. Другими словами,
+     * ожидание всегда должно происходить в цикле, как-то так:
      * <pre>
      *     synchronized (obj) {
      *         while (&lt;условие не выполняется&gt;)
@@ -327,104 +327,104 @@ public class Object {
      *         ... // Выполняем действия, которые приведут к выполнению условия
      *     }
      * </pre>
-     * (For more information on this topic, see Section 3.2.3 in Doug Lea's
+     * (Для большей информации по этому вопросу смотрите Section 3.2.3 в Doug Lea's
      * "Concurrent Programming in Java (Second Edition)" (Addison-Wesley,
-     * 2000), or Item 50 in Joshua Bloch's "Effective Java Programming
-     * Language Guide" (Addison-Wesley, 2001).
+     * 2000), или Правило 50 в "Java. Эффективное программирование", Джошуа Блох (Лори, 2002) 
+     * (Item 50 in Joshua Bloch's "Effective Java Programming Language Guide" (Addison-Wesley, 2001)).
      *
-     * <p>If the current thread is {@linkplain java.lang.Thread#interrupt()
-     * interrupted} by any thread before or while it is waiting, then an
-     * <tt>InterruptedException</tt> is thrown.  This exception is not
-     * thrown until the lock status of this object has been restored as
-     * described above.
+     * <p>Если текущий поток {@linkplain java.lang.Thread#interrupt()
+     * прерван} другим потоком до или пока он ожидал, кидается исключение
+     * <tt>InterruptedException</tt>. Это исключение не выкидывается, пока
+     * статус блокировки этоо объекта не восстановится, как было описано 
+     * выше.
      *
      * <p>
-     * Note that the <tt>wait</tt> method, as it places the current thread 
-     * into the wait set for this object, unlocks only this object; any 
-     * other objects on which the current thread may be synchronized remain 
-     * locked while the thread waits.
+     * Учтите, что метод <tt>wait</tt>, так как помещает текущий поток в 
+     * очередь ожидания для этого объекта, разблокирует только этот объект; 
+     * любые другие объекты, на которых может синхронизироваться текущий 
+     * поток, остаются заблокированными, пока поток ожидает.
      * <p>
      * Этот метод должен вызываться только потоком, который владеет 
-     * монитором этого объекта. Смотрите метод <code>notify</code> для 
+     * монитором этого объекта. Смотрите метод {@code notify} для 
      * описания способов, которыми поток может стать владельцем монитора.
-     * <p>Про синхронизацию отлично написано на {@link http://www.skipy.ru/technics/synchronization.html}
+     * <p>
+     * [1] Про синхронизацию отлично написано на {@link http://www.skipy.ru/technics/synchronization.html}
      *
      * @param      timeout   максимальное время ожидания в миллисекундах.
      * @exception  IllegalArgumentException      если значение таймаута
      *                                           отрицательно.
      * @exception  IllegalMonitorStateException  если текущий поток не
-     *               является владельцем монитора этого объекта.
-     * @exception  InterruptedException if any thread interrupted the
-     *             current thread before or while the current thread
-     *             was waiting for a notification.  The <i>interrupted
-     *             status</i> of the current thread is cleared when
-     *             this exception is thrown.
+     *             является владельцем монитора этого объекта.
+     * @exception  InterruptedException если какой-то поток прервал текущий
+     *             поток до или во время ожидания текущим потоком 
+     *             уведомления. <i>Состояние прерывания</i> текущего
+     *             потока очищается при выкидывании этого исключения.
      * @see        java.lang.Object#notify()
      * @see        java.lang.Object#notifyAll()
      */
     public final native void wait(long timeout) throws InterruptedException;
 
     /**
-     * Causes the current thread to wait until another thread invokes the 
-     * {@link java.lang.Object#notify()} method or the 
-     * {@link java.lang.Object#notifyAll()} method for this object, or 
-     * some other thread interrupts the current thread, or a certain 
-     * amount of real time has elapsed. 
+     * Заставляет текущий поток ждать до тех пор, пока какой-нибудь другой 
+     * поток не вызовет метод {@link java.lang.Object#notify()} или 
+     * {@link java.lang.Object#notifyAll()} для этого объекта, или 
+     * некоторый другой поток не прервет текущий поток или не пройдет 
+     * указанное количество реального времени. 
      * <p>
-     * This method is similar to the <code>wait</code> method of one 
-     * argument, but it allows finer control over the amount of time to 
-     * wait for a notification before giving up. The amount of real time, 
-     * measured in nanoseconds, is given by:
+     * Этот метод похож на метод {@code wait} с одним аргументом,
+     * но позволяет более тонко контролировать время ожидания уведомления
+     * перед отказом от ожидания. Количество реального времени, измеренное 
+     * в наносекундах, дает:
      * <blockquote>
      * <pre>
      * 1000000*timeout+nanos</pre></blockquote>
      * <p>
-     * In all other respects, this method does the same thing as the 
-     * method {@link #wait(long)} of one argument. In particular, 
-     * <tt>wait(0, 0)</tt> means the same thing as <tt>wait(0)</tt>.
+     * Во всех остальных отношениях этот метод делает то же самое, что и 
+     * метод {@link #wait(long)} с одним аргументом. В частности, 
+     * <tt>wait(0, 0)</tt> означает то же самое, что и <tt>wait(0)</tt>.
      * <p>
-     * The current thread must own this object's monitor. The thread 
-     * releases ownership of this monitor and waits until either of the 
-     * following two conditions has occurred: 
+     * Текущий поток должен владеть монитором этого объекта. Поток 
+     * отпускает владение этим монитором и ожидает, пока произойдет любое
+     * из следующих двух условий: 
      * <ul>
-     * <li>Another thread notifies threads waiting on this object's monitor 
-     *     to wake up either through a call to the <code>notify</code> method 
-     *     or the <code>notifyAll</code> method. 
-     * <li>The timeout period, specified by <code>timeout</code> 
-     *     milliseconds plus <code>nanos</code> nanoseconds arguments, has 
-     *     elapsed. 
+     * <li>Другой поток уведомит потоки, ожидающие на мониторе этого объекта, 
+     *     пробуждая их, или вызовом метода {@code notify} или метода 
+     *     {@code notifyAll}. 
+     * <li>Истекет период тайм-аута, указанный аргументами {@code timeout} 
+     *     миллисекунд плюс {@code nanos} наносекунд.
+     * 
      * </ul>
      * <p>
-     * The thread then waits until it can re-obtain ownership of the 
-     * monitor and resumes execution.
+     * Поток ожидает, пока он снова не сможет завладеть монитором 
+     * и возобновить исполнение.
      * <p>
-     * As in the one argument version, interrupts and spurious wakeups are
-     * possible, and this method should always be used in a loop:
+     * Как и в версии с одним аргументом, возможны прерывания и побочные 
+     * пробуждения, и этот метод должен всегда использоваться в цикле:
      * <pre>
      *     synchronized (obj) {
      *         while (&lt;условие не выполняется&gt;)
-     *             obj.wait();
+     *             obj.wait(0, 0);
      *         ... // Выполняем действия, которые приведут к выполнению условия
      *     }
      * </pre>
      * Этот метод должен вызываться только потоком, который владеет 
-     * монитором этого объекта. Смотрите метод <code>notify</code> для 
+     * монитором этого объекта. Смотрите метод {@code notify} для 
      * описания способов, которыми поток может стать владельцем монитора.
-     * <p>Про синхронизацию отлично написано на {@link http://www.skipy.ru/technics/synchronization.html}
+     * <p>
+     * Про синхронизацию отлично написано на {@link http://www.skipy.ru/technics/synchronization.html}
      *
      * @param      timeout   максимальное время для ожидания в миллисекундах.
      * @param      nanos     дополнительное время, в наносекундах в диапазоне
      *                       0-999999.
      * @exception  IllegalArgumentException      если значение таймаута
-     *              отрицательно или значения наносекунд не в диапазоне
-     *              0-999999.
+     *             отрицательно или значения наносекунд не в диапазоне
+     *             0-999999.
      * @exception  IllegalMonitorStateException  если текущий поток не
-     *               является владельцем монитора этого объекта.
-     * @exception  InterruptedException if any thread interrupted the
-     *             current thread before or while the current thread
-     *             was waiting for a notification.  The <i>interrupted
-     *             status</i> of the current thread is cleared when
-     *             this exception is thrown.
+     *             является владельцем монитора этого объекта.
+     * @exception  InterruptedException если какой-то поток прервал текущий
+     *             поток до или во время ожидания текущим потоком 
+     *             уведомления. <i>Состояние прерывания</i> текущего
+     *             потока очищается при выкидывании этого исключения.
      */
     public final void wait(long timeout, int nanos) throws InterruptedException {
         if (timeout < 0) {
@@ -444,21 +444,21 @@ public class Object {
     }
 
     /**
-     * Causes the current thread to wait until another thread invokes the 
-     * {@link java.lang.Object#notify()} method or the 
-     * {@link java.lang.Object#notifyAll()} method for this object. 
-     * In other words, this method behaves exactly as if it simply 
-     * performs the call <tt>wait(0)</tt>.
+     * Заставляет текущий поток ждать до тех пор, пока какой-нибудь другой 
+     * поток не вызовет метод {@link java.lang.Object#notify()} или 
+     * {@link java.lang.Object#notifyAll()} для этого объекта.
+     * Другими словами, этот метод ведет себя так, как если бы он просто 
+     * вызвал <tt>wait(0)</tt>.
      * <p>
-     * The current thread must own this object's monitor. The thread 
-     * releases ownership of this monitor and waits until another thread 
-     * notifies threads waiting on this object's monitor to wake up 
-     * either through a call to the <code>notify</code> method or the 
-     * <code>notifyAll</code> method. The thread then waits until it can 
-     * re-obtain ownership of the monitor and resumes execution. 
+     * Текущий поток должен владеть монитором этого объекта. Поток отпускает
+     * владение этим монитором и ожидает, пока другой поток не уведомит 
+     * ожидающие на мониторе этого объекта потоки пробудится, вызвав метод
+     * {@code notify}, либо метод {@code notifyAll}. Затем поток ждет,
+     * пока он сможет вновь получить владение монитором и возобновляет 
+     * исполнение.
      * <p>
-     * As in the one argument version, interrupts and spurious wakeups are
-     * possible, and this method should always be used in a loop:
+     * Как и в версии с одним аргументом, возможны прерывания и побочные 
+     * пробуждения, поэтому этот метод всегда должен использоваться в цикле:
      * <pre>
      *     synchronized (obj) {
      *         while (&lt;условие не выполняется&gt;)
@@ -467,17 +467,17 @@ public class Object {
      *     }
      * </pre>
      * Этот метод должен вызываться только потоком, который владеет 
-     * монитором этого объекта. Смотрите метод <code>notify</code> для 
+     * монитором этого объекта. Смотрите метод {@code notify} для 
      * описания способов, которыми поток может стать владельцем монитора.
-     * <p>Про синхронизацию отлично написано на {@link http://www.skipy.ru/technics/synchronization.html}
+     * <p>
+     * Про синхронизацию отлично написано на {@link http://www.skipy.ru/technics/synchronization.html}
      *
      * @exception  IllegalMonitorStateException  если текущий поток не
-     *               является владельцем монитора этого объекта.
-     * @exception  InterruptedException if any thread interrupted the
-     *             current thread before or while the current thread
-     *             was waiting for a notification.  The <i>interrupted
-     *             status</i> of the current thread is cleared when
-     *             this exception is thrown.
+     *             является владельцем монитора этого объекта.
+     * @exception  InterruptedException если какой-то поток прервал текущий
+     *             поток до или во время ожидания текущим потоком 
+     *             уведомления. <i>Состояние прерывания</i> текущего
+     *             потока очищается при выкидывании этого исключения.
      * @see        java.lang.Object#notify()
      * @see        java.lang.Object#notifyAll()
      */
@@ -488,49 +488,49 @@ public class Object {
     /**
      * Вызывается сборщиком мусора на объекте, когда сборщик мусора 
      * определяет, что на объект больше нет ссылок.
-     * A subclass overrides the <code>finalize</code> method to dispose of
+     * Подклассы overrides the {@code finalize} method to dispose of
      * system resources or to perform other cleanup. 
      * <p>
-     * The general contract of <tt>finalize</tt> is that it is invoked 
-     * if and when the Java<font size="-2"><sup>TM</sup></font> virtual 
-     * machine has determined that there is no longer any
-     * means by which this object can be accessed by any thread that has
-     * not yet died, except as a result of an action taken by the
-     * finalization of some other object or class which is ready to be
-     * finalized. The <tt>finalize</tt> method may take any action, including
-     * making this object available again to other threads; the usual purpose
-     * of <tt>finalize</tt>, however, is to perform cleanup actions before 
-     * the object is irrevocably discarded. For example, the finalize method 
-     * for an object that represents an input/output connection might perform
-     * explicit I/O transactions to break the connection before the object is
-     * permanently discarded. 
+     * Общее соглашение для <tt>finalize</tt> состоит в том, что он вызыватеся
+     * тогда и только тогда, когда виртуальная машина 
+     * Java<font size="-2"><sup>TM</sup></font> определила, что больше нет 
+     * никого, через кого этот объект мог быть доступен из любого потока, 
+     * который еще не умер, за исключением случаев, когда как результат 
+     * действий финализации другого объекта или класса, который готов быть 
+     * финализирован. Метод <tt>finalize</tt> может делать любые действия, 
+     * включая делание объекта снова доступным для других потоков; обычная
+     * цель <tt>finalize</tt>, однако, состоит в выполнении действий по 
+     * очистке, прежде чем объект будет безвозвратно утерян. Например, метод 
+     * финализации  для объекта, представляющего соединение ввода/вывода, 
+     * может выполнить явные I/O транзакции для разрыва соединения прежде, 
+     * чем объект будет окончательно потерян.
      * <p>
-     * The <tt>finalize</tt> method of class <tt>Object</tt> performs no 
-     * special action; it simply returns normally. Subclasses of 
-     * <tt>Object</tt> may override this definition.
+     * Метод <tt>finalize</tt> класса <tt>Object</tt> не выполняет никаких 
+     * специальных действий; он просто возвращает управление немедленно. 
+     * Подклассы <tt>Object</tt> may override this definition.
      * <p>
-     * The Java programming language does not guarantee which thread will 
-     * invoke the <tt>finalize</tt> method for any given object. It is 
-     * guaranteed, however, that the thread that invokes finalize will not 
-     * be holding any user-visible synchronization locks when finalize is 
-     * invoked. If an uncaught exception is thrown by the finalize method, 
-     * the exception is ignored and finalization of that object terminates.
+     * Язык программирования Java не гарантирует, какой поток вызовет метод
+     * <tt>finalize</tt> для любого данного объекта. Он гарантирует, однако,
+     * что поток, вызывающий финализацию, не будет хранить какие-либо видимые
+     * пользователю синхронизационные блокировки, когда вызовется финализация.
+     * Если неперехваченное исключение будет выкинуто методом <tt>finalize</tt>, 
+     * исключение будет проигнорировано, а финализация объекта прервана.
      * <p>
-     * After the <tt>finalize</tt> method has been invoked for an object, no 
-     * further action is taken until the Java virtual machine has again 
-     * determined that there is no longer any means by which this object can 
-     * be accessed by any thread that has not yet died, including possible
-     * actions by other objects or classes which are ready to be finalized, 
-     * at which point the object may be discarded.
+     * После того, как для объекта был вызван метод <tt>finalize</tt>, никаких
+     * дальнейших действий не предпринимается, пока виртуальная машина Java 
+     * повторно не определит, что больше нет никого, кто мог бы получить
+     * доступ к этому объекту из какого-либо еще не умершего потока, включая
+     * возможные действия других объектов или классов, которые готовы быть
+     * финализированы, после этого этапа объект может быть уничтожен.
      * <p>
      * Метод <tt>finalize</tt> никогда не вызывается более одного раза 
      * виртуальной машиной Java для любого объекта.
      * <p>
-     * Любые исключения, выкинутые методом <code>finalize</code> приведут к 
-     * остановке финализации этого объекта, но иначе будут
+     * Любые исключения, выкинутые методом {@code finalize}, приведут к 
+     * остановке финализации этого объекта, но в остальном будут
      * проигнорированы. 
      *
-     * @throws Throwable the <code>Exception</code> raised by this method
+     * @throws Throwable Исключение, выкинутое этим методом.
      */
     protected void finalize() throws Throwable { }
 }

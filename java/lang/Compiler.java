@@ -1,29 +1,29 @@
 /*
  * @(#)Compiler.java	1.23 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * The <code>Compiler</code> class is provided to support
- * Java-to-native-code compilers and related services. By design, the
- * <code>Compiler</code> class does nothing; it serves as a
- * placeholder for a JIT compiler implementation.
+ * Класс {@code Compiler} (компилятор) предоставляется для поддержки
+ * компиляторов Java-в-native-код и связанных сервисов. По замыслу, класс
+ * {@code Compiler} ничего не делает; он служит как место для реализации
+ * JIT компилятора.
  * <p>
- * When the Java Virtual Machine first starts, it determines if the
- * system property <code>java.compiler</code> exists. (System
- * properties are accessible through <code>getProperty</code>,
- * a method defined by the <code>System</code> class.) If so, it is
- * assumed to be the name of a library (with a platform-dependent
- * exact location and type); the <code>loadLibrary</code> method in
- * class <code>System</code> is called to load that library. If this
- * loading succeeds, the function named
- * <code>java_lang_Compiler_start()</code> in that library is called.
+ * Когда виртуальная машина Java стартует впервые, она определяет, 
+ * существует ли системное свойство {@code java.compiler}. (Системные 
+ * свойства получаются через {@code getProperty}, метод, определенный 
+ * в классе {@code System}.) Если да, она предполагает, что это имя 
+ * библиотеки (с платформо-зависимым точным расположением и типом);
+ * метод {@code loadLibrary} в классе {@code System} вызывается для 
+ * загрузки этой библиотеки. Если загрузка прошла успешно, в библиотеке
+ * вызывается функция {@code java_lang_Compiler_start()}.
+ * 
  * <p>
- * If no compiler is available, these methods do nothing.
+ * Если компилятор недоступен, эти методы ничего не делают.
  *
  * @author  Frank Yellin
  * @version 1.23, 03/23/10
@@ -33,7 +33,7 @@ package java.lang;
  * @since   JDK1.0
  */
 public final class Compiler  {
-    private Compiler() {}		// don't make instances
+    private Compiler() {}		// нельзя инстанцировать
 
     private static native void initialize();
 
@@ -41,77 +41,77 @@ public final class Compiler  {
 
     static {
         registerNatives();
-	java.security.AccessController.doPrivileged
-	    (new java.security.PrivilegedAction() {
-		public Object run() {
-		    boolean loaded = false;
-		    String jit = System.getProperty("java.compiler");
-		    if ((jit != null) && (!jit.equals("NONE")) &&
-			(!jit.equals("")))
-		    {
-			try {
-			    System.loadLibrary(jit);
-			    initialize();
-			    loaded = true;
-			} catch (UnsatisfiedLinkError e) {
-			    System.err.println("Warning: JIT compiler \"" +
-			      jit + "\" not found. Will use interpreter.");
+		java.security.AccessController.doPrivileged
+			(new java.security.PrivilegedAction() {
+			public Object run() {
+				boolean loaded = false;
+				String jit = System.getProperty("java.compiler");
+				if ((jit != null) && (!jit.equals("NONE")) &&
+					(!jit.equals("")))
+				{
+					try {
+						System.loadLibrary(jit);
+						initialize();
+						loaded = true;
+					} catch (UnsatisfiedLinkError e) {
+						System.err.println("Warning: JIT compiler \"" +
+						  jit + "\" not found. Will use interpreter.");
+					}
+				}
+				String info = System.getProperty("java.vm.info");
+				if (loaded) {
+					System.setProperty("java.vm.info", info + ", " + jit);
+				} else {
+					System.setProperty("java.vm.info", info + ", nojit");
+				}
+				return null;
 			}
-		    }
-		    String info = System.getProperty("java.vm.info");
-		    if (loaded) {
-			System.setProperty("java.vm.info", info + ", " + jit);
-		    } else {
-			System.setProperty("java.vm.info", info + ", nojit");
-		    }
-		    return null;
-		}
 	    });
     }
 
     /**
-     * Compiles the specified class.
+     * Компилирует указанный класс.
      *
-     * @param   clazz   a class.
-     * @return  <code>true</code> if the compilation succeeded;
-     *          <code>false</code> if the compilation failed or no compiler
-     *          is available.
-     * @exception NullPointerException if <code>clazz</code> is 
-     *          <code>null</code>.
+     * @param   clazz   класс для компиляции.
+     * @return  {@code true}, если компиляция успешна;
+     *          {@code false} если компиляция неудачна или компилятор
+     *          недоступен.
+     * @exception NullPointerException если {@code clazz} равен
+     *          {@code null}.
      */
     public static native boolean compileClass(Class<?> clazz);
 
     /**
-     * Compiles all classes whose name matches the specified string.
+     * Компилирует все классы, чьи имена соответствуют указанной строке.
      *
-     * @param   string   the name of the classes to compile.
-     * @return  <code>true</code> if the compilation succeeded;
-     *          <code>false</code> if the compilation failed or no compiler
-     *          is available.
-     * @exception NullPointerException if <code>string</code> is 
-     *          <code>null</code>.
+     * @param   string   имя классов для компиляции.
+     * @return  {@code true}, если компиляция успешна;
+     *          {@code false} если компиляция неудачна или компилятор
+     *          недоступен.
+     * @exception NullPointerException если {@code string} равен 
+     *          {@code null}.
      */
     public static native boolean compileClasses(String string);
 
     /**
-     * Examines the argument type and its fields and perform some documented
-     * operation. No specific operations are required.
+     * Исследует тип агрумента и его поля и выполняет некоторую
+     * документированную операцию. Не требует особых операций.
      *
-     * @param   any   an argument.
-     * @return  a compiler-specific value, or <code>null</code> if no compiler
-     *          is available.
-     * @exception NullPointerException if <code>any</code> is 
-     *          <code>null</code>.
+     * @param   any   аргумент.
+     * @return  зависимое от компилятора значение, или {@code null} если 
+     *          компилятор недоступен.
+     * @exception NullPointerException если {@code any} равен
+     *          {@code null}.
      */
     public static native Object command(Object any);
 
     /**
-     * Cause the Compiler to resume operation.
+     * Заставляет компилятор продолжить работу (по JIT компиляции).
      */
     public static native void enable();
 
     /**
-     * Cause the Compiler to cease operation.
+     * Заставляет компилятор прекратить работу (по JIT компиляции).
      */
     public static native void disable();
 }
