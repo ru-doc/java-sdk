@@ -1,24 +1,24 @@
 /*
  * @(#)ExceptionInInitializerError.java	1.19 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Signals that an unexpected exception has occurred in a static initializer. 
- * An <code>ExceptionInInitializerError</code> is thrown to indicate that an 
- * exception occurred during evaluation of a static initializer or the
- * initializer for a static variable.
+ * Сигнализирует, что неожиданное исключение произошло в статическом инициализаторе.
+ * {@code ExceptionInInitializerError} кидается для указания того, что
+ * исключение произошло во время вычисления статического инициализатора или
+ * инициализации статической переменной.
  *
- * <p>As of release 1.4, this exception has been retrofitted to conform to
- * the general purpose exception-chaining mechanism.  The "saved throwable
- * object" that may be provided at construction time and accessed via
- * the {@link #getException()} method is now known as the <i>cause</i>,
- * and may be accessed via the {@link Throwable#getCause()} method, as well
- * as the aforementioned "legacy method."
+ * <p>С релиза 1.4, это исключение было модифицировано для соответствия унифицированному
+ * механизму обработки цепочки исключений.  "Необязательное исключение, которое было
+ * испущено при загрузке класса" которое можно было предоставить на этапе конструирования
+ * и к которому можно было получить доступ через метод {@link #getException()}, теперь 
+ * известно, как <i>причина</i>, и его можно получить через метод {@linkThrowable#getCause()},
+ * точно также, как через вышеупомянутый "унаследованный метод".
  *
  * @author  Frank Yellin
  * @version 1.19, 03/23/10
@@ -26,14 +26,14 @@ package java.lang;
  */
 public class ExceptionInInitializerError extends LinkageError {
     /**
-     * Use serialVersionUID from JDK 1.1.X for interoperability
+     * Используем serialVersionUID из JDK 1.1.X для для функциональной совместимости.
      */
     private static final long serialVersionUID = 1521711792217232256L;
 
     /**
-     * This field holds the exception if the 
-     * ExceptionInInitializerError(Throwable thrown) constructor was
-     * used to instantiate the object
+     * Это поле хранит исключение, если для инстанцирования 
+     * этого объекта использовался конструктор 
+     * ExceptionInInitializerError(Throwable thrown).
      * 
      * @serial 
      * 
@@ -41,69 +41,69 @@ public class ExceptionInInitializerError extends LinkageError {
     private Throwable exception;
 
     /**
-     * Constructs an <code>ExceptionInInitializerError</code> with 
-     * <code>null</code> as its detail message string and with no saved
-     * throwable object.
-     * A detail message is a String that describes this particular exception.
+     * Конструирует {@code ExceptionInInitializerError} без уточняющего
+     * сообщения и без сохраненного throwable объекта.
+     * 
+     * Уточняющее сообщение - строка, описывающее это конкретное исключение.
      */
     public ExceptionInInitializerError() {
-        initCause(null);  // Disallow subsequent initCause
+        initCause(null);  // Запрещаем последующее initCause
     }
 
     /**
-     * Constructs a new <code>ExceptionInInitializerError</code> class by 
-     * saving a reference to the <code>Throwable</code> object thrown for 
-     * later retrieval by the {@link #getException()} method. The detail 
-     * message string is set to <code>null</code>.
+     * Конструирует новый объект {@code ExceptionInInitializerError} с
+     * сохранением ссылки на выброшенный объект {@code Throwable} для 
+     * последующего получения его через метод {@link #getException()}.
+     * Уточняющее сообщение будет установлено в {@code null}.
      *
-     * @param thrown The exception thrown
+     * @param thrown Выкинутое исключение.
      */
     public ExceptionInInitializerError(Throwable thrown) {
-        initCause(null);  // Disallow subsequent initCause
-	this.exception = thrown;
+        initCause(null);  // Запрещаем последующее initCause
+        this.exception = thrown;
     }
 
     /**
-     * Constructs an ExceptionInInitializerError with the specified detail 
-     * message string.  A detail message is a String that describes this 
-     * particular exception. The detail message string is saved for later 
-     * retrieval by the {@link Throwable#getMessage()} method. There is no 
-     * saved throwable object. 
+     * Конструирует {@code ExceptionInInitializerError} с указанным уточняющим
+     * сообщением. Уточняющее сообщение - строка, описывающее это конкретное 
+     * исключение. Уточняющее сообщение сохраняется для последующего получения
+     * через метод {@link Throwable#getMessage()}. Этот конструктор не
+     * сохраняет throwable объект.
      *
      *
-     * @param s the detail message
+     * @param s Уточняющее сообщение.
      */
     public ExceptionInInitializerError(String s) {
-	super(s);
-        initCause(null);  // Disallow subsequent initCause
+        super(s);
+        initCause(null);  // Запрещаем последующее initCause
     }
 
     /**
-     * Returns the exception that occurred during a static initialization that
-     * caused this error to be created.
+     * Возвращает исключение, которое произошло при во время статической 
+     * инициализации и привело к созданию этого исключения.
      *
-     * <p>This method predates the general-purpose exception chaining facility.
-     * The {@link Throwable#getCause()} method is now the preferred means of
-     * obtaining this information.
+     * <p>Этот метод появился до унифицированного метода обработки цепочки
+     * исключений. Теперь для получания этой информации должен использоваться 
+     * метод {@link Throwable#getCause()}.
      * 
-     * @return the saved throwable object of this 
-     *         <code>ExceptionInInitializerError</code>, or <code>null</code> 
-     *         if this <code>ExceptionInInitializerError</code> has no saved 
-     *         throwable object. 
+     * @return Сохраненный throwable объект этого объекта
+     *         {@code ExceptionInInitializerError}, или {@code null} 
+     *         если этот объект {@code ExceptionInInitializerError} не имеет
+     *         сохраненного throwable объекта. 
      */
     public Throwable getException() {
-	return exception;
+        return exception;
     }
 
     /**
-     * Returns the cause of this error (the exception that occurred
-     * during a static initialization that caused this error to be created).
+     * Возвращает причину этой ошибки (исключение, которое произошло во
+     * время статической инициализации и ставшее причиной этого исключения).
      * 
-     * @return  the cause of this error or <code>null</code> if the
-     *          cause is nonexistent or unknown.
+     * @return  Причина этой ошибки или {@code null}, если причина не
+     *          существует или неизвестна.
      * @since   1.4
      */
     public Throwable getCause() {
-	return exception;
+        return exception;
     }
 }

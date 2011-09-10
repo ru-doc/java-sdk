@@ -1,30 +1,30 @@
 /*
  * @(#)ClassNotFoundException.java	1.22 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * Thrown when an application tries to load in a class through its 
- * string name using:
+ * Кидается, когда приложение пытается загрузить класс по его имени,
+ * используя:
  * <ul>
- * <li>The <code>forName</code> method in class <code>Class</code>.
- * <li>The <code>findSystemClass</code> method in class
- *     <code>ClassLoader</code> .
- * <li>The <code>loadClass</code> method in class <code>ClassLoader</code>.
+ * <li>Метод {@code forName} в классе {@code Class}.
+ * <li>Метод {@code findSystemClass} в классе {@code ClassLoader}.
+ * <li>Метод {@code loadClass} в классе {@code ClassLoader}.
  * </ul>
  * <p>
- * but no definition for the class with the specified name could be found. 
+ * но определение для класса с указанным именем не может быть найдено.
  *
- * <p>As of release 1.4, this exception has been retrofitted to conform to
- * the general purpose exception-chaining mechanism.  The "optional exception
- * that was raised while loading the class" that may be provided at
- * construction time and accessed via the {@link #getException()} method is
- * now known as the <i>cause</i>, and may be accessed via the {@link
- * Throwable#getCause()} method, as well as the aforementioned "legacy method."
+ * <p>
+ * С релиза 1.4, это исключение было модифицировано для соответствия унифицированному
+ * механизму обработки цепочки исключений.  "Необязательное исключение, которое было
+ * испущено при загрузке класса" которое можно было предоставить на этапе конструирования
+ * и к которому можно было получить доступ через метод {@link #getException()}, теперь 
+ * известно, как <i>причина</i>, и его можно получить через метод {@linkThrowable#getCause()},
+ * точно также, как через вышеупомянутый "унаследованный метод".
  *
  * @author  unascribed
  * @version 1.22, 03/23/10
@@ -35,59 +35,59 @@ package java.lang;
  */
 public class ClassNotFoundException extends Exception {
     /**
-     * use serialVersionUID from JDK 1.1.X for interoperability
+     * Используем serialVersionUID из JDK 1.1.X для функциональной совместимости.
      */
-     private static final long serialVersionUID = 9176873029745254542L;
+    private static final long serialVersionUID = 9176873029745254542L;
 
     /**
-     * This field holds the exception ex if the 
-     * ClassNotFoundException(String s, Throwable ex) constructor was
-     * used to instantiate the object
+     * Это поле хранит исключение {@code ex}, если для инстанцирования 
+     * этого объекта использовался конструктор 
+     * {@code ClassNotFoundException(String s, Throwable ex)}.
      * @serial 
      * @since 1.2
      */
     private Throwable ex;
 
     /**
-     * Constructs a <code>ClassNotFoundException</code> with no detail message.
+     * Конструирует {@code ClassNotFoundException} без уточняющего сообщения.
      */
     public ClassNotFoundException() {
-	super((Throwable)null);  // Disallow initCause
+        super((Throwable)null);  // Запрещаем initCause
     }
 
     /**
-     * Constructs a <code>ClassNotFoundException</code> with the 
-     * specified detail message. 
+     * Конструирует {@code ClassNotFoundException} с указанным уточняющим
+     * сообщением. 
      *
-     * @param   s   the detail message.
+     * @param   s   уточняющее сообщение.
      */
     public ClassNotFoundException(String s) {
-	super(s, null);  //  Disallow initCause
+        super(s, null);  // Запрещаем initCause
     }
 
     /**
-     * Constructs a <code>ClassNotFoundException</code> with the
-     * specified detail message and optional exception that was
-     * raised while loading the class.
+     * Конструирует {@code ClassNotFoundException} с указанным уточняющим
+     * сообщением и необязательным исключением, которое было испущено при
+     * загрузке класса.
      *
-     * @param s the detail message
-     * @param ex the exception that was raised while loading the class
+     * @param s уточняющее сообщение.
+     * @param ex исключение, которое ыбло испущено при загрузке класса.
      * @since 1.2
      */
     public ClassNotFoundException(String s, Throwable ex) {
-	super(s, null);  //  Disallow initCause
-	this.ex = ex;
+        super(s, null);  // Запрещаем initCause
+        this.ex = ex;
     }
 
     /**
-     * Returns the exception that was raised if an error occurred while
-     * attempting to load the class. Otherwise, returns <tt>null</tt>.
+     * Возвращает исключение, которое было испущено, если ошибка произошла 
+     * при попытке загрузить класс. Иначе возвращает <tt>null</tt>.
      *
-     * <p>This method predates the general-purpose exception chaining facility.
-     * The {@link Throwable#getCause()} method is now the preferred means of
-     * obtaining this information.
+     * <p>Этот метод появился до унифицированного метода обработки цепочки
+     * исключений. Теперь для получания этой информации должен использоваться 
+     * метод {@link Throwable#getCause()}.
      *
-     * @return the <code>Exception</code> that was raised while loading a class
+     * @return исключение, которое было испущено при загрузке класса.
      * @since 1.2
      */
     public Throwable getException() {
@@ -95,11 +95,11 @@ public class ClassNotFoundException extends Exception {
     }
 
     /**
-     * Returns the cause of this exception (the exception that was raised
-     * if an error occurred while attempting to load the class; otherwise
+     * Возвращает причину этого исключения (исключение, которое было 
+     * выкинуто, если ошибка произошла при попытке загрузить класс; иначе
      * <tt>null</tt>).
      *
-     * @return  the cause of this exception.
+     * @return  причина этого исключения.
      * @since   1.4
      */
     public Throwable getCause() {

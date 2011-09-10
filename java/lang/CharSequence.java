@@ -1,30 +1,30 @@
 /*
  * @(#)CharSequence.java	1.10 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 
 /**
- * A <tt>CharSequence</tt> is a readable sequence of <code>char</code> values. This
- * interface provides uniform, read-only access to many different kinds of
- * <code>char</code> sequences.
- * A <code>char</code> value represents a character in the <i>Basic
- * Multilingual Plane (BMP)</i> or a surrogate. Refer to <a
- * href="Character.html#unicode">Unicode Character Representation</a> for details.
+ * <tt>CharSequence</tt> это читабельная последовательность значений {@code char}.
+ * Этот интерфейс предоставляет унифицированный доступ только для чтения к 
+ * самым различным видам последовательностей {@code char}-ов.
+ * Значение {@code char} представляет символ в <i>Основной многоязычной матрице (Basic
+ * Multilingual Plane, BMP)</i> или суррогат. Смотрите <a
+ * href="Character.html#unicode">Представление символов Юникода</a> для подробностей.
  *
- * <p> This interface does not refine the general contracts of the {@link
- * java.lang.Object#equals(java.lang.Object) equals} and {@link
- * java.lang.Object#hashCode() hashCode} methods.  The result of comparing two
- * objects that implement <tt>CharSequence</tt> is therefore, in general,
- * undefined.  Each object may be implemented by a different class, and there
- * is no guarantee that each class will be capable of testing its instances
- * for equality with those of the other.  It is therefore inappropriate to use
- * arbitrary <tt>CharSequence</tt> instances as elements in a set or as keys in
- * a map. </p>
+ * <p> Этот интерфейс не уточняет общее соглашение методов {@link
+ * java.lang.Object#equals(java.lang.Object) equals} и {@link
+ * java.lang.Object#hashCode() hashCode}. Результат сравнения двух объектов, 
+ * реализующих <tt>CharSequence</tt> поэтому, вообще говоря, не определен.
+ * Оба объекта могут быть реализованы разными классами и нет никаких гарантий,
+ * что каждый класс будет способен к сравнению своих экземпляров на эквивалентность
+ * с таковыми другого. Поэтому неуместно использовать произвольные экземпляры
+ * <tt>CharSequence</tt> как элементы в множестве или ключи в отображении
+ * (map).
  *
  * @author Mike McCloskey
  * @version 1.10 10/03/23
@@ -35,59 +35,59 @@ package java.lang;
 public interface CharSequence {
 
     /**
-     * Returns the length of this character sequence.  The length is the number
-     * of 16-bit <code>char</code>s in the sequence.</p>
+     * Возвращает длину этой последовательности символов.  Длина - это
+     * число 16-битных {@code char}-ов в последовательности.
      *
-     * @return  the number of <code>char</code>s in this sequence
+     * @return  число символов ({@code char}-ов) в этой последовательности.
      */
     int length();
 
     /**
-     * Returns the <code>char</code> value at the specified index.  An index ranges from zero
-     * to <tt>length() - 1</tt>.  The first <code>char</code> value of the sequence is at
-     * index zero, the next at index one, and so on, as for array
-     * indexing. </p>
+     * Возвращает символ ({@code char}) по указанному индексу. Индекс лежит 
+     * в диапазоне от 0 до <tt>length() - 1</tt>. Первый символ ({@code char})
+     * последовательности расположен по индексу 0, следующий по индексу 1, 
+     * и так далее, как при индексации массива.
      *
-     * <p>If the <code>char</code> value specified by the index is a
-     * <a href="Character.html#unicode">surrogate</a>, the surrogate
-     * value is returned.
+     * <p>Если символ ({@code char}) по указанному индексу является
+     * <a href="Character.html#unicode">суррогатом</a>, возвращается суррогатное
+     * значение.
      *
-     * @param   index   the index of the <code>char</code> value to be returned
+     * @param   index   индекс символа ({@code char}), который мы хотим получить.
      *
-     * @return  the specified <code>char</code> value
+     * @return  указанное значение символа ({@code char}).
      *
      * @throws  IndexOutOfBoundsException
-     *          if the <tt>index</tt> argument is negative or not less than
-     *          <tt>length()</tt>
+     *          если аргумент <tt>index</tt> отрицательный или не меньше,
+     *          чем <tt>length()</tt>.
      */
     char charAt(int index);
 
     /**
-     * Returns a new <code>CharSequence</code> that is a subsequence of this sequence.
-     * The subsequence starts with the <code>char</code> value at the specified index and
-     * ends with the <code>char</code> value at index <tt>end - 1</tt>.  The length
-     * (in <code>char</code>s) of the
-     * returned sequence is <tt>end - start</tt>, so if <tt>start == end</tt>
-     * then an empty sequence is returned. </p>
+     * Возвращает новый объект {@code CharSequence}, являющийся подпоследовательностью
+     * этой последовательности. Подпоследовательность начинается с символа
+     * по указанному индексу и заканчивается на символе с индексом <tt>end - 1</tt>.
+     * Длина (в символах, т.е. {@code char}-ах) возвращаемой последовательности
+     * равна <tt>end - start</tt>, поэтому, если <tt>start == end</tt>,
+     * то вернется пустая последовательность.
      * 
-     * @param   start   the start index, inclusive
-     * @param   end     the end index, exclusive
+     * @param   start   начальный индекс, включительно.
+     * @param   end     конечный индекс, не включительно.
      *
-     * @return  the specified subsequence
+     * @return  указанная подпоследовательность.
      *
      * @throws  IndexOutOfBoundsException
-     *          if <tt>start</tt> or <tt>end</tt> are negative,
-     *          if <tt>end</tt> is greater than <tt>length()</tt>,
-     *          or if <tt>start</tt> is greater than <tt>end</tt>
+     *          если <tt>start</tt> или <tt>end</tt> отрицательны,
+     *          если <tt>end</tt> больше, чем <tt>length()</tt>,
+     *          или если <tt>start</tt> больше, чем <tt>end</tt>.
      */
     CharSequence subSequence(int start, int end);
 
     /**
-     * Returns a string containing the characters in this sequence in the same
-     * order as this sequence.  The length of the string will be the length of
-     * this sequence. </p>
+     * Возвращает строку, содержащую символы в этой последовательности в том
+     * же самом порядке, как в этой последовательности. Длина строки будет
+     * равна длине этой последовательности.
      *
-     * @return  a string consisting of exactly this sequence of characters
+     * @return  строка, содержащая точно такую же последовательность символов.
      */
     public String toString();
 

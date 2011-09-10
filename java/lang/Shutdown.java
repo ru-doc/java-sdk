@@ -11,41 +11,41 @@ import java.util.ArrayList;
 
 
 /**
- * Package-private utility class containing data structures and logic
- * governing the virtual-machine shutdown sequence.
+ * Приватный для пакета вспомогательный класс, содержащий структуры данных
+ * и логику, управляющую последовательностью завершения работы виртуальный 
+ * машины.
  *
  * @author   Mark Reinhold
  * @version  1.15, 10/03/23
  * @since    1.3
  */
-
 class Shutdown {
 
-    /* Shutdown state */
+    /* Статус завершения */
     private static final int RUNNING = 0;
     private static final int HOOKS = 1;
     private static final int FINALIZERS = 2;
     private static int state = RUNNING;
 
-    /* Should we run all finalizers upon exit? */
+    /** Должны ли мы запустить все финализаторы при выходе? */
     private static boolean runFinalizersOnExit = false;
 
-    // The system shutdown hooks are registered with a predefined slot.
-    // The list of shutdown hooks is as follows:
-    // (0) Console restore hook
-    // (1) Application hooks
-    // (2) DeleteOnExit hook
+    // Системные ловушки завершения работы регистрируются в предопределеных слотах.
+    // Список ловушек завершения следующий:
+    // (0) Ловушка (hook) восстановления консоли
+    // (1) Ловушки (hooks) приложения 
+    // (2) Ловушка (hook) DeleteOnExit (удалить при выходе)
     private static final int MAX_SYSTEM_HOOKS = 10;
     private static final Runnable[] hooks = new Runnable[MAX_SYSTEM_HOOKS];
 
-    /* The preceding static fields are protected by this lock */
+    /* Предыдущие статические поля защищены этой блокировкой. */
     private static class Lock { };
     private static Object lock = new Lock();
 
-    /* Lock object for the native halt method */
+    /** Объект блокировки для родного (native) метода halt (останов [<чего-то>]). */
     private static Object haltLock = new Lock();
 
-    /* Invoked by Runtime.runFinalizersOnExit */
+    /** Вызывается в Runtime.runFinalizersOnExit */
     static void setRunFinalizersOnExit(boolean run) {
         synchronized (lock) {
             runFinalizersOnExit = run;
@@ -53,8 +53,8 @@ class Shutdown {
     }
 
 
-    /* Add a new shutdown hook.  Checks the shutdown state and the hook itself,
-     * but does not do any security checks.
+    /** Добавляет новую ловушку завершения. Проверяет состояние завершения
+     * и собствено ловушки, но не делает никаких проверок безопасности.
      */
     static void add(int slot, Runnable hook) {
         synchronized (lock) {
@@ -68,11 +68,11 @@ class Shutdown {
         }
     }
 
-    /* Run all registered shutdown hooks
+    /** Запускает все зарегистрированные ловушки завершения.
      */
     private static void runHooks() {
-        /* We needn't bother acquiring the lock just to read the hooks field,
-         * since the hooks can't be modified once shutdown is in progress
+        /* Нам не нужно получать блокировку, если мы хотим только читать поле 
+         * ловушек, так как ловушки не могут меняться после начала завершения работы.
          */
         for (Runnable hook : hooks) {
             try {
@@ -86,9 +86,9 @@ class Shutdown {
         }
     }
 
-    /* The halt method is synchronized on the halt lock
-     * to avoid corruption of the delete-on-shutdown file list.
-     * It invokes the true native halt method.
+    /* Метод {@code halt} синхронизируется на блокировке останова для 
+     * предупреждения повреждения списка файлов, удаляемых при завершении 
+     * работы. Он вызывает реальный родной (native) метод останова.
      */
     static void halt(int status) {
         synchronized (haltLock) {
@@ -98,25 +98,25 @@ class Shutdown {
 
     static native void halt0(int status);
 
-    /* Wormhole for invoking java.lang.ref.Finalizer.runAllFinalizers */
+    /* Червоточина для вызова java.lang.ref.Finalizer.runAllFinalizers */
     private static native void runAllFinalizers();
 
 
-    /* The actual shutdown sequence is defined here.
+    /** Настоящая последовательность завершения работы определена здесь.
      *
-     * If it weren't for runFinalizersOnExit, this would be simple -- we'd just
-     * run the hooks and then halt.  Instead we need to keep track of whether
-     * we're running hooks or finalizers.  In the latter case a finalizer could
-     * invoke exit(1) to cause immediate termination, while in the former case
-     * any further invocations of exit(n), for any n, simply stall.  Note that
-     * if on-exit finalizers are enabled they're run iff the shutdown is
-     * initiated by an exit(0); they're never run on exit(n) for n != 0 or in
-     * response to SIGINT, SIGTERM, etc.
+     * Если бы не {@code runFinalizersOnExit}, это было бы просто -- мы бы просто выполнили
+     * ловушки а затем остановились бы. Вместо этого мы должны отследить, выполняем ли мы 
+     * ловушки или финализаторы. В последнем случае финализатор мог вызвать {@code exit(1)}, 
+     * чтобы вызвать немедленное завершение, в то время, как в первом случае любые вызовы 
+     * {@code exit(n)}, для любого {@code n}, просто не проходят. Заметьте, что если 
+     * финализаторы при выходе включены, то они запускаются тогда и только тогда, когда завершение
+     * работы вызвано вызовом {@code exit(0)}; они никогда не запустятся при {@code exit(n)} для 
+     * {@code n != 0} или в ответ на {@code SIGINT}, {@code SIGTERM} и т.д.
      */
     private static void sequence() {
         synchronized (lock) {
-            /* Guard against the possibility of a daemon thread invoking exit
-             * after DestroyJavaVM initiates the shutdown sequence
+            /* Страж против возможности потока-демона вызвать {@code exit}
+             * после того, как DestroyJavaVM запустит процесс завершения работы.
              */
             if (state != HOOKS) return;
         }
@@ -130,31 +130,31 @@ class Shutdown {
     }
 
 
-    /* Invoked by Runtime.exit, which does all the security checks.
-     * Also invoked by handlers for system-provided termination events,
-     * which should pass a nonzero status code.
+    /** Вызывается в Runtime.exit, которая делает все проверки безопасности.
+     * Также вызывается обработчиками для предоставляемых системой соьытий
+     * завершения, которые должны передать ненулевой статус завершения.
      */
     static void exit(int status) {
         boolean runMoreFinalizers = false;
         synchronized (lock) {
             if (status != 0) runFinalizersOnExit = false;
             switch (state) {
-            case RUNNING:	/* Initiate shutdown */
-            state = HOOKS;
-            break;
-            case HOOKS:		/* Stall and halt */
-            break;
-            case FINALIZERS:
-            if (status != 0) {
-                /* Halt immediately on nonzero status */
-                halt(status);
-            } else {
-                /* Compatibility with old behavior:
-                 * Run more finalizers and then halt
-                 */
-                runMoreFinalizers = runFinalizersOnExit;
-            }
-            break;
+                case RUNNING:   /* Начало завершения */
+                    state = HOOKS;
+                    break;
+                case HOOKS:     /* Стопор (Stall) и останов (halt) */
+                    break;
+                case FINALIZERS:
+                    if (status != 0) {
+                        /* Останов немедленно при ненулевом статусе */
+                        halt(status);
+                    } else {
+                        /* Совместимо со старым поведением:
+                         * запуск остальных финализаторов с последующим остановом
+                         */
+                        runMoreFinalizers = runFinalizersOnExit;
+                    }
+                    break;
             }
         }
         if (runMoreFinalizers) {
@@ -162,8 +162,8 @@ class Shutdown {
             halt(status);
         }
         synchronized (Shutdown.class) {
-            /* Synchronize on the class object, causing any other thread
-                 * that attempts to initiate shutdown to stall indefinitely
+            /* Синхронизация на объекте класса по причине того, что любой другой
+             * поток, который попытается начать завершение, навсегда стопорится
              */
             sequence();
             halt(status);
@@ -171,19 +171,19 @@ class Shutdown {
     }
 
 
-    /* Invoked by the JNI DestroyJavaVM procedure when the last non-daemon
-     * thread has finished.  Unlike the exit method, this method does not
-     * actually halt the VM.
+    /** Вызывается в процедуре JNI DestroyJavaVM, когда последний поток, не
+     * являющийся демоном, завершится. В отличие от метода {@code exit}, 
+     * этот метод на самом деле не останавливает VM.
      */
     static void shutdown() {
         synchronized (lock) {
             switch (state) {
-            case RUNNING:	/* Initiate shutdown */
-            state = HOOKS;
-            break;
-            case HOOKS:		/* Stall and then return */
-            case FINALIZERS:
-            break;
+                case RUNNING:   /* Начало завершения */
+                    state = HOOKS;
+                    break;
+                case HOOKS:     /* Стопор и последующий выход из функции */
+                case FINALIZERS:
+                    break;
             }
         }
         synchronized (Shutdown.class) {
