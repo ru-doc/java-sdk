@@ -1,8 +1,8 @@
 /*
  * @(#)Process.java	1.26 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
@@ -10,41 +10,41 @@ package java.lang;
 import java.io.*;
 
 /**
- * The {@link ProcessBuilder#start()} and
+ * Методы {@link ProcessBuilder#start()} и
  * {@link Runtime#exec(String[],String[],File) Runtime.exec}
- * methods create a native process and
- * return an instance of a subclass of <code>Process</code> that can
- * be used to control the process and obtain information about it.
- * The class <code>Process</code> provides methods for performing
- * input from the process, performing output to the process, waiting
- * for the process to complete, checking the exit status of the process,
- * and destroying (killing) the process.
+ * создают "родной" процесс и возвращают инстанцию подкласса
+ * {@code Process}, которая может использоваться для управления
+ * процессом и получения информации о нем.
+ * Класс {@code Process} предоставляет методы для выполнения ввода из
+ * процесса, выполнения вывода в процесс, ожидание завершения процесса,
+ * проверка кода выхода процесса и уничтожение (убивание) процесса.
  *
  * <p>
- * The methods that create processes may not work well for special
- * processes on certain native platforms, such as native windowing
- * processes, daemon processes, Win16/DOS processes on Microsoft Windows, or shell
- * scripts. The created subprocess does not have its own terminal or
- * console. All its standard io (i.e. stdin, stdout, stderr)  operations
- * will be redirected to the parent process through three streams
+ * Методы, которые создают процессы, могут не работать корректно для специальных
+ * процессов на определенных родных платформах, такие, как родные оконные
+ * процессы, процессы-демоны, Win16/DOS процессы на Microsoft Windows, или
+ * скрипты оболочки. Создаваемые подпроцессы не имеют своего собственного
+ * терминала или консоли. Все их стандартные операции ввода/вывода (т.е. 
+ * stdin, stdout, stderr) будут перенаправлены в родительский процесс, 
+ * через три потока:
  * ({@link #getOutputStream()},
  * {@link #getInputStream()},
  * {@link #getErrorStream()}).
- * The parent process uses these streams to feed input to and get output
- * from the subprocess. Because some native platforms only provide
- * limited buffer size for standard input and output streams, failure
- * to promptly write the input stream or read the output stream of
- * the subprocess may cause the subprocess to block, and even deadlock.
+ * Родительский процесс использует эти потоки для подачи ввода и получения 
+ * вывода из подпроцесса. Поскольку некоторые родные платформы предоставляют
+ * ограниченный буфер для стандартных потоков ввода и вывода, неспособность
+ * своевременно писать во входной поток или читать из выходного потока 
+ * подпроцесса может привести к блокировке подпроцесса и даже к взаимной 
+ * блокировке (deadlock-у).
+ *
+* <p>
+ * Подпроцессы не убиваются, когда больше не останется ссылок но объект
+ * {@code Process}, а будет, скорее всего продолжать выполняться асинхронно.
  *
  * <p>
- * The subprocess is not killed when there are no more references to 
- * the <code>Process</code> object, but rather the subprocess 
- * continues executing asynchronously.
- *
- * <p>
- * There is no requirement that a process represented by a <code>Process</code> 
- * object execute asynchronously or concurrently with respect to the Java 
- * process that owns the <code>Process</code> object.
+ * Нет никаких требований, что процесс, представляемый объектом {@code Process},
+ * должен выполняться асинхронно или параллельно относительно процесса Java,
+ * владеющего объектом {@code Process}.
  *
  * @author  unascribed
  * @version 1.26, 03/23/10
@@ -55,77 +55,77 @@ import java.io.*;
 public abstract class Process
 {
     /**
-     * Gets the output stream of the subprocess.
-     * Output to the stream is piped into the standard input stream of 
-     * the process represented by this <code>Process</code> object. 
+     * Получает выходной поток подпроцесса.
+     * Вывод в поток идет по каналу в стандартный поток ввода процесса,
+     * представляемого этим объектом {@code Process}.
      * <p>
-     * Implementation note: It is a good idea for the output stream to 
-     * be buffered.
+     * Замечание по реализации: хорошая идея для выходного потока быть 
+     * буферезированным.
      *
-     * @return  the output stream connected to the normal input of the
-     *          subprocess.
+     * @return  выходной поток, присоединенный к нормальному входному потоку
+     *          подпроцесса.
      */
     abstract public OutputStream getOutputStream();
 
     /**
-     * Gets the input stream of the subprocess.
-     * The stream obtains data piped from the standard output stream 
-     * of the process represented by this <code>Process</code> object. 
+     * Получает входной поток подпроцесса.
+     * Поток получает данные, передаваемые по каналу из стандартного потока
+     * вывода процесса, представляемого этим объектом {@code Process}.
      * <p>
-     * Implementation note: It is a good idea for the input stream to 
-     * be buffered.
+     * Замечание по реализации: хорошая идея для входного потока быть 
+     * буферезированным.
      *
-     * @return  the input stream connected to the normal output of the
-     *          subprocess.
+     * @return  входной поток, присоединенный к нормальному выходному потоку
+     *          подпроцесса.
      * @see ProcessBuilder#redirectErrorStream()
      */
     abstract public InputStream getInputStream();
 
     /**
-     * Gets the error stream of the subprocess.
-     * The stream obtains data piped from the error output stream of the 
-     * process represented by this <code>Process</code> object. 
+     * Получает поток ошибок подпроцесса.
+     * Поток получает данные, передаваемые по каналу из потока ошибок
+     * процесса, представляемого этим объектом {@code Process}.
      * <p>
-     * Implementation note: It is a good idea for the input stream to be 
-     * buffered.
+     * Замечание по реализации: хорошая идея для входного потока быть 
+     * буферезированным.
      *
-     * @return  the input stream connected to the error stream of the
-     *          subprocess.
+     * @return  входной поток, присоединенный к потоку ошибок
+     *          подпроцесса.
      * @see ProcessBuilder#redirectErrorStream()
      */
     abstract public InputStream getErrorStream();
 
     /**
-     * causes the current thread to wait, if necessary, until the 
-     * process represented by this <code>Process</code> object has 
-     * terminated. This method returns 
-     * immediately if the subprocess has already terminated. If the
-     * subprocess has not yet terminated, the calling thread will be
-     * blocked until the subprocess exits.
+     * Заставляет текущий поток ждать, если необходимо, пока процесс,
+     * представляемый этим объектом {@code Process}, не будет завершен.
+     * Этот метод возвращает управление сразу, если подпроцесс
+     * уже был завершен. Если подпроцесс еще не завершен,
+     * вызывающий поток будет блокирован до тех пор, пока подпроцесс
+     * не завершится.
      *
-     * @return     the exit value of the process. By convention, 
-     *             <code>0</code> indicates normal termination.
-     * @exception  InterruptedException  if the current thread is 
-     *             {@linkplain Thread#interrupt() interrupted} by another
-     *             thread while it is waiting, then the wait is ended and
-     *             an {@link InterruptedException} is thrown.
+     * @return     код возврата процесса. По соглашению, значение
+     *             {@code 0} говорит о нормальном завершении.
+     * @exception  InterruptedException  если текущий поток
+     *             {@linkplain Thread#interrupt() прерван} другим потоком,
+     *             пока он ожидал, то ожидание заканчивается и кидается
+     *             {@link InterruptedException}.
      */
     abstract public int waitFor() throws InterruptedException;
 
     /**
-     * Returns the exit value for the subprocess.
+     * Возвращает код возврата для подпроцесса.
      *
-     * @return  the exit value of the subprocess represented by this 
-     *          <code>Process</code> object. by convention, the value 
-     *          <code>0</code> indicates normal termination.
-     * @exception  IllegalThreadStateException  if the subprocess represented 
-     *             by this <code>Process</code> object has not yet terminated.
+     * @return  код возврата подпроцесса, представляемого этип объектом
+     *          {@code Process}. По соглашению, значение
+     *          {@code 0} говорит о нормальном завершении.
+     * @exception  IllegalThreadStateException  если подпроцесс, представляемый
+     *             этим объектом {@code Process}, еще не был завершен.
      */
     abstract public int exitValue();
 
     /**
-     * Kills the subprocess. The subprocess represented by this 
-     * <code>Process</code> object is forcibly terminated.
+     * Убивает подпроцесс. Подпроцесс, представляемый этим объектом
+     * {@code Process}, принудительно завершается.
      */
     abstract public void destroy();
 }

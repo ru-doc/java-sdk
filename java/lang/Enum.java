@@ -198,8 +198,8 @@ public abstract class Enum<E extends Enum<E>>
     }
 
     /**
-      * Предотвращает десериализацию по умолчанию.
-      */
+     * Предотвращает десериализацию по умолчанию.
+     */
     private void readObject(ObjectInputStream in) throws IOException,
         ClassNotFoundException {
         throw new InvalidObjectException("can't deserialize enum");

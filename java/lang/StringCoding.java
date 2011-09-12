@@ -77,7 +77,7 @@ class StringCoding {
 
     private static int scale(int len, float expansionFactor) {
         // Мы должны использовать арифметику двойной точности; в противном случае
-        // мы потеряем младшие биты, когда len больше чем 2**24.
+        // мы потеряем младшие биты, когда len больше, чем 2**24.
         return (int)(len * (double)expansionFactor);
     }
 

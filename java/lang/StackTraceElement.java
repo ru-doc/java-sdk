@@ -1,49 +1,49 @@
 /*
  * @(#)StackTraceElement.java	1.12 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 /**
- * An element in a stack trace, as returned by {@link
- * Throwable#getStackTrace()}.  Each element represents a single stack frame.
- * All stack frames except for the one at the top of the stack represent
- * a method invocation.  The frame at the top of the stack represents the 
- * execution point at which the stack trace was generated.  Typically,
- * this is the point at which the throwable corresponding to the stack trace
- * was created.
+ * Элемент в трассе стека, как возвращается {@link Throwable#getStackTrace()}.
+ * Каждый элемент представляет один кадр стека.
+ * Все кадры стека, исключая один на самом верху, представляют вызовы методов.
+ * Кадр на верху стека представляет точку исполнения, в которой была
+ * сгенерирован трасса стека. Как правило, эта точка, в которой был создан
+ * throwable, соответвующий трассе стека.
+ * 
  *
  * @since  1.4
  * @author Josh Bloch
  */
 public final class StackTraceElement implements java.io.Serializable {
-    // Normally initialized by VM (public constructor added in 1.5)
+    // Обычно инициализируется VM (публичный конструктор добавлен в 1.5)
     private String declaringClass;
     private String methodName;
     private String fileName;
     private int    lineNumber;
 
     /**
-     * Creates a stack trace element representing the specified execution
-     * point.
+     * Создает элемент трассы стека, представляющий указанную точку
+     * исполнения.
      *
-     * @param declaringClass the fully qualified name of the class containing
-     *        the execution point represented by the stack trace element
-     * @param methodName the name of the method containing the execution point
-     *        represented by the stack trace element
-     * @param fileName the name of the file containing the execution point
-     *         represented by the stack trace element, or <tt>null</tt> if
-     *         this information is unavailable
-     * @param lineNumber the line number of the source line containing the
-     *         execution point represented by this stack trace element, or
-     *         a negative number if this information is unavailable. A value
-     *         of -2 indicates that the method containing the execution point
-     *         is a native method
-     * @throws NullPointerException if <tt>declaringClass</tt> or
-     *         <tt>methodName</tt> is null
+     * @param declaringClass полностью квалифицированное имя класса, содержащего
+     *        точку исполнения, представляемую элементом трассы стека.
+     * @param methodName имя метода, содержащего точку исполнения, 
+     *        представляемую элементом трассы стека.
+     * @param fileName имя файла, содержащего точку исполнения, 
+     *         представляемую элементом трассы стека, или {@code null}, если
+     *         эта информация недоступна.
+     * @param lineNumber номер строки в исходном файле, содержащая точку
+     *         исполнения, представляемую элементом трассы стека или
+     *         отрицательное число, если эта информация недоступна. Значение
+     *         -2 означает, что метод содержит точку исполнеия в родном методе.
+     *
+     * @throws NullPointerException если <tt>declaringClass</tt> или
+     *         <tt>methodName</tt> есть {@code null}.
      * @since 1.5
      */
     public StackTraceElement(String declaringClass, String methodName,
@@ -60,96 +60,96 @@ public final class StackTraceElement implements java.io.Serializable {
     }
 
     /**
-     * Returns the name of the source file containing the execution point
-     * represented by this stack trace element.  Generally, this corresponds
-     * to the <tt>SourceFile</tt> attribute of the relevant <tt>class</tt>
-     * file (as per <i>The Java Virtual Machine Specification</i>, Section
-     * 4.7.7).  In some systems, the name may refer to some source code unit
-     * other than a file, such as an entry in source repository.
+     * Возвращает имя исходного файла, содержащего точку исполнения, представляемую
+     * этим элементом трассы стека. Обычно, оно соответствует атрибуту <tt>SourceFile</tt>
+     * соответствующего <tt>class</tt>-файла (как указано в <i>Спецификации виртуальной
+     * машины Java</i>, Раздел 4.7.7 (<i>The Java Virtual Machine Specification</i>,
+     * Section 4.7.8)). На некоторых системах, имя может ссылаться на некоторый модуль
+     * исходного кода, отличного от файла, например, на запись в репозитарии исходников.
      *
-     * @return the name of the file containing the execution point
-     *         represented by this stack trace element, or <tt>null</tt> if
-     *         this information is unavailable.
+     * @return имя файла, содержащего точку исполнения, представляемую
+     *         этим элементом трассы стека, или {@code null}, если эта
+     *         информация недоступна.
      */
     public String getFileName() {
         return fileName;
     }
 
     /**
-     * Returns the line number of the source line containing the execution
-     * point represented by this stack trace element.  Generally, this is
-     * derived from the <tt>LineNumberTable</tt> attribute of the relevant
-     * <tt>class</tt> file (as per <i>The Java Virtual Machine
-     * Specification</i>, Section 4.7.8).
+     * Возвращает номер строки исходного файла, содержащей точку исполнения,
+     * представляемую этим элементом трассы стека. Обычно, она получается из
+     * атрибута <tt>LineNumberTable</tt> соответсвующего <tt>class</tt>-файла
+     * (как указано в <i>Спецификации виртуальной машины Java</i>, Раздел 4.7.8
+     * (<i>The Java Virtual Machine Specification</i>, Section 4.7.8)).
      *
-     * @return the line number of the source line containing the execution
-     *         point represented by this stack trace element, or a negative
-     *         number if this information is unavailable.
+     * @return номер строки исходного файла, содержащей точку исполнения,
+     *         представляемую этим элементом трассы стека или отрицательное
+     *         число, если эта информация недоступна.
      */
     public int getLineNumber() {
         return lineNumber;
     }
 
     /**
-     * Returns the fully qualified name of the class containing the
-     * execution point represented by this stack trace element.
+     * Возвращает полностью квалифицированное имя класса, содержащего
+     * точку исполнения, представляемую этим элементом трассы стека.
      *
-     * @return the fully qualified name of the <tt>Class</tt> containing
-     *         the execution point represented by this stack trace element.
+     * @return полностью квалифицированное имя класса, содержащего
+     *         точку исполнения, представляемую этим элементом трассы стека.
      */
     public String getClassName() {
         return declaringClass;
     }
 
     /**
-     * Returns the name of the method containing the execution point
-     * represented by this stack trace element.  If the execution point is
-     * contained in an instance or class initializer, this method will return
-     * the appropriate <i>special method name</i>, <tt>&lt;init&gt;</tt> or
-     * <tt>&lt;clinit&gt;</tt>, as per Section 3.9 of <i>The Java Virtual
-     * Machine Specification</i>.
+     * Возвращает имя метода, содержащего точку исполнения, представляемую
+     * этим элементом трассы стека. Если точка исполнения содержится в 
+     * инициализаторе инстанции или класса, этот метод возвратит соответствующее
+     * <i>специальное имя метода</i>, <tt>&lt;init&gt;</tt> или <tt>&lt;clinit&gt;</tt>, 
+     * как указано в Разделе 3.9 <i>Спецификации виртуальной машины Java</i> 
+     * (Section 3.9 <i>The Java Virtual Machine Specification</i>).
      *
-     * @return the name of the method containing the execution point
-     *         represented by this stack trace element.
+     * @return имя метода, содержащего точку исполнения, представляемую
+     *         этим элементом трассы стека.
      */
     public String getMethodName() {
         return methodName;
     }
 
     /**
-     * Returns true if the method containing the execution point
-     * represented by this stack trace element is a native method.
+     * Возвращает {@code true}, если метод, содержащий точку исполнения,
+     * представляемую этим элементом трассы стека, является родным.
      *
-     * @return <tt>true</tt> if the method containing the execution point
-     *         represented by this stack trace element is a native method.
+     * @return {@code true} если метод, содержащий точку исполнения,
+     *         представленную этим элементом трассы стека, является родным.
      */
     public boolean isNativeMethod() {
         return lineNumber == -2;
     }
 
     /**
-     * Returns a string representation of this stack trace element.  The
-     * format of this string depends on the implementation, but the following
-     * examples may be regarded as typical:
+     * Возвращает строковое представление этого элемента трассы стека. Формат
+     * этой строки зависит от реализации, но следующие примеры могут быть
+     * расценены, как типичные:
      * <ul>
      * <li>
-     *   <tt>"MyClass.mash(MyClass.java:9)"</tt> - Here, <tt>"MyClass"</tt>
-     *   is the <i>fully-qualified name</i> of the class containing the
-     *   execution point represented by this stack trace element,
-     *   <tt>"mash"</tt> is the name of the method containing the execution
-     *   point, <tt>"MyClass.java"</tt> is the source file containing the
-     *   execution point, and <tt>"9"</tt> is the line number of the source
-     *   line containing the execution point.
+     *   <tt>"MyClass.mash(MyClass.java:9)"</tt> - Здесь, <tt>"MyClass"</tt>
+     *   это <i>полностью квалифицированное имя</i> класса, содержащего 
+     *   точку исполнения, представляемую этим элементом трассы стека,
+     *   <tt>"mash"</tt> это имя метода, содержащего точку исполнения,
+     *   <tt>"MyClass.java"</tt> это исходный файл, содержащий точку 
+     *   исполнения, и <tt>"9"</tt> это номер строки исходного файла,
+     *   содержащая точку исполнения.
      * <li>
-     *   <tt>"MyClass.mash(MyClass.java)"</tt> - As above, but the line
-     *   number is unavailable.
+     *   <tt>"MyClass.mash(MyClass.java)"</tt> - То же, что и выше, но
+     *   номер строки недоступен.
      * <li>
-     *   <tt>"MyClass.mash(Unknown Source)"</tt> - As above, but neither
-     *   the file name nor the line  number are available.
+     *   <tt>"MyClass.mash(Unknown Source)"</tt> - То же, что и выше, но 
+     *   ни имя файла, ни номер строки недоступны.
      * <li>
-     *   <tt>"MyClass.mash(Native Method)"</tt> - As above, but neither
-     *   the file name nor the line  number are available, and the method
-     *   containing the execution point is known to be a native method.
+     *   <tt>"MyClass.mash(Native Method)"</tt> - То же, что и выше, но ни
+     *   имя файла, ни номер строки недоступны, и метод содержит точку
+     *   исполнения, известную, как родной метод.
      * </ul>
      * @see    Throwable#printStackTrace()
      */
@@ -162,27 +162,27 @@ public final class StackTraceElement implements java.io.Serializable {
     }
 
     /**
-     * Returns true if the specified object is another
-     * <tt>StackTraceElement</tt> instance representing the same execution
-     * point as this instance.  Two stack trace elements <tt>a</tt> and
-     * <tt>b</tt> are equal if and only if:
+     * Возвращает {@code true}, если указанный объект является другой инстанцией
+     * {@code StackTraceElement}, представляющей ту же точку исполнения, что
+     * и эта инстанция. Два элемента трассы стека <tt>a</tt> и
+     * <tt>b</tt> равны тогда и только тогда, когда:
      * <pre>
      *     equals(a.getFileName(), b.getFileName()) &&
      *     a.getLineNumber() == b.getLineNumber()) &&
      *     equals(a.getClassName(), b.getClassName()) &&
      *     equals(a.getMethodName(), b.getMethodName())
      * </pre>
-     * where <tt>equals</tt> is defined as:
+     * где {@code equals} определена, как:
      * <pre>
      *     static boolean equals(Object a, Object b) {
      *         return a==b || (a != null && a.equals(b));
      *     }
      * </pre>
      * 
-     * @param  obj the object to be compared with this stack trace element.
-     * @return true if the specified object is another
-     *         <tt>StackTraceElement</tt> instance representing the same
-     *         execution point as this instance.
+     * @param  obj объект для сравнения с этим элементом трассы стека.
+     * @return {@code true}, если указанный объект является другой инстанцией
+     *         {@code StackTraceElement}, представляющей ту же точку исполнения,
+     *         что и эта инстанция.
      */
     public boolean equals(Object obj) {
         if (obj==this)
@@ -199,7 +199,7 @@ public final class StackTraceElement implements java.io.Serializable {
     }
 
     /**
-     * Returns a hash code value for this stack trace element.
+     * Возвращает значение хеш-кода для этого элемента трассы стека.
      */
     public int hashCode() {
         int result = 31*declaringClass.hashCode() + methodName.hashCode();
