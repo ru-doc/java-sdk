@@ -1,59 +1,59 @@
-// This file was generated AUTOMATICALLY from a template file Tue Jun 22 01:04:30 GMT-08:00 2010
+// Этот файл сгенерирован АВТОМАТИЧЕСКИ из файла шаблона Tue Jun 22 01:04:30 GMT-08:00 2010
 
 /* @(#)CharacterDataLatin1.java.template	1.8 10/04/01
  *
- * Copyright (c) 1994, 2002, Oracle and/or its affiliates. All rights reserved.
+ * Копирайт (c) 1994, 2002, Oracle и/или его филиалы. Все права защищены.
  *
- * This software is the proprietary information of Oracle.
- * Use is subject to license terms.
+ * Это программное обеспечение - проприетарная информация Oracle.
+ * Использовать в соответствии с лицензией.
  *
  */
 
 package java.lang;
 
-/** The CharacterData class encapsulates the large tables found in
+/** Класс CharacterData инкапсулирует большие таблицы, найденные в 
     Java.lang.Character. */
 
 class CharacterDataLatin1 {
 
-    /* The character properties are currently encoded into 32 bits in the following manner:
-        1 bit   mirrored property
-        4 bits  directionality property
-        9 bits  signed offset used for converting case
-        1 bit   if 1, adding the signed offset converts the character to lowercase
-        1 bit   if 1, subtracting the signed offset converts the character to uppercase
-        1 bit   if 1, this character has a titlecase equivalent (possibly itself)
-        3 bits  0  may not be part of an identifier
-                1  ignorable control; may continue a Unicode identifier or Java identifier
-                2  may continue a Java identifier but not a Unicode identifier (unused)
-                3  may continue a Unicode identifier or Java identifier
-                4  is a Java whitespace character
-                5  may start or continue a Java identifier;
-                   may continue but not start a Unicode identifier (underscores)
-                6  may start or continue a Java identifier but not a Unicode identifier ($)
-                7  may start or continue a Unicode identifier or Java identifier
-                Thus:
-                   5, 6, 7 may start a Java identifier
-                   1, 2, 3, 5, 6, 7 may continue a Java identifier
-                   7 may start a Unicode identifier
-                   1, 3, 5, 7 may continue a Unicode identifier
-                   1 is ignorable within an identifier
-                   4 is Java whitespace
-        2 bits  0  this character has no numeric property
-                1  adding the digit offset to the character code and then
-                   masking with 0x1F will produce the desired numeric value
-                2  this character has a "strange" numeric value
-                3  a Java supradecimal digit: adding the digit offset to the
-                   character code, then masking with 0x1F, then adding 10
-                   will produce the desired numeric value
-        5 bits  digit offset
-        5 bits  character type
+    /* Свойства символов в настоящее время закодированы в 32 битах в следующем порядке:
+        1 бит   свойство отражения (при смене направления письма символ можно отразить)
+        4 бита  свойство направления
+        9 битов смещение, используемое при изменении регистра
+        1 бит   если 1, добавление смещения преобразует символ в нижний регистр
+        1 бит   если 1, вычитание смещения преобразует символ в верхний регистр
+        1 бит   если 1, этот символ имеет titlecase эквивалент (возможно он сам)
+        3 бита  0  не может быть частью идентификатора
+                1  игнорируемый управляющий символ; может продолжить идентификатор Юникода или Java
+                2  может продолжить идентификатор Java, но не Юникода (не используется)
+                3  может продолжить идентификатор Юникода или Java
+                4  это пробельный символ Java
+                5  может начать или продолжить идентификатор Java;
+                   может продолжить но не начать идентификатор Юникода (подчеркивания)
+                6  может начать или продолжить идентификатор Java но не Юникода ($)
+                7  может начать или продолжить идентификатор Юникода или Java
+                Таким образом:
+                   5, 6, 7 может начать идентификатор Java
+                   1, 2, 3, 5, 6, 7 может продолжить идентификатор Java
+                   7 может начать идентификатор Юникода
+                   1, 3, 5, 7 может продолжить идентификатор Юникода
+                   1 игнорируется внутри идентификатора
+                   4 является пробельным символом Java
+        2 бита  0  этот символ не имеет числового свойства
+                1  добавление цифрового смещения к коду символа и последующее
+                   объединение с маской 0x1F даст требуемое числовое значение
+                2  этот символ имеет "странное" числовое значение
+                3  сверхчисло (supradecimal) Java: добавление цифрового смещения к
+                   коду символа, объединение с маской 0x1F и добавление 10
+                   даст требуемое числовое значение
+        5 бит   цифровое смещение
+        5 бит   тип символа
 
-        The encoding of character properties is subject to change at any time.
+        Кодирование свойств символов может измениться в любое время.
      */
 
     static int getProperties(int ch) {
-		char offset = (char)ch;
+        char offset = (char)ch;
         int props = A[offset];
         return props;
     }
@@ -144,7 +144,7 @@ class CharacterDataLatin1 {
         int val = getProperties(ch);
 
         if (((val & 0x00020000) != 0) && 
-                ((val & 0x07FC0000) != 0x07FC0000)) { 
+            ((val & 0x07FC0000) != 0x07FC0000)) {
             int offset = val << 5 >> (5+18);
             mapChar = ch + offset;
         }
@@ -179,7 +179,7 @@ class CharacterDataLatin1 {
                 value = ch + ((val & 0x3E0) >> 5) & 0x1F;
             }
             else if ((val & 0xC00) == 0x00000C00) {
-                // Java supradecimal digit
+                // сверхчисло (supradecimal) Java
                 value = (ch + ((val & 0x3E0) >> 5) & 0x1F) + 10;
             }
         }
@@ -191,17 +191,17 @@ class CharacterDataLatin1 {
         int retval = -1;
 
         switch (val & 0xC00) {
-            default: // cannot occur
-            case (0x00000000):         // not numeric
+            default: // не может возникнуть
+            case (0x00000000):          // не число
                 retval = -1;
                 break;
-            case (0x00000400):              // simple numeric
+            case (0x00000400):          // простое число
                 retval = ch + ((val & 0x3E0) >> 5) & 0x1F;
                 break;
-            case (0x00000800)      :       // "strange" numeric
-                 retval = -2; 
-                 break;
-            case (0x00000C00):           // Java supradecimal
+            case (0x00000800):          // "странное" число
+                retval = -2; 
+                break;
+            case (0x00000C00):          // сверхчисло (supradecimal) Java
                 retval = (ch + ((val & 0x3E0) >> 5) & 0x1F) + 10;
                 break;
         }
@@ -239,9 +239,9 @@ class CharacterDataLatin1 {
             }
             else {
                 switch(ch) {
-                    // map overflow characters
+                    // отображаем символы за границами
                     case 0x00B5 : mapChar = 0x039C; break;
-                    default       : mapChar = Character.ERROR; break;
+                    default     : mapChar = Character.ERROR; break;
                 }
             }
         }
@@ -259,12 +259,12 @@ class CharacterDataLatin1 {
     }
 
 
-    // The following tables and code generated using:
-  // java GenerateCharacter -template ../../tools/GenerateCharacter/CharacterDataLatin1.java.template -spec ../../tools/GenerateCharacter/UnicodeData.txt -specialcasing ../../tools/GenerateCharacter/SpecialCasing.txt -o C:/BUILD_~1/jdk6_21/control/build/WINDOW~1/gensrc/java/lang/CharacterDataLatin1.java -string -usecharforbyte -latin1 8
-  // The A table has 256 entries for a total of 1024 bytes.
+    // Следующие таблицы и код сгенерированы, используя:
+    // java GenerateCharacter -template ../../tools/GenerateCharacter/CharacterDataLatin1.java.template -spec ../../tools/GenerateCharacter/UnicodeData.txt -specialcasing ../../tools/GenerateCharacter/SpecialCasing.txt -o C:/BUILD_~1/jdk6_21/control/build/WINDOW~1/gensrc/java/lang/CharacterDataLatin1.java -string -usecharforbyte -latin1 8
+    // Таблица имеет 256 записей и занимает 1024 байт.
 
-  static final int A[] = new int[256];
-  static final String A_DATA =
+    static final int A[] = new int[256];
+    static final String A_DATA =
     "\u4800\u100F\u4800\u100F\u4800\u100F\u4800\u100F\u4800\u100F\u4800\u100F\u4800"+
     "\u100F\u4800\u100F\u4800\u100F\u5800\u400F\u5000\u400F\u5800\u400F\u6000\u400F"+
     "\u5000\u400F\u4800\u100F\u4800\u100F\u4800\u100F\u4800\u100F\u4800\u100F\u4800"+
@@ -303,10 +303,10 @@ class CharacterDataLatin1 {
     "\031\201\u7002\201\u7002\201\u7002\201\u7002\201\u7002\201\u7002\201\u7002"+
     "\u061D\u7002";
 
-  // In all, the character property tables require 1024 bytes.
+    // Итого, таблицы свойств символов требуют 1024 байт.
 
     static {
-                { // THIS CODE WAS AUTOMATICALLY CREATED BY GenerateCharacter:
+        { // ЭТОТ КОД СОЗДАН АВТОМАТИЧЕСКИ GenerateCharacter:
             char[] data = A_DATA.toCharArray();
             assert (data.length == (256 * 2));
             int i = 0, j = 0;
@@ -316,6 +316,6 @@ class CharacterDataLatin1 {
             }
         }
 
-    }        
+    }
 }
 

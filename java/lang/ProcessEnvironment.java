@@ -1,43 +1,43 @@
 /*
  * @(#)ProcessEnvironment.java	1.10 10/03/23
  *
- * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
-/* We use APIs that access a so-called Windows "Environment Block",
- * which looks like an array of jchars like this:
+/** Мы используем API, которое получает доступ к так называемому "Блоку окружения"
+ * Windows, который выглядит как массив из jchar вроде этого:
  *
  * FOO=BAR\u0000 ... GORP=QUUX\u0000\u0000
  *
- * This data structure has a number of peculiarities we must contend with:
- * (see: http://windowssdk.msdn.microsoft.com/en-us/library/ms682009.aspx)
- * - The NUL jchar separators, and a double NUL jchar terminator.
- *   It appears that the Windows implementation requires double NUL
- *   termination even if the environment is empty.  We should always
- *   generate environments with double NUL termination, while accepting
- *   empty environments consisting of a single NUL.
- * - on Windows9x, this is actually an array of 8-bit chars, not jchars,
- *   encoded in the system default encoding.
- * - The block must be sorted by Unicode value, case-insensitively,
- *   as if folded to upper case.
- * - There are magic environment variables maintained by Windows
- *   that start with a `=' (!) character.  These are used for
- *   Windows drive current directory (e.g. "=C:=C:\WINNT") or the
- *   exit code of the last command (e.g. "=ExitCode=0000001").
+ * У этой структуры данных есть много особенностей, которые пришлось учитывать:
+ * (см.: http://windowssdk.msdn.microsoft.com/ru-ru/library/ms682009.aspx)
+ * - Разделители в виде jchar NUL и два jchar NUL символа в конце.
+ *   Кажется, что реализация Windows требует двойного NUL окончания, даже
+ *   если окружение пустое. Мы должны всегда генерировать окружение с
+ *   двойным NUL завершением, при принятии пустых окружений,
+ *   содержащие один NUL.
+ * - на Windows9x, это на самом деле массив 8-битовых char-ов, а не jchar-ов,
+ *   закодированный в кодировке системы по умолчанию.
+ * - Блок должен быть отсортирован по значению Юникода, регистронезависимо,
+ *   как если бы все было в верхнем регистре.
+ * - Есть специальные переменные окружения, поддерживаемые Windows,
+ *   начинающиеся с символа `=' (!). Они используются для текущего каталога
+ *   диска Windows (т.е. "=C:=C:\WINNT") или кода выхода последней команды
+ *   (т.е. "=ExitCode=0000001").
  *
- * Since Java and non-9x Windows speak the same character set, and
- * even the same encoding, we don't have to deal with unreliable
- * conversion to byte streams.  Just add a few NUL terminators.
+ * Так как Java и не-9x Windows гаворят одним и тем же набором символов и
+ * даже одной и той же кодировкой, мы не имеем дела с ненадежным преобразованием
+ * потоков байт. Просто добавляем нескольно завершающих символов NUL.
  *
- * System.getenv(String) is case-insensitive, while System.getenv()
- * returns a map that is case-sensitive, which is consistent with
- * native Windows APIs.
+ * System.getenv(String) регистронезависимо, в то время, как System.getenv()
+ * возвращает карту, которая регистрозависима, что согласуется с родным
+ * API Windows.
  *
- * The non-private methods in this class are not for general use even
- * within this package.  Instead, they are the system-dependent parts
- * of the system-independent method of the same name.  Don't even
- * think of using this class unless your method's name appears below.
+ * Неприватные методы в этом классе не для общего использования даже
+ * внутри этого пакета. Вместо этого они - системно-зависимые части
+ * системно-независиморго метода с таким же именем. Даже не думайте
+ * использовать этот класс, если имя требуемого метода появится ниже.
  *
  * @author Martin Buchholz
  * @version 1.10, 10/03/23
@@ -52,159 +52,159 @@ import java.util.*;
 final class ProcessEnvironment extends HashMap<String,String>
 {
     private static String validateName(String name) {
-	// An initial `=' indicates a magic Windows variable name -- OK
-	if (name.indexOf('=', 1)   != -1 ||
-	    name.indexOf('\u0000') != -1)
-	    throw new IllegalArgumentException
-		("Invalid environment variable name: \"" + name + "\"");
-	return name;
+        // Начальный символ `=' указывает на специальное имя переменной Windows -- OK
+        if (name.indexOf('=', 1)   != -1 ||
+            name.indexOf('\u0000') != -1)
+            throw new IllegalArgumentException
+				("Invalid environment variable name: \"" + name + "\"");
+        return name;
     }
 
     private static String validateValue(String value) {
-	if (value.indexOf('\u0000') != -1)
-	    throw new IllegalArgumentException
-		("Invalid environment variable value: \"" + value + "\"");
-	return value;
+        if (value.indexOf('\u0000') != -1)
+            throw new IllegalArgumentException
+				("Invalid environment variable value: \"" + value + "\"");
+        return value;
     }
 
     private static String nonNullString(Object o) {
-	if (o == null)
-	    throw new NullPointerException();
-	return (String) o;
+        if (o == null)
+            throw new NullPointerException();
+        return (String) o;
     }
 
     public String put(String key, String value) {
-	return super.put(validateName(key), validateValue(value));
+        return super.put(validateName(key), validateValue(value));
     }
 
     public String get(Object key) {
-	return super.get(nonNullString(key));
+        return super.get(nonNullString(key));
     }
 
     public boolean containsKey(Object key) {
-	return super.containsKey(nonNullString(key));
+        return super.containsKey(nonNullString(key));
     }
 
     public boolean containsValue(Object value) {
-	return super.containsValue(nonNullString(value));
+        return super.containsValue(nonNullString(value));
     }
 
     public String remove(Object key) {
-	return super.remove(nonNullString(key));
+        return super.remove(nonNullString(key));
     }
 
     private static class CheckedEntry
-	implements Map.Entry<String,String>
+        implements Map.Entry<String,String>
     {
-	private final Map.Entry<String,String> e;
-	public CheckedEntry(Map.Entry<String,String> e) {this.e = e;}
-	public String getKey()   { return e.getKey();}
-	public String getValue() { return e.getValue();}
-	public String setValue(String value) {
-	    return e.setValue(validateValue(value));
-	}
-	public String toString() { return getKey() + "=" + getValue();}
-	public boolean equals(Object o) {return e.equals(o);}
-	public int hashCode()    {return e.hashCode();}
+        private final Map.Entry<String,String> e;
+        public CheckedEntry(Map.Entry<String,String> e) {this.e = e;}
+        public String getKey()   { return e.getKey();}
+        public String getValue() { return e.getValue();}
+        public String setValue(String value) {
+            return e.setValue(validateValue(value));
+        }
+        public String toString() { return getKey() + "=" + getValue();}
+        public boolean equals(Object o) {return e.equals(o);}
+        public int hashCode()    {return e.hashCode();}
     }
 
     private static class CheckedEntrySet
-	extends AbstractSet<Map.Entry<String,String>>
+        extends AbstractSet<Map.Entry<String,String>>
     {
-	private final Set<Map.Entry<String,String>> s;
-	public CheckedEntrySet(Set<Map.Entry<String,String>> s) {this.s = s;}
-	public int size()        {return s.size();}
-	public boolean isEmpty() {return s.isEmpty();}
-	public void clear()      {       s.clear();}
-	public Iterator<Map.Entry<String,String>> iterator() {
-	    return new Iterator<Map.Entry<String,String>>() {
-		Iterator<Map.Entry<String,String>> i = s.iterator();
-		public boolean hasNext() { return i.hasNext();}
-		public Map.Entry<String,String> next() {
-		    return new CheckedEntry(i.next());
-		}
-		public void remove() { i.remove();}
-	    };
-	}
-	private static Map.Entry<String,String> checkedEntry (Object o) {
-	    Map.Entry<String,String> e = (Map.Entry<String,String>) o;
-	    nonNullString(e.getKey());
-	    nonNullString(e.getValue());
-	    return e;
-	}
-	public boolean contains(Object o) {return s.contains(checkedEntry(o));}
-	public boolean remove(Object o)   {return s.remove(checkedEntry(o));}
+        private final Set<Map.Entry<String,String>> s;
+        public CheckedEntrySet(Set<Map.Entry<String,String>> s) {this.s = s;}
+        public int size()        {return s.size();}
+        public boolean isEmpty() {return s.isEmpty();}
+        public void clear()      {       s.clear();}
+        public Iterator<Map.Entry<String,String>> iterator() {
+            return new Iterator<Map.Entry<String,String>>() {
+                Iterator<Map.Entry<String,String>> i = s.iterator();
+                public boolean hasNext() { return i.hasNext();}
+                public Map.Entry<String,String> next() {
+                    return new CheckedEntry(i.next());
+                }
+                public void remove() { i.remove();}
+            };
+        }
+        private static Map.Entry<String,String> checkedEntry (Object o) {
+            Map.Entry<String,String> e = (Map.Entry<String,String>) o;
+            nonNullString(e.getKey());
+            nonNullString(e.getValue());
+            return e;
+        }
+        public boolean contains(Object o) {return s.contains(checkedEntry(o));}
+        public boolean remove(Object o)   {return s.remove(checkedEntry(o));}
     }
 
     private static class CheckedValues extends AbstractCollection<String> {
-	private final Collection<String> c;
-	public CheckedValues(Collection<String> c) {this.c = c;}
-	public int size()                  {return c.size();}
-	public boolean isEmpty()           {return c.isEmpty();}
-	public void clear()                {       c.clear();}
-	public Iterator<String> iterator() {return c.iterator();}
-	public boolean contains(Object o)  {return c.contains(nonNullString(o));}
-	public boolean remove(Object o)    {return c.remove(nonNullString(o));}
+        private final Collection<String> c;
+        public CheckedValues(Collection<String> c) {this.c = c;}
+        public int size()                  {return c.size();}
+        public boolean isEmpty()           {return c.isEmpty();}
+        public void clear()                {       c.clear();}
+        public Iterator<String> iterator() {return c.iterator();}
+        public boolean contains(Object o)  {return c.contains(nonNullString(o));}
+        public boolean remove(Object o)    {return c.remove(nonNullString(o));}
     }
 
     private static class CheckedKeySet extends AbstractSet<String> {
-	private final Set<String> s;
-	public CheckedKeySet(Set<String> s) {this.s = s;}
-	public int size()                  {return s.size();}
-	public boolean isEmpty()           {return s.isEmpty();}
-	public void clear()                {       s.clear();}
-	public Iterator<String> iterator() {return s.iterator();}
-	public boolean contains(Object o)  {return s.contains(nonNullString(o));}
-	public boolean remove(Object o)    {return s.remove(nonNullString(o));}
+        private final Set<String> s;
+        public CheckedKeySet(Set<String> s) {this.s = s;}
+        public int size()                  {return s.size();}
+        public boolean isEmpty()           {return s.isEmpty();}
+        public void clear()                {       s.clear();}
+        public Iterator<String> iterator() {return s.iterator();}
+        public boolean contains(Object o)  {return s.contains(nonNullString(o));}
+        public boolean remove(Object o)    {return s.remove(nonNullString(o));}
     }
 
     public Set<String> keySet() {
-	return new CheckedKeySet(super.keySet());
+        return new CheckedKeySet(super.keySet());
     }
 
     public Collection<String> values() {
-	return new CheckedValues(super.values());
+        return new CheckedValues(super.values());
     }
 
     public Set<Map.Entry<String,String>> entrySet() {
-	return new CheckedEntrySet(super.entrySet());
+        return new CheckedEntrySet(super.entrySet());
     }
 
 
     private static final class NameComparator
-	implements Comparator<String> {
-	public int compare(String s1, String s2) {
-	    // We can't use String.compareToIgnoreCase since it
-	    // canonicalizes to lower case, while Windows
-	    // canonicalizes to upper case!  For example, "_" should
-	    // sort *after* "Z", not before.
-	    int n1 = s1.length();
-	    int n2 = s2.length();
-	    int min = Math.min(n1, n2);
-	    for (int i = 0; i < min; i++) {
-		char c1 = s1.charAt(i);
-		char c2 = s2.charAt(i);
-		if (c1 != c2) {
-		    c1 = Character.toUpperCase(c1);
-		    c2 = Character.toUpperCase(c2);
-		    if (c1 != c2)
-			// No overflow because of numeric promotion
-			return c1 - c2;
-		}
-	    }
-	    return n1 - n2;
-	}
+        implements Comparator<String> {
+        public int compare(String s1, String s2) {
+            // Мы не можем использовать String.compareToIgnoreCase так как
+            // она канонизирует к нижнему регистру, в то время как Windows
+            // канонизирует к верхнему!  Например, "_" должно при сортировке 
+            // располагаться *после* "Z", а не до.
+            int n1 = s1.length();
+            int n2 = s2.length();
+            int min = Math.min(n1, n2);
+            for (int i = 0; i < min; i++) {
+                char c1 = s1.charAt(i);
+                char c2 = s2.charAt(i);
+                if (c1 != c2) {
+                    c1 = Character.toUpperCase(c1);
+                    c2 = Character.toUpperCase(c2);
+                    if (c1 != c2)
+						// Переполнения не будет из-за расширения числа
+						return c1 - c2;
+                }
+            }
+            return n1 - n2;
+        }
     }
 
     private static final class EntryComparator
-	implements Comparator<Map.Entry<String,String>> {
-	public int compare(Map.Entry<String,String> e1,
-			   Map.Entry<String,String> e2) {
-	    return nameComparator.compare(e1.getKey(), e2.getKey());
-	}
+        implements Comparator<Map.Entry<String,String>> {
+        public int compare(Map.Entry<String,String> e1,
+                   Map.Entry<String,String> e2) {
+            return nameComparator.compare(e1.getKey(), e2.getKey());
+        }
     }
 
-    // Allow `=' as first char in name, e.g. =C:=C:\DIR
+    // Позволяет `=' как первый символ в имени, т.е. =C:=C:\DIR
     static final int MIN_NAME_LENGTH = 1;
 
     private static final NameComparator nameComparator;
@@ -214,91 +214,91 @@ final class ProcessEnvironment extends HashMap<String,String>
     private static final Map<String,String> theCaseInsensitiveEnvironment;
 
     static {
-	nameComparator  = new NameComparator();
-	entryComparator = new EntryComparator();
-	theEnvironment  = new ProcessEnvironment();
-	theUnmodifiableEnvironment
-	    = Collections.unmodifiableMap(theEnvironment);
+        nameComparator  = new NameComparator();
+        entryComparator = new EntryComparator();
+        theEnvironment  = new ProcessEnvironment();
+        theUnmodifiableEnvironment
+            = Collections.unmodifiableMap(theEnvironment);
 
-	String envblock = environmentBlock();
-	int beg, end, eql;
-	for (beg = 0;
-	     ((end = envblock.indexOf('\u0000', beg  )) != -1 &&
-	      // An initial `=' indicates a magic Windows variable name -- OK
-	      (eql = envblock.indexOf('='     , beg+1)) != -1);
-	     beg = end + 1) {
-	    // Ignore corrupted environment strings.
-	    if (eql < end)
-		theEnvironment.put(envblock.substring(beg, eql),
-				   envblock.substring(eql+1,end));
-	}
+        String envblock = environmentBlock();
+        int beg, end, eql;
+        for (beg = 0;
+             ((end = envblock.indexOf('\u0000', beg  )) != -1 &&
+              // Начальный символ `=' указывает на специальное имя переменной Windows -- OK
+              (eql = envblock.indexOf('='     , beg+1)) != -1);
+             beg = end + 1) {
+            // Игнорируем неверные строки окружения.
+            if (eql < end)
+				theEnvironment.put(envblock.substring(beg, eql),
+						   envblock.substring(eql+1,end));
+        }
 
-	theCaseInsensitiveEnvironment
-	    = new TreeMap<String,String>(nameComparator);
-	theCaseInsensitiveEnvironment.putAll(theEnvironment);
+        theCaseInsensitiveEnvironment
+            = new TreeMap<String,String>(nameComparator);
+        theCaseInsensitiveEnvironment.putAll(theEnvironment);
     }
 
     private ProcessEnvironment() {
-	super();
+        super();
     }
 
     private ProcessEnvironment(int capacity) {
-	super(capacity);
+        super(capacity);
     }
 
-    // Only for use by System.getenv(String)
+    // Только для использования System.getenv(String)
     static String getenv(String name) {
-	// The original implementation used a native call to _wgetenv,
-	// but it turns out that _wgetenv is only consistent with
-	// GetEnvironmentStringsW (for non-ASCII) if `wmain' is used
-	// instead of `main', even in a process created using
-	// CREATE_UNICODE_ENVIRONMENT.  Instead we perform the
-	// case-insensitive comparison ourselves.  At least this
-	// guarantees that System.getenv().get(String) will be
-	// consistent with System.getenv(String).
-	return theCaseInsensitiveEnvironment.get(name);
+        // Оригинальная реализация использует родной вызов _wgetenv,
+        // но оказалось, что _wgetenv непротиворечива только с
+        // GetEnvironmentStringsW (для не-ASCII), если вместо `main' 
+        // используется `wmain', даже если процесс создан с использованием 
+        // CREATE_UNICODE_ENVIRONMENT. Вместо этого мы выполняем 
+        // регистронезависимое сравнение самостоятельно. По крайней мере,
+        // это гарантирует, что System.getenv().get(String) будет 
+        // соответсвовать System.getenv(String).
+        return theCaseInsensitiveEnvironment.get(name);
     }
 
-    // Only for use by System.getenv()
+    // Только для использования System.getenv()
     static Map<String,String> getenv() {
-	return theUnmodifiableEnvironment;
+        return theUnmodifiableEnvironment;
     }
 
-    // Only for use by ProcessBuilder.environment()
+    // Только для использования ProcessBuilder.environment()
     static Map<String,String> environment() {
-	return (Map<String,String>) theEnvironment.clone();
+        return (Map<String,String>) theEnvironment.clone();
     }
 
-    // Only for use by Runtime.exec(...String[]envp...)
+    // Только для использования Runtime.exec(...String[]envp...)
     static Map<String,String> emptyEnvironment(int capacity) {
-	return new ProcessEnvironment(capacity);
+        return new ProcessEnvironment(capacity);
     }
 
     private static native String environmentBlock();
 
-    // Only for use by ProcessImpl.start()
+    // Только для использования ProcessImpl.start()
     String toEnvironmentBlock() {
-	// Sort Unicode-case-insensitively by name
-	List<Map.Entry<String,String>> list
-	    = new ArrayList<Map.Entry<String,String>>(entrySet());
-	Collections.sort(list, entryComparator);
+        // Сортируем Юникодовые строки регистронезависимо по имени
+        List<Map.Entry<String,String>> list
+            = new ArrayList<Map.Entry<String,String>>(entrySet());
+        Collections.sort(list, entryComparator);
 
-	StringBuilder sb = new StringBuilder(size()*30);
-	for (Map.Entry<String,String> e : list)
-	    sb.append(e.getKey())
-	      .append('=')
-	      .append(e.getValue())
-	      .append('\u0000');
-	// Ensure double NUL termination,
-	// even if environment is empty.
-	if (sb.length() == 0)
-	    sb.append('\u0000');
-	sb.append('\u0000');
-	return sb.toString();
+        StringBuilder sb = new StringBuilder(size()*30);
+        for (Map.Entry<String,String> e : list)
+            sb.append(e.getKey())
+              .append('=')
+              .append(e.getValue())
+              .append('\u0000');
+        // Гарантируем двойной NUL в конце,
+        // даже если окружение пустое.
+        if (sb.length() == 0)
+            sb.append('\u0000');
+        sb.append('\u0000');
+        return sb.toString();
     }
 
     static String toEnvironmentBlock(Map<String,String> map) {
-	return map == null ? null :
-	    ((ProcessEnvironment)map).toEnvironmentBlock();
+        return map == null ? null :
+            ((ProcessEnvironment)map).toEnvironmentBlock();
     }
 }
