@@ -1,106 +1,106 @@
 /*
  * @(#)StringBuilder.java	1.12 10/03/23
  *
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Копирайт (c) 2006, Oracle и/или его филиалы. Все права защищены.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Использовать в соответствии с лицензией.
  */
 
 package java.lang;
 
 
 /**
- * A mutable sequence of characters.  This class provides an API compatible
- * with <code>StringBuffer</code>, but with no guarantee of synchronization.
- * This class is designed for use as a drop-in replacement for
- * <code>StringBuffer</code> in places where the string buffer was being
- * used by a single thread (as is generally the case).   Where possible,
- * it is recommended that this class be used in preference to
- * <code>StringBuffer</code> as it will be faster under most implementations.
+ * Изменяемая последовательность символов. Этот класс предоставляет API,
+ * совместимое с {@code StringBuffer}, но без гарантий синхронизации.
+ * Этот класс разработан для использования вместо {@code StringBuffer}
+ * простой заменой, в местах, где строковый буфер будет использоваться
+ * одним потоком (как обычно и бывает). Рекомендуется использовать этот
+ * класс где только возможно, вместо {@code StringBuffer}, так как он
+ * будет быстрее на большинстве реализаций.
  * 
- * <p>The principal operations on a <code>StringBuilder</code> are the 
- * <code>append</code> and <code>insert</code> methods, which are 
- * overloaded so as to accept data of any type. Each effectively 
- * converts a given datum to a string and then appends or inserts the 
- * characters of that string to the string builder. The 
- * <code>append</code> method always adds these characters at the end 
- * of the builder; the <code>insert</code> method adds the characters at 
- * a specified point. 
+ * <p>Основыне операции над {@code StringBuilder}-ом это методы
+ * {@code append} и {@code insert}, которые перегружены для принятия
+ * данных любого типа. Каждый эффективно преобразует полученную величину
+ * в строку и добавляет или вставляет символы этой строки в построитель
+ * строк. Метод {@code append} всегда добавляет эти символы в конец построителя
+ * строк; метод {@code insert} добавляет символы, начиная с указанной точки.
+ * 
+ * 
  * <p>
- * For example, if <code>z</code> refers to a string builder object 
- * whose current contents are "<code>start</code>", then 
- * the method call <code>z.append("le")</code> would cause the string 
- * builder to contain "<code>startle</code>", whereas 
- * <code>z.insert(4, "le")</code> would alter the string builder to 
- * contain "<code>starlet</code>". 
+ * Например, если {@code z} ссылается на объект построителя строк, чье
+ * текущее содержимое равно "{@code start}", то вызов метода
+ * {@code z.append("le")} привел бы к тому, что построитель строк
+ * содержал бы "{@code startle}", тогда как
+ * {@code z.insert(4, "le")} привело бы содержание строкового построителя
+ * к "{@code starlet}". 
  * <p>
- * In general, if sb refers to an instance of a <code>StringBuilder</code>, 
- * then <code>sb.append(x)</code> has the same effect as 
- * <code>sb.insert(sb.length(),&nbsp;x)</code>.
+ * В общем, если {@code sb} ссылается на инстанцию {@code StringBuilder}, 
+ * то {@code sb.append(x)} имеет тот же эффект, что и
+ * {@code sb.insert(sb.length(),&nbsp;x)}.
  *
- * Every string builder has a capacity. As long as the length of the 
- * character sequence contained in the string builder does not exceed 
- * the capacity, it is not necessary to allocate a new internal 
- * buffer. If the internal buffer overflows, it is automatically made larger.
+ * Каждый строковый построитель имеет вместимость. Пока длина
+ * последовательности символов, содержащаяся в построителе строк, не
+ * превышает вместимости, нет необходимости выделять новый внутренний
+ * буфер. Если внутренний буфер переполняется, он автоматически увеличивается.
  *
- * <p>Instances of <code>StringBuilder</code> are not safe for
- * use by multiple threads. If such synchronization is required then it is
- * recommended that {@link java.lang.StringBuffer} be used. 
+ * <p>Инстанции {@code StringBuilder} небезопасны для использования
+ * несколькими потоками. Если требуется такая синхронизация, то рекомендуется
+ * использовать класс {@link java.lang.StringBuffer}.
  *
- * @author	Michael McCloskey
- * @version 	1.12, 03/23/10
+ * @author      Michael McCloskey
+ * @version     1.12, 03/23/10
  * @see         java.lang.StringBuffer
  * @see         java.lang.String
- * @since	1.5
+ * @since       1.5
  */
 public final class StringBuilder
     extends AbstractStringBuilder
     implements java.io.Serializable, CharSequence
 {
 
-    /** use serialVersionUID for interoperability */
+    /** Используем serialVersionUID для функциональной совместимости. */
     static final long serialVersionUID = 4383685877147921099L;
 
     /**
-     * Constructs a string builder with no characters in it and an 
-     * initial capacity of 16 characters. 
+     * Конструирует построитель строк без содержимого и начальной
+     * вместимостью в 16 символов. 
      */
     public StringBuilder() {
-	super(16);
+        super(16);
     }
 
     /**
-     * Constructs a string builder with no characters in it and an 
-     * initial capacity specified by the <code>capacity</code> argument. 
+     * Конструирует построитель строк без содержимого и начальной
+     * вместимостью, указанной в аргументе {@code capacity}.
      *
-     * @param      capacity  the initial capacity.
-     * @throws     NegativeArraySizeException  if the <code>capacity</code>
-     *               argument is less than <code>0</code>.
+     * @param      capacity  начальная вместимость.
+     * @throws     NegativeArraySizeException  если аргумент {@code capacity}
+     *             меньше, чем {@code 0}.
      */
     public StringBuilder(int capacity) {
-	super(capacity);
+        super(capacity);
     }
 
     /**
-     * Constructs a string builder initialized to the contents of the 
-     * specified string. The initial capacity of the string builder is 
-     * <code>16</code> plus the length of the string argument.  
+     * Конструирует построитель строк, инициализированный содержимым
+     * указанной строки. Начальная вместимость построителя строки будет
+     * {@code 16} плюс длина строки.
      *
-     * @param   str   the initial contents of the buffer.
-     * @throws    NullPointerException if <code>str</code> is <code>null</code>
+     * @param     str   начальное содержимое буфера.
+     * @throws    NullPointerException если {@code str} есть {@code null}.
      */
     public StringBuilder(String str) {
-	super(str.length() + 16);
-	append(str);
+        super(str.length() + 16);
+        append(str);
     }
 
     /**
-     * Constructs a string builder that contains the same characters
-     * as the specified <code>CharSequence</code>. The initial capacity of
-     * the string builder is <code>16</code> plus the length of the
-     * <code>CharSequence</code> argument.
+     * Конструирует построитель строк, содержащий те же символы, что и
+     * указанный {@code CharSequence}. Начальная вместимость построителя 
+     * строк будет равна {@code 16} плюс длина аргумента
+     * {@code CharSequence}.
      *
-     * @param      seq   the sequence to copy.
-     * @throws    NullPointerException if <code>seq</code> is <code>null</code>
+     * @param     seq   последовательность для копирования.
+     * @throws    NullPointerException если {@code seq} есть {@code null}.
      */
     public StringBuilder(CharSequence seq) {
         this(seq.length() + 16);
@@ -112,45 +112,45 @@ public final class StringBuilder
      * @see     #append(java.lang.String)
      */
     public StringBuilder append(Object obj) {
-	return append(String.valueOf(obj));
+        return append(String.valueOf(obj));
     }
 
     public StringBuilder append(String str) {
-	super.append(str);
+        super.append(str);
         return this;
     }
 
-    // Appends the specified string builder to this sequence.
+    /** Добавляет указанный построитель строк к этой последовательности. */
     private StringBuilder append(StringBuilder sb) {
-	if (sb == null)
+        if (sb == null)
             return append("null");
-	int len = sb.length();
-	int newcount = count + len;
-	if (newcount > value.length)
-	    expandCapacity(newcount);
-	sb.getChars(0, len, value, count);
-	count = newcount;
+        int len = sb.length();
+        int newcount = count + len;
+        if (newcount > value.length)
+            expandCapacity(newcount);
+        sb.getChars(0, len, value, count);
+        count = newcount;
         return this;
     }
 
     /**
-     * Appends the specified <tt>StringBuffer</tt> to this sequence.
+     * Добавляет указанный <tt>StringBuffer</tt> к этой последовательности.
      * <p>
-     * The characters of the <tt>StringBuffer</tt> argument are appended, 
-     * in order, to this sequence, increasing the 
-     * length of this sequence by the length of the argument. 
-     * If <tt>sb</tt> is <tt>null</tt>, then the four characters 
-     * <tt>"null"</tt> are appended to this sequence.
+     * Символы агрумента <tt>StringBuffer</tt> присоединяются к этой 
+     * последовательности, увеличивая длину этой последовательности
+     * на длину агрумента.
+     * Если <tt>sb</tt> есть <tt>null</tt>, то к последовательности будут
+     * добавлены четыре символа <tt>"null"</tt>.
      * <p>
-     * Let <i>n</i> be the length of this character sequence just prior to 
-     * execution of the <tt>append</tt> method. Then the character at index 
-     * <i>k</i> in the new character sequence is equal to the character at 
-     * index <i>k</i> in the old character sequence, if <i>k</i> is less than 
-     * <i>n</i>; otherwise, it is equal to the character at index <i>k-n</i> 
-     * in the argument <code>sb</code>.
+     * Пусть <i>n</i> это длина этой последовательности символов непосредственно
+     * до выполнения метода <tt>append</tt>. Тогда символ по индексу <i>k</i>
+     * в новой последовательности символов равен символу по индексу <i>k</i>
+     * в старой последовательности символов, если <i>k</i> меньше чем
+     * <i>n</i>; иначе, он равен символу по индексу <i>k-n</i> 
+     * в аргументе {@code sb}.
      *
-     * @param   sb   the <tt>StringBuffer</tt> to append.
-     * @return  a reference to this object.
+     * @param   sb   <tt>StringBuffer</tt> для присоединения.
+     * @return  ссылка на этот же объект.
      */
     public StringBuilder append(StringBuffer sb) {
         super.append(sb);
@@ -181,7 +181,7 @@ public final class StringBuilder
     }
 
     public StringBuilder append(char str[]) { 
-	super.append(str);
+        super.append(str);
         return this;
     }
 
@@ -209,7 +209,7 @@ public final class StringBuilder
      * @see     #append(java.lang.String)
      */
     public StringBuilder append(int i) {
-	super.append(i);
+        super.append(i);
         return this;
     }
 
@@ -227,7 +227,7 @@ public final class StringBuilder
      * @see     #append(java.lang.String)
      */
     public StringBuilder append(float f) {
-	super.append(f);
+        super.append(f);
         return this;
     }
 
@@ -236,7 +236,7 @@ public final class StringBuilder
      * @see     #append(java.lang.String)
      */
     public StringBuilder append(double d) {
-	super.append(d);
+        super.append(d);
         return this;
     }
 
@@ -244,15 +244,15 @@ public final class StringBuilder
      * @since 1.5
      */
     public StringBuilder appendCodePoint(int codePoint) {
-	super.appendCodePoint(codePoint);
-	return this;
+        super.appendCodePoint(codePoint);
+        return this;
     }
 
     /**
      * @throws StringIndexOutOfBoundsException {@inheritDoc}
      */
     public StringBuilder delete(int start, int end) {
-	super.delete(start, end);
+        super.delete(start, end);
         return this;
     }
 
@@ -279,7 +279,7 @@ public final class StringBuilder
                                 int len) 
     {
         super.insert(index, str, offset, len);
-	return this;
+        return this;
     }
 
     /**
@@ -289,7 +289,7 @@ public final class StringBuilder
      * @see        #length()
      */
     public StringBuilder insert(int offset, Object obj) {
-	return insert(offset, String.valueOf(obj));
+        return insert(offset, String.valueOf(obj));
     }
 
     /**
@@ -297,7 +297,7 @@ public final class StringBuilder
      * @see        #length()
      */
     public StringBuilder insert(int offset, String str) {
-	super.insert(offset, str);
+        super.insert(offset, str);
         return this;
     }
 
@@ -305,7 +305,7 @@ public final class StringBuilder
      * @throws StringIndexOutOfBoundsException {@inheritDoc}
      */
     public StringBuilder insert(int offset, char str[]) {
-	super.insert(offset, str);
+        super.insert(offset, str);
         return this;
     }
 
@@ -324,7 +324,7 @@ public final class StringBuilder
      * @throws IndexOutOfBoundsException {@inheritDoc}
      */
     public StringBuilder insert(int dstOffset, CharSequence s,
-				int start, int end)
+                int start, int end)
     {
         super.insert(dstOffset, s, start, end);
         return this;
@@ -337,7 +337,7 @@ public final class StringBuilder
      * @see        #length()
      */
     public StringBuilder insert(int offset, boolean b) {
-	super.insert(offset, b);
+        super.insert(offset, b);
         return this;
     }
 
@@ -347,7 +347,7 @@ public final class StringBuilder
      */
     public StringBuilder insert(int offset, char c) {
         super.insert(offset, c);
-	return this;
+        return this;
     }
 
     /**
@@ -357,7 +357,7 @@ public final class StringBuilder
      * @see        #length()
      */
     public StringBuilder insert(int offset, int i) {
-	return insert(offset, String.valueOf(i));
+        return insert(offset, String.valueOf(i));
     }
 
     /**
@@ -367,7 +367,7 @@ public final class StringBuilder
      * @see        #length()
      */
     public StringBuilder insert(int offset, long l) {
-	return insert(offset, String.valueOf(l));
+        return insert(offset, String.valueOf(l));
     }
 
     /**
@@ -377,7 +377,7 @@ public final class StringBuilder
      * @see        #length()
      */
     public StringBuilder insert(int offset, float f) {
-	return insert(offset, String.valueOf(f));
+        return insert(offset, String.valueOf(f));
     }
 
     /**
@@ -387,14 +387,14 @@ public final class StringBuilder
      * @see        #length()
      */
     public StringBuilder insert(int offset, double d) {
-	return insert(offset, String.valueOf(d));
+        return insert(offset, String.valueOf(d));
     }
 
     /**
      * @throws NullPointerException {@inheritDoc}
      */
     public int indexOf(String str) {
-	return indexOf(str, 0);
+        return indexOf(str, 0);
     }
 
     /**
@@ -421,25 +421,25 @@ public final class StringBuilder
     }
 
     public StringBuilder reverse() {
-	super.reverse();
-	return this;
+        super.reverse();
+        return this;
     }
 
     public String toString() {
-        // Create a copy, don't share the array
-	return new String(value, 0, count);
+        // Создаем копию, а не расшариваем массив
+        return new String(value, 0, count);
     }
 
     /**
-     * Save the state of the <tt>StringBuilder</tt> instance to a stream 
-     * (that is, serialize it).
+     * Сохраняет состояние инстанции {@code StringBuilder} в поток
+     * (таким образом, серилизуя ее).
      *
-     * @serialData the number of characters currently stored in the string
-     *             builder (<tt>int</tt>), followed by the characters in the
-     *             string builder (<tt>char[]</tt>).   The length of the
-     *             <tt>char</tt> array may be greater than the number of 
-     *             characters currently stored in the string builder, in which
-     *             case extra characters are ignored.
+     * @serialData число символов, в данный момент хранящихся в построителе
+     *             строки (<tt>int</tt>), за которым следует символы построителя
+     *             строки (<tt>char[]</tt>). Длина массива
+     *             <tt>char</tt> может быть больше, чем число символов,
+     *             в данный момент хранящихся в построителе строки, в этом
+     *             случае дополнительные символы игнорируются.
      */
     private void writeObject(java.io.ObjectOutputStream s)
         throws java.io.IOException {
@@ -449,8 +449,8 @@ public final class StringBuilder
     }
 
     /**
-     * readObject is called to restore the state of the StringBuffer from
-     * a stream.
+     * {@code readObject} dspsdftncz для восстановления состояния 
+     * {@code StringBuffer}-а из потока.
      */
     private void readObject(java.io.ObjectInputStream s)
         throws java.io.IOException, ClassNotFoundException {
